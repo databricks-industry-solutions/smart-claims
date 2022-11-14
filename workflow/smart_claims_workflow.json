@@ -1,0 +1,141 @@
+{
+    "job_id": 601340558045949,
+    "creator_user_name": "marzi.rasooli@databricks.com",
+    "run_as_user_name": "marzi.rasooli@databricks.com",
+    "run_as_owner": true,
+    "settings": {
+        "name": "smart claims",
+        "email_notifications": {
+            "no_alert_for_skipped_runs": false
+        },
+        "timeout_seconds": 0,
+        "max_concurrent_runs": 1,
+        "tasks": [
+            {
+                "task_key": "IoT",
+                "notebook_task": {
+                    "notebook_path": "/Users/marzi.rasooli@databricks.com/Insurance/Latest/IOT",
+                    "source": "WORKSPACE"
+                },
+                "job_cluster_key": "Shared_job_cluster",
+                "timeout_seconds": 0,
+                "email_notifications": {}
+            },
+            {
+                "task_key": "accident_ml_assessment",
+                "notebook_task": {
+                    "notebook_path": "/Users/marzi.rasooli@databricks.com/Insurance/Latest/accident",
+                    "source": "WORKSPACE"
+                },
+                "job_cluster_key": "Shared_job_cluster",
+                "timeout_seconds": 0,
+                "email_notifications": {}
+            },
+            {
+                "task_key": "smart_claims_policy_dlt",
+                "pipeline_task": {
+                    "pipeline_id": "a1a3c6f6-171e-413e-98ca-8e35e366c0c6",
+                    "full_refresh": false
+                },
+                "timeout_seconds": 0,
+                "email_notifications": {}
+            },
+            {
+                "task_key": "rule_engine",
+                "depends_on": [
+                    {
+                        "task_key": "accident_ml_assessment"
+                    },
+                    {
+                        "task_key": "claim_policy_telematics"
+                    },
+                    {
+                        "task_key": "policy_location"
+                    }
+                ],
+                "notebook_task": {
+                    "notebook_path": "/Users/marzi.rasooli@databricks.com/Insurance/Latest/rule",
+                    "source": "WORKSPACE"
+                },
+                "job_cluster_key": "Shared_job_cluster",
+                "timeout_seconds": 0,
+                "email_notifications": {}
+            },
+            {
+                "task_key": "BI",
+                "depends_on": [
+                    {
+                        "task_key": "rule_engine"
+                    }
+                ],
+                "sql_task": {
+                    "dashboard": {
+                        "dashboard_id": "d47e206c-8ea6-4349-800b-002be0a54c59"
+                    },
+                    "warehouse_id": "77d7dabbececf7ca"
+                },
+                "timeout_seconds": 0,
+                "email_notifications": {}
+            },
+            {
+                "task_key": "claim_policy_telematics",
+                "depends_on": [
+                    {
+                        "task_key": "smart_claims_policy_dlt"
+                    },
+                    {
+                        "task_key": "IoT"
+                    }
+                ],
+                "notebook_task": {
+                    "notebook_path": "/Users/marzi.rasooli@databricks.com/Insurance/Latest/policy_claims_iot",
+                    "source": "WORKSPACE"
+                },
+                "job_cluster_key": "Shared_job_cluster",
+                "timeout_seconds": 0,
+                "email_notifications": {}
+            },
+            {
+                "task_key": "policy_location",
+                "depends_on": [
+                    {
+                        "task_key": "smart_claims_policy_dlt"
+                    }
+                ],
+                "notebook_task": {
+                    "notebook_path": "/Users/marzi.rasooli@databricks.com/Insurance/Latest/policy_location",
+                    "source": "WORKSPACE"
+                },
+                "job_cluster_key": "Shared_job_cluster",
+                "timeout_seconds": 0,
+                "email_notifications": {}
+            }
+        ],
+        "job_clusters": [
+            {
+                "job_cluster_key": "Shared_job_cluster",
+                "new_cluster": {
+                    "cluster_name": "",
+                    "spark_version": "10.4.x-scala2.12",
+                    "aws_attributes": {
+                        "first_on_demand": 1,
+                        "availability": "SPOT_WITH_FALLBACK",
+                        "zone_id": "us-west-2a",
+                        "spot_bid_price_percent": 100,
+                        "ebs_volume_count": 0
+                    },
+                    "node_type_id": "i3.xlarge",
+                    "spark_env_vars": {
+                        "PYSPARK_PYTHON": "/databricks/python3/bin/python3"
+                    },
+                    "enable_elastic_disk": false,
+                    "data_security_mode": "LEGACY_SINGLE_USER_STANDARD",
+                    "runtime_engine": "STANDARD",
+                    "num_workers": 8
+                }
+            }
+        ],
+        "format": "MULTI_TASK"
+    },
+    "created_time": 1664403677484
+}

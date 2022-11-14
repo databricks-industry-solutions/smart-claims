@@ -1,0 +1,28 @@
+{
+    "id": "a1a3c6f6-171e-413e-98ca-8e35e366c0c6",
+    "clusters": [
+        {
+            "label": "default",
+            "autoscale": {
+                "min_workers": 1,
+                "max_workers": 5,
+                "mode": "LEGACY"
+            }
+        }
+    ],
+    "development": true,
+    "continuous": false,
+    "channel": "CURRENT",
+    "edition": "ADVANCED",
+    "photon": true,
+    "libraries": [
+        {
+            "notebook": {
+                "path": "/Users/marzi.rasooli@databricks.com/Insurance/Latest/policy_and_claims_curation"
+            }
+        }
+    ],
+    "name": "smart_claims_policy_dlt",
+    "storage": "dbfs:/pipelines/a1a3c6f6-171e-413e-98ca-8e35e366c0c6",
+    "target": "smart_claims_new"
+}
