@@ -1,5 +1,7 @@
 # Databricks notebook source
-# rule engine for coverage, severity and accident location and speed
+# MAGIC %md
+# MAGIC # Rule Engine 
+# MAGIC * Checks coverage, severity and accident location and speed
 
 # COMMAND ----------
 

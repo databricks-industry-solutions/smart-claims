@@ -1,8 +1,4 @@
 # Databricks notebook source
-# MAGIC %pip install geopy
-
-# COMMAND ----------
-
 import geopy
 import pandas as pd
 import pyspark.sql.functions as F

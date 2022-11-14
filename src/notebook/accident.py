@@ -1,5 +1,6 @@
 # Databricks notebook source
-# bring in images and pass them through the model built in mlflow to get the score
+# MAGIC %md
+# MAGIC # Load claim images and score using model in MLFlow Registry
 
 # COMMAND ----------
 
