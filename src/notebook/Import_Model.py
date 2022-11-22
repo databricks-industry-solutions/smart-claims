@@ -7,11 +7,11 @@
 # MAGIC * Input folder - Input directory containing the exported model.
 # MAGIC 
 # MAGIC #### Setup
-# MAGIC * See Setup in [README]($./_README).
+# MAGIC * See Setup in [README]($../_README).
 
 # COMMAND ----------
 
-# MAGIC %run ./Common
+# MAGIC %run ../setup/Common
 
 # COMMAND ----------
 
