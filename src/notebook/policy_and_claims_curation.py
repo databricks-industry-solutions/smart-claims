@@ -8,9 +8,9 @@ from pyspark.sql import functions as F
 
 # COMMAND ----------
 
-claims_path = "../data/claims_data/Claims"
-policy_path = "../data/Policies/policies.csv"
-telematics_path = "../data/Telematics/telematics.delta"
+claims_path = "../../resources/data/claims_data/Claims"
+policy_path = "../../resources/Policies/policies.csv"
+telematics_path = "../../resources/data/Telematics/telematics.delta"
 
 # COMMAND ----------
 
