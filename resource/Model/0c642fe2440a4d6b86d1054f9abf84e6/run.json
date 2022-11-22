@@ -1,0 +1,37 @@
+{
+  "export_info": {
+    "mlflow_version": "1.29.0",
+    "mlflow_tracking_uri": "databricks",
+    "export_time": "2022-11-22 20:13:51"
+  },
+  "info": {
+    "run_uuid": "0c642fe2440a4d6b86d1054f9abf84e6",
+    "run_id": "0c642fe2440a4d6b86d1054f9abf84e6",
+    "experiment_id": "e6e1f5c2d50b402483634371b8ded5c3",
+    "user_id": "",
+    "status": "FINISHED",
+    "start_time": 1664397098359,
+    "end_time": 1664397099281,
+    "lifecycle_stage": "active",
+    "artifact_uri": "dbfs:/databricks/mlflow-tracking/e6e1f5c2d50b402483634371b8ded5c3/0c642fe2440a4d6b86d1054f9abf84e6/artifacts"
+  },
+  "params": {},
+  "metrics": {},
+  "tags": {
+    "mlflow.databricks.cluster.id": "0730-172948-runts698",
+    "mlflow.databricks.cluster.info": "{\"cluster_name\":\"Shared Autoscaling Americas\",\"spark_version\":\"10.4.x-cpu-ml-scala2.12\",\"node_type_id\":\"i3.2xlarge\",\"driver_node_type_id\":\"i3.4xlarge\",\"autotermination_minutes\":120,\"disk_spec\":{\"disk_count\":0},\"autoscale\":{\"min_workers\":1,\"max_workers\":14,\"target_workers\":9}}",
+    "mlflow.databricks.cluster.libraries": "{\"installable\":[{\"maven\":{\"coordinates\":\"com.databricks:spark-xml_2.12:0.14.0\"}},{\"whl\":\"dbfs:/Shared/dbx/projects/covid_analysis/ef96a76970b84d0a9fd748b89f033c9d/artifacts/dist/covid_analysis-0.0.1-py3-none-any.whl\"},{\"cran\":{\"package\":\"broom\"}},{\"pypi\":{\"package\":\"opencv-python\"}},{\"pypi\":{\"package\":\"pydash\"}},{\"pypi\":{\"package\":\"attrs==21.4.0\"}},{\"pypi\":{\"package\":\"cycler==0.11.0\"}},{\"pypi\":{\"package\":\"fonttools==4.33.3\"}},{\"pypi\":{\"package\":\"iniconfig==1.1.1\"}},{\"pypi\":{\"package\":\"kiwisolver==1.4.2\"}},{\"pypi\":{\"package\":\"matplotlib==3.5.1\"}},{\"pypi\":{\"package\":\"numpy==1.22.3\"}},{\"pypi\":{\"package\":\"packaging==21.3\"}},{\"pypi\":{\"package\":\"pandas==1.4.2\"}},{\"pypi\":{\"package\":\"pillow==9.1.0\"}},{\"pypi\":{\"package\":\"pluggy==1.0.0\"}},{\"pypi\":{\"package\":\"py==1.11.0\"}},{\"pypi\":{\"package\":\"py4j==0.10.9.3\"}},{\"pypi\":{\"package\":\"pyarrow==7.0.0\"}},{\"pypi\":{\"package\":\"pyparsing==3.0.8\"}},{\"pypi\":{\"package\":\"pytest==7.1.2\"}},{\"pypi\":{\"package\":\"python-dateutil==2.8.2\"}},{\"pypi\":{\"package\":\"pytz==2022.1\"}},{\"pypi\":{\"package\":\"six==1.16.0\"}},{\"pypi\":{\"package\":\"tomli==2.0.1\"}},{\"pypi\":{\"package\":\"wget==3.2\"}},{\"pypi\":{\"package\":\"git+https://github.com/RafiKurlansik/project_test.git\"}},{\"pypi\":{\"package\":\"prophecy-libs\"}}],\"redacted\":[{\"maven\":{\"coordinates\":\"io.prophecy:prophecy-libs_2.12:4.0.6-3.2.0\",\"repo\":\"REDACTED\"}}]}",
+    "mlflow.databricks.notebook.commandID": "8786915630972427382_8934712962399318774_13ceb1cf666743a087b0cef9140c067f",
+    "mlflow.databricks.notebookID": "3298960675534180",
+    "mlflow.databricks.notebookPath": "/Repos/marzi.rasooli@databricks.com/car-classification/02_car_ml",
+    "mlflow.databricks.webappURL": "https://oregon.cloud.databricks.com",
+    "mlflow.databricks.workspaceID": "2556758628403379",
+    "mlflow.databricks.workspaceURL": "e2-demo-west.cloud.databricks.com",
+    "mlflow.log-model.history": "[{\"artifact_path\":\"pipeline\",\"flavors\":{\"python_function\":{\"cloudpickle_version\":\"1.6.0\",\"loader_module\":\"mlflow.pyfunc.model\",\"python_model\":\"python_model.pkl\",\"env\":\"conda.yaml\",\"python_version\":\"3.8.10\"}},\"run_id\":\"0c642fe2440a4d6b86d1054f9abf84e6\",\"model_uuid\":\"38b08a6a740445feb41b7084bc25f599\",\"utc_time_created\":\"2022-09-28 20:31:38.752452\",\"databricks_runtime\":\"10.4.x-cpu-ml-scala2.12\"}]",
+    "mlflow.runName": "classification-wrapper",
+    "mlflow.source.name": "/Repos/marzi.rasooli@databricks.com/car-classification/02_car_ml",
+    "mlflow.source.type": "NOTEBOOK",
+    "mlflow.user": "marzi.rasooli@databricks.com",
+    "sparkDatasourceInfo": "path=dbfs:/FileStore/solution_accelerators/car/database/images,version=0,format=delta"
+  }
+}

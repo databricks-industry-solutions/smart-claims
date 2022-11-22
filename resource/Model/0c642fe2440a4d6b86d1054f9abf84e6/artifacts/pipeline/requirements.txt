@@ -1,0 +1,8 @@
+mlflow
+cloudpickle==1.6.0
+xgboost==1.5.2
+sklearn==0.24.1
+tensorflow==2.8.0
+pillow==9.1.0
+pandas==1.4.2
+numpy==1.22.3

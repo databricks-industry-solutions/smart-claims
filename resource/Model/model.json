@@ -1,0 +1,27 @@
+{
+  "registered_model": {
+    "name": "marzi_car_damage_classifier",
+    "creation_timestamp": 1664399246302,
+    "last_updated_timestamp": 1664399280848,
+    "user_id": "marzi.rasooli@databricks.com",
+    "latest_versions": [
+      {
+        "creation_timestamp": 1664399246613,
+        "current_stage": "Production",
+        "description": "",
+        "last_updated_timestamp": 1664399280848,
+        "name": "marzi_car_damage_classifier",
+        "run_id": "0c642fe2440a4d6b86d1054f9abf84e6",
+        "run_link": "",
+        "source": "dbfs:/databricks/mlflow-tracking/e6e1f5c2d50b402483634371b8ded5c3/0c642fe2440a4d6b86d1054f9abf84e6/artifacts/pipeline",
+        "status": "READY",
+        "status_message": "",
+        "tags": {},
+        "user_id": "marzi.rasooli@databricks.com",
+        "version": "1",
+        "_run_artifact_uri": "dbfs:/databricks/mlflow-tracking/e6e1f5c2d50b402483634371b8ded5c3/0c642fe2440a4d6b86d1054f9abf84e6/artifacts",
+        "_experiment_name": "/Repos/marzi.rasooli@databricks.com/car-classification/02_car_ml"
+      }
+    ]
+  }
+}
