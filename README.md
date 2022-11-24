@@ -4,32 +4,32 @@
 [![CLOUD](https://img.shields.io/badge/CLOUD-ALL-blue?logo=googlecloud&style=for-the-badge)](https://cloud.google.com/databricks)
 [![POC](https://img.shields.io/badge/POC-10_days-green?style=for-the-badge)](https://databricks.com/try-databricks)
 
-* Domain: Insurance 
-* Challenge: How to improve the Claims Management process for faster claims settlement, lower claims processing costs and quicker identification of possible fraud.
-* Smart Claims: A Databricks Solution Accelerator that uses the Lakehouse paradigm to automate certain components of this process that aids human investigation *
-* What
+* <b>Domain </b>: Insurance 
+* <b>Challenge </b>: How to improve the Claims Management process for faster claims settlement, lower claims processing costs and quicker identification of possible fraud.
+* <b> Smart Claims </b>: A Databricks Solution Accelerator that uses the Lakehouse paradigm to automate certain components of this process that aids human investigation *
+___
+
+# Details
+* <b>What</b>
   * There is a lot of customer churn in insurance companies. 
   * How can customer loyalty & retention be  improved?
   * Processing Claims is time consuming
   * How can funds and resources be released in a timely manner to deserving parties?
   * Fraudulent transactions erodes profit margins
   * How can suspicious activities be flagged for  further investigation?
-* Why
+* <b>Why</b>
   * Faster approvals, Lower Operating expenses
   * Detect & Prevent fraudulent scenarios, Lower Leakage ratio
   * Improve customer satisfaction, Lower Loss ratio
-How
-* Claim Automation
+* <b>How: Claims Automation</b>
   * What aspects of the claims processing pipeline can be automated
   * Augmenting Info to claims data to aid Investigation - Recommend Next Best Action
   * Explainability for the human workflow
   * Claims Role (Adjustor, skill set, tenure time - who should take it based on claim characteristics)
-
-
 ___
-<anindita.mahapatra@databricks.com>
-<marzi.rasooli@databricks.com>
-<sara.slone@databricks.com>
+<anindita.mahapatra@databricks.com> >br>
+<marzi.rasooli@databricks.com> <br>
+<sara.slone@databricks.com><br>
 ___
 
 # Smart Claims Reference Architecture & Data Flow
@@ -50,7 +50,7 @@ ___
 ___
 
 # Datasets
-<img src="./images/datasets.png" width="10%" height="10%">
+<img src="./resource/images/datasets.png" width="10%" height="10%">
 /*:
 1. Policy data ingestion 
 2. Claims and telematics data ingestion 
@@ -60,17 +60,17 @@ ___
 ___
 
 # Domain Model
-<img src="./images/domain_model.png" width="10%" height="10%">
+<img src="./resource/images/domain_model.png" width="10%" height="10%">
 
 # Rule Engine
-<img src="./images/rule_engine.png" width="10%" height="10%">
+<img src="./resource/images/rule_engine.png" width="10%" height="10%">
 
 # Workflow
-<img src="./images/workflow.png" width="10%" height="10%">
-<img src="./images/medallion_architecture.png" width="10%" height="10%">
+<img src="./resource/images/workflow.png" width="10%" height="10%">
+<img src="./resource/images/medallion_architecture.png" width="10%" height="10%">
 ___
 # Dashboards
-<img src="./images/summary_dashboard.png" width="10%" height="10%">
+<img src="./resource/images/summary_dashboard.png" width="10%" height="10%">
 ___
 &copy; 2022 Databricks, Inc. All rights reserved. The source in this notebook is provided subject to the Databricks License [https://databricks.com/db-license-source].  All included or referenced third party libraries are subject to the licenses set forth below.
 
