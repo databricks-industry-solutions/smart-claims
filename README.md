@@ -33,7 +33,7 @@ ___
 ___
 
 # Smart Claims Reference Architecture & Data Flow
-<img src="./resource/images/smart_claims_process.png" width="150" height="100">
+<img src="./resource/images/smart_claims_process.png" width="50%" height="50%">
 /*:
 1. Policy data ingestion 
 2. Claims and telematics data ingestion 
@@ -50,7 +50,7 @@ ___
 ___
 
 # Datasets
-<img src="./resource/images/datasets.png" width="10%" height="10%">
+<img src="./resource/images/datasets.png" width="50%" height="50%">
 /*:
 1. Policy data ingestion 
 2. Claims and telematics data ingestion 
@@ -60,17 +60,17 @@ ___
 ___
 
 # Domain Model
-<img src="./resource/images/domain_model.png" width="10%" height="10%">
+<img src="./resource/images/domain_model.png" width="50%" height="50%">
 
 # Rule Engine
-<img src="./resource/images/rule_engine.png" width="10%" height="10%">
+<img src="./resource/images/rule_engine.png" width="50%" height="50%">
 
 # Workflow
-<img src="./resource/images/workflow.png" width="10%" height="10%">
-<img src="./resource/images/medallion_architecture.png" width="10%" height="10%">
+<img src="./resource/images/workflow.png" width="50%" height="50%">
+<img src="./resource/images/medallion_architecture.png" width="50%" height="50%">
 ___
 # Dashboards
-<img src="./resource/images/summary_dashboard.png" width="10%" height="10%">
+<img src="./resource/images/summary_dashboard.png" width="50%" height="50%">
 ___
 &copy; 2022 Databricks, Inc. All rights reserved. The source in this notebook is provided subject to the Databricks License [https://databricks.com/db-license-source].  All included or referenced third party libraries are subject to the licenses set forth below.
 
