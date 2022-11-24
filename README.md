@@ -6,12 +6,12 @@
 
 * <b>Domain </b>: Insurance 
 * <b>Challenge </b>: 
- * Insurance companies have to constantly innovate to beat competition
- * Customer Retention/Loyalty can be challenge as people are always shopping for more competitive rates, leading to ccustomer churn
- * Fraudulent transactions erodes profit margins 
- * How to improve the Claims Management process for faster claims settlement, lower claims processing costs and quicker identification of possible fraud.
-* <b><span style="color: red"> Smart Claims </span></b>: 
-* A Databricks Solution Accelerator that uses the Lakehouse paradigm to automate certain components of this process that aids human investigation *
+  * Insurance companies have to constantly innovate to beat competition
+  * Customer Retention/Loyalty can be challenge as people are always shopping for more competitive rates, leading to ccustomer churn
+  * Fraudulent transactions erodes profit margins 
+  * How to improve the Claims Management process for faster claims settlement, lower claims processing costs and quicker identification of possible fraud.
+* <b><span style="color:#f03c15"> Smart Claims </span></b>: 
+  * A Databricks Solution Accelerator that uses the Lakehouse paradigm to automate certain components of this process that aids human investigation *
 ___
 
 # Details
