@@ -68,7 +68,7 @@ ___
 
 # Insight Generation using ML & Rule Engine 
 * A pre-trained ML Model is used to score the pic attached in the claims record to assess the severity of damage.
-* A Rule engine is a flexible way to define known operational rules, some example include
+* A <b>Rule Engine </b> is a flexible way to define known operational rules, some example include
   * Speed of the car at the time of the accident can alter the decision
   * An expired policy or a claim amount more than the allowed for the policy at hand
 <img src="./resource/images/rule_engine.png" width="50%" height="50%">
@@ -81,12 +81,14 @@ ___
 
 <img src="./resource/images/medallion_architecture_dlt.png" width="60%" height="60%">
 * Using DLT for ETL helps simplify and operationalize the pipeline with its support for autoloader, data quality via constraints, efficient auto-scaling for streaming workloads, resiliency via restart on faillure, execution of administrative operations among others.
+
 ___
 
 # Insight visualization using Dashboards
 <img src="./resource/images/summary_dashboard.png" width="60%" height="60%">
+
 * A 'Claims Summary' dashboard gives a birds eye view to overall business operations
-* A per claim 'Investigation' dashboard gives additional where a claims officer picks a claim# and can drill into its various facets
+* A per claim 'Investigation' dashboard gives additional where a claims officer picks a claim number and can drill into its various facets
 
 ___
 
