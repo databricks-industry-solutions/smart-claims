@@ -33,7 +33,7 @@ ___
 ___
 
 # Smart Claims Reference Architecture & Data Flow
-<img src="./resource/images/smart_claims_process.png" width="50%" height="50%">
+<img src="./resource/images/smart_claims_process.png" width="70%" height="70%">
 
 1. Policy data ingestion 
 2. Claims and telematics data ingestion 
@@ -49,7 +49,7 @@ ___
 ___
 
 # Datasets
-<img src="./resource/images/datasets.png" width="50%" height="50%">
+<img src="./resource/images/datasets.png" width="60%" height="60%">
 
 1. Policy data ingestion 
 2. Claims and telematics data ingestion 
@@ -59,14 +59,15 @@ ___
 ___
 
 # Domain Model
-<img src="./resource/images/domain_model.png" width="50%" height="50%">
+<img src="./resource/images/domain_model.png" width="80%" height="80%">
 
 # Rule Engine
 <img src="./resource/images/rule_engine.png" width="50%" height="50%">
 
 # Workflow
-<img src="./resource/images/workflow.png" width="50%" height="50%">
-<img src="./resource/images/medallion_architecture.png" width="50%" height="50%">
+![Workflow](./resource/images/workflow.png)
+![Workflow](./resource/images/medallion_architecture_dlt.png)
+
 ___
 # Dashboards
 <img src="./resource/images/summary_dashboard.png" width="50%" height="50%">
