@@ -33,7 +33,7 @@ ___
 ___
 
 # Smart Claims Reference Architecture & Data Flow
-<img src="./images/smart_claims_process.png" width="10%" height="10%">
+<img src="./resource/images/smart_claims_process.png" width="150" height="100">
 /*:
 1. Policy data ingestion 
 2. Claims and telematics data ingestion 
