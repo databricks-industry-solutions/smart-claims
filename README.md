@@ -87,8 +87,8 @@ ___
 # Insight visualization using Dashboards
 <img src="./resource/images/summary_dashboard.png" width="60%" height="60%">
 
-* A 'Claims Summary' dashboard gives a birds eye view to overall business operations
-* A per claim 'Investigation' dashboard gives additional where a claims officer picks a claim number and can drill into its various facets
+* A <b>Claims Summary</b> dashboard gives a birds eye view to overall business operations
+* A per claim <b>Investigation</b> dashboard gives additional where a claims officer picks a claim number and can drill into its various facets
 
 ___
 
