@@ -27,14 +27,14 @@ ___
   * Explainability for the human workflow
   * Claims Role (Adjustor, skill set, tenure time - who should take it based on claim characteristics)
 ___
-<anindita.mahapatra@databricks.com> >br>
+<anindita.mahapatra@databricks.com> <br>
 <marzi.rasooli@databricks.com> <br>
-<sara.slone@databricks.com><br>
+<sara.slone@databricks.com> <br>
 ___
 
 # Smart Claims Reference Architecture & Data Flow
 <img src="./resource/images/smart_claims_process.png" width="50%" height="50%">
-/*:
+
 1. Policy data ingestion 
 2. Claims and telematics data ingestion 
 3. Ingest all data sources to the cloud storage
@@ -45,18 +45,17 @@ ___
 8. Dashboard visualization
 9. Feed the results back to the operational system
 10. Claims routing based on decision
-*/
 
 ___
 
 # Datasets
 <img src="./resource/images/datasets.png" width="50%" height="50%">
-/*:
+
 1. Policy data ingestion 
 2. Claims and telematics data ingestion 
 3. Ingest all data sources to the cloud storage
 4. Incrementally Load Raw data to Delta Bronze table
-*/
+
 ___
 
 # Domain Model
