@@ -8,6 +8,10 @@ from pyspark.sql import functions as F
 
 # COMMAND ----------
 
+# MAGIC %run ../../setup/initialize
+
+# COMMAND ----------
+
 claims_path = "../../resource/data_sources/claims_data/Claims"
 policy_path = "../../resource/data_sources/Policies/policies.csv"
 

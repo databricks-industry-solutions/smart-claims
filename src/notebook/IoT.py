@@ -3,19 +3,22 @@
 
 # COMMAND ----------
 
-telematic_path = "../../resource/data_sources/Telematics"
+import os
+os.getcwd()
+os.chdir('../..')
+#to get the current working directory
+directory = os.getcwd()
+
+print(directory)
 
 # COMMAND ----------
 
-iot_df = spark.read.format("delta").load(telematic_path).write.format("delta").overwite.save()
+telematic_path = directory + "/resource/data_sources/Telematics"
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC create table if not exists smart_claims_new.telematics
-# MAGIC using delta location
-
-# COMMAND ----------
-
-# MAGIC %sql
-# MAGIC Select * from smart_claims_new.telematics
+_ = spark.sql('''
+  CREATE TABLE telematics
+  USING DELTA 
+  LOCATION '{}'
+  '''.format(telematic_path))
