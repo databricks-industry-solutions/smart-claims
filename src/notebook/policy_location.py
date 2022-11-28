@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC %run ../../setup/initialize
+
+# COMMAND ----------
+
 import geopy
 import pandas as pd
 import pyspark.sql.functions as F
@@ -16,7 +20,7 @@ geolocator = geopy.Nominatim(user_agent="claims_lat_long", timeout=None)
 
 # COMMAND ----------
 
-policy_claims_df = spark.table("smart_claims_new.silver_claims_policy")
+policy_claims_df = spark.table("silver_claims_policy")
 display(policy_claims_df)
 
 # COMMAND ----------
@@ -41,4 +45,4 @@ display(policy_claims_lat_long)
 
 # COMMAND ----------
 
-policy_claims_lat_long.write.format("delta").mode("append").saveAsTable("smart_claims_new.silver_claims_policy_location")
+policy_claims_lat_long.write.format("delta").mode("append").saveAsTable("silver_claims_policy_location")

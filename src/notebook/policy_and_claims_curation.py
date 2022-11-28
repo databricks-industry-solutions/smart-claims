@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC %run ../../setup/initialize
+
+# COMMAND ----------
+
 import dlt
 from pyspark.sql.functions import monotonically_increasing_id
 from pyspark.sql.functions import lit, row_number
@@ -8,12 +12,9 @@ from pyspark.sql import functions as F
 
 # COMMAND ----------
 
-# MAGIC %run ../../setup/initialize
-
-# COMMAND ----------
-
-claims_path = "../../resource/data_sources/claims_data/Claims"
-policy_path = "../../resource/data_sources/Policies/policies.csv"
+directory = os.getcwd()
+claims_path = directory + "/resource/data_sources/claims_data/Claims"
+policy_path = directory + "/resource/data_sources/Policies/policies.csv"
 
 # COMMAND ----------
 

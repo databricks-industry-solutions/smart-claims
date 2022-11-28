@@ -21,9 +21,6 @@ temp_directory = "/tmp/{}/smart_claims".format(username)
 # COMMAND ----------
 
 config = {
-  'dbfs_path_claims'   :   '{}/claims'.format(home_directory),
-  'dbfs_path_policy'   :'{}/policy'.format(home_directory),
-  'dbfs_path_telematic': '{}/telematic'.format(home_directory),
   'dlt_path': '{}/dlt'.format(home_directory),
   'damage_severity_model_dir'    :  '{}/fasttext'.format(home_directory),
   'damage_severity_model_name'   :  'damage_severity_{}'.format(re.sub('\.', '_', username)),

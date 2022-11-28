@@ -5,19 +5,13 @@
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC USE DATABASE smart_claims_new
+# MAGIC %run ../../setup/initialize
 
 # COMMAND ----------
 
 # MAGIC %sql
 # MAGIC drop table if exists claims_policy_accident;
 # MAGIC drop table if exists claims_policy_accident_insights_
-
-# COMMAND ----------
-
-# MAGIC %sql
-# MAGIC select driver_id from silver_claims_policy
 
 # COMMAND ----------
 
@@ -61,15 +55,6 @@ df_claims_policy_accident = imputer.fit(df_claims_policy_accident).transform(df_
 # COMMAND ----------
 
 display(df_claims_policy_accident)
-
-# COMMAND ----------
-
-# # df_claims_policy_accident.select(add_months("pol_eff_date", 48))
-
-# import pyspark.sql.functions as F 
- 
-# df2 = df_claims_policy_accident.withColumn('pol_eff_date_new', F.add_months(df_claims_policy_accident['POL_EFF_DATE'], 48))
-# display(df2)
 
 # COMMAND ----------
 
@@ -129,12 +114,6 @@ df_claims_policy_accident.registerTempTable("temp_claims_policy_accident")
 
 # COMMAND ----------
 
-# temp_inisghts_df = spark.sql("select * from temp_claims_policy_accident")
-# temp_inisghts_df.write.format("delta").mode("overwrite").save("/FileStore/marzi/claims_data/insights_delta")
-# spark.sql("CREATE TABLE smart_claims.accident_claims_policy_insights USING DELTA LOCATION '/FileStore/marzi/claims_data/insights_delta' ")
-
-# COMMAND ----------
-
 # MAGIC %sql
 # MAGIC --Add a new column for release funds.... if all the other generated rules are ok
 # MAGIC 
@@ -188,7 +167,3 @@ df_claims_policy_accident.registerTempTable("temp_claims_policy_accident")
 
 # MAGIC %sql 
 # MAGIC select * from policy_claims_iot_available
-
-# COMMAND ----------
-
-
