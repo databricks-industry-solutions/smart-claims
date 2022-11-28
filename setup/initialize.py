@@ -22,8 +22,8 @@ temp_directory = "/tmp/{}/smart_claims".format(username)
 
 config = {
   'dlt_path': '{}/dlt'.format(home_directory),
-  'model_dir_on_dbfs' : 
-  'damage_severity_model_dir'    :  '{}/fasttext'.format(home_directory),
+  'model_dir_on_dbfs' : 'dbfs:/FileStore/{}/severity_model/Model'.format(username),
+  'damage_severity_model_dir'    :  '/Users/car_damage_classifier'.format(home_directory),
   'damage_severity_model_name'   :  'damage_severity_{}'.format(re.sub('\.', '_', username)),
   'sql_warehouse_id' : ""  
 }

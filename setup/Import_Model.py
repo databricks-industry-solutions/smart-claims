@@ -11,24 +11,30 @@
 
 # COMMAND ----------
 
+# MAGIC %run ../../setup/initialize
+
+# COMMAND ----------
+
 # MAGIC %run ../setup/Common
 
 # COMMAND ----------
 
-model_path = 
-dbutils.fs.cp('file:/databricks/driver/Telco-Customer-Churn.csv', driver_to_dbfs_path)
+import os
+directory = os.getcwd()
+
+# COMMAND ----------
+
+model_path = directory+ '/resource/Model/'
+dbutils.fs.cp(model_path, getParam(model_dbfs_path), recurse=True)
 damage_severity_model_name
 
 # COMMAND ----------
 
-dbutils.widgets.text("1. Model name", "") 
-model_name = dbutils.widgets.get("1. Model name")
+model_name = getParam(damage_severity_model_name)
 
-dbutils.widgets.text("2. Destination experiment name", "") 
-experiment_name = dbutils.widgets.get("2. Destination experiment name")
+ experiment_name = getParam(damage_severity_model_dir)
 
-dbutils.widgets.text("3. Input directory", "") 
-input_dir = dbutils.widgets.get("3. Input directory")
+input_dir = getParam(getParam(model_dbfs_path)
 
 import os
 os.environ["INPUT_DIR"] = input_dir.replace("dbfs:","/dbfs")
@@ -42,10 +48,6 @@ print("experiment_name:",experiment_name)
 if len(input_dir)==0: raise Exception("ERROR: Input directory is required")
 if len(input_dir)==0: raise Exception("ERROR: model name is required")
 if len(experiment_name)==0: raise Exception("ERROR: Destination experiment name is required")
-
-# COMMAND ----------
-
-# MAGIC %run ./Common
 
 # COMMAND ----------
 

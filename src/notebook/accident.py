@@ -56,7 +56,3 @@ spark.sql("CREATE TABLE IF NOT EXISTS smart_claims.accident USING DELTA LOCATION
 # COMMAND ----------
 
 display(accident_df_spark)
-
-# COMMAND ----------
-
-
