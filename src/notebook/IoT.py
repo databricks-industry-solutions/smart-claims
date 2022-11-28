@@ -1,9 +1,13 @@
 # Databricks notebook source
-# MAGIC %run ../config/initialize
+# MAGIC %run ../../setup/initialize
 
 # COMMAND ----------
 
 json_['database_schema_name']
+
+# COMMAND ----------
+
+
 
 # COMMAND ----------
 
