@@ -3,18 +3,17 @@
 
 # COMMAND ----------
 
-json_['database_schema_name']
+telematic_path = "../../resource/data_sources/Telematics"
 
 # COMMAND ----------
 
-
+iot_df = spark.read.format("delta").load(telematic_path).write.format("delta").overwite.save()
 
 # COMMAND ----------
 
 # MAGIC %sql
 # MAGIC create table if not exists smart_claims_new.telematics
 # MAGIC using delta location
-# MAGIC "../../resources/data/telematic";
 
 # COMMAND ----------
 
