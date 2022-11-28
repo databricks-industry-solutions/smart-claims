@@ -4,31 +4,40 @@
 
 # COMMAND ----------
 
-accident_delta_path = "dbfs:/FileStore/marzi/claims_data/Accident_delta"
+# MAGIC %run ../../setup/initialize
 
 # COMMAND ----------
 
-acc_df =spark.read.format('binaryFile').load('/mnt/industry-gtm/fsi/datasets/car_accidents/accidents')
-
-# COMMAND ----------
-
-display(acc_df)
-
-# COMMAND ----------
-
+import os
 from pyspark.sql.functions import lit, row_number
 from pyspark.sql.window import Window
+import mlflow
+
+# COMMAND ----------
+
+directory = os.getcwd()
+
+accident_path = directory + "/Accident"
+
+# COMMAND ----------
+
+acc_df =spark.read.format('binaryFile').load(accident_path)
+
+# COMMAND ----------
+
+# MAGIC %run ../../setup/import_model
+
+# COMMAND ----------
 
 w = Window.partitionBy(lit(1)).orderBy("length")
 accident_df = (acc_df.withColumn("driver_id", row_number().over(w)).toPandas())
 
 # COMMAND ----------
 
-import mlflow
-
-# COMMAND ----------
-
-run_id = "0c642fe2440a4d6b86d1054f9abf84e6"
+model_production_uri = "models:/{model_name}/production".format(model_name=model_name)
+ 
+print("Loading registered model version from URI: '{model_uri}'".format(model_uri=model_production_uri))
+model_production = mlflow.pyfunc.load_model(model_production_uri)
 
 # COMMAND ----------
 

@@ -15,6 +15,12 @@
 
 # COMMAND ----------
 
+model_path = 
+dbutils.fs.cp('file:/databricks/driver/Telco-Customer-Churn.csv', driver_to_dbfs_path)
+damage_severity_model_name
+
+# COMMAND ----------
+
 dbutils.widgets.text("1. Model name", "") 
 model_name = dbutils.widgets.get("1. Model name")
 
