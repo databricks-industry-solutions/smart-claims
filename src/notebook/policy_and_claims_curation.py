@@ -12,9 +12,8 @@ from pyspark.sql import functions as F
 
 # COMMAND ----------
 
-directory = os.getcwd()
-claims_path = directory + "/resource/data_sources/claims_data/Claims"
-policy_path = directory + "/resource/data_sources/Policies/policies.csv"
+claims_path = main_directory + "/resource/data_sources/claims_data/Claims"
+policy_path = main_directory + "/resource/data_sources/Policies/policies.csv"
 
 # COMMAND ----------
 

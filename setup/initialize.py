@@ -9,6 +9,10 @@ import pandas as pd
 
 # COMMAND ----------
 
+main_directory = dbutils.notebook.entry_point.getDbutils().notebook().getContext().notebookPath().get().split('/setup')[0]
+
+# COMMAND ----------
+
 # We ensure that all objects created in that notebooks will be registered in a user specific database. 
 username = dbutils.notebook.entry_point.getDbutils().notebook().getContext().userName().get().split('@')[0]
 

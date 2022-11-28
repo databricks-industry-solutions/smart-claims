@@ -3,17 +3,7 @@
 
 # COMMAND ----------
 
-import os
-os.getcwd()
-os.chdir('../..')
-#to get the current working directory
-directory = os.getcwd()
-
-print(directory)
-
-# COMMAND ----------
-
-telematic_path = directory + "/resource/data_sources/Telematics"
+telematic_path = main_directory + "/resource/data_sources/Telematics"
 
 # COMMAND ----------
 

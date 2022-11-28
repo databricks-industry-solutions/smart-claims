@@ -8,6 +8,10 @@
 
 # COMMAND ----------
 
+# MAGIC %run ../../setup/import_model
+
+# COMMAND ----------
+
 import os
 from pyspark.sql.functions import lit, row_number
 from pyspark.sql.window import Window
@@ -15,17 +19,11 @@ import mlflow
 
 # COMMAND ----------
 
-directory = os.getcwd()
-
-accident_path = directory + "/Accident"
+accident_path = main_directory + "/resource/data_sources/Accident"
 
 # COMMAND ----------
 
 acc_df =spark.read.format('binaryFile').load(accident_path)
-
-# COMMAND ----------
-
-# MAGIC %run ../../setup/import_model
 
 # COMMAND ----------
 
