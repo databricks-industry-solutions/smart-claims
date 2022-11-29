@@ -78,10 +78,10 @@ Path(temp_directory).mkdir(parents=True, exist_ok=True)
 
 # COMMAND ----------
 
-dbutils.fs.rm(getParam("dbfs_path_claims"),recurse=True)
-dbutils.fs.rm(getParam("dbfs_path_policy"),recurse=True)
-dbutils.fs.rm(getParam("dbfs_path_telematic"),recurse=True)
-dbutils.fs.rm(getParam("dlt_path"),recurse=True)
+# dbutils.fs.rm(getParam("dbfs_path_claims"),recurse=True)
+# dbutils.fs.rm(getParam("dbfs_path_policy"),recurse=True)
+# dbutils.fs.rm(getParam("dbfs_path_telematic"),recurse=True)
+# dbutils.fs.rm(getParam("dlt_path"),recurse=True)
 
 # COMMAND ----------
 

@@ -11,7 +11,7 @@
 
 # COMMAND ----------
 
-# MAGIC %run ../../setup/initialize
+# MAGIC %run ../setup/initialize
 
 # COMMAND ----------
 
@@ -19,22 +19,22 @@
 
 # COMMAND ----------
 
-import os
-directory = os.getcwd()
+# MAGIC %sh
+# MAGIC wget --no-parent -r https://github.com/databricks-industry-solutions/smart-claims/tree/main/resource/Model
 
 # COMMAND ----------
 
-model_path = directory+ '/resource/Model/'
-dbutils.fs.cp(model_path, getParam(model_dbfs_path), recurse=True)
+model_path = main_directory+ '/resource/Model/'
+dbutils.fs.cp(model_path, getParam("model_dir_on_dbfs"), recurse=True)
 damage_severity_model_name
 
 # COMMAND ----------
 
-model_name = getParam(damage_severity_model_name)
+model_name = getParam("damage_severity_model_name")
 
- experiment_name = getParam(damage_severity_model_dir)
+ experiment_name = getParam("damage_severity_model_dir")
 
-input_dir = getParam(getParam(model_dbfs_path)
+input_dir = getParam("model_dbfs_path")
 
 import os
 os.environ["INPUT_DIR"] = input_dir.replace("dbfs:","/dbfs")
