@@ -27,6 +27,7 @@ temp_directory = "/tmp/{}/smart_claims".format(username)
 config = {
   'dlt_path': '{}/dlt'.format(home_directory),
   'model_dir_on_dbfs' : 'dbfs:/FileStore/{}/severity_model/Model'.format(username),
+  'image_dir_on_dbfs' : 'dbfs:/FileStore/smart_claims',
   'damage_severity_model_dir'    :  '/Users/car_damage_classifier'.format(home_directory),
   'damage_severity_model_name'   :  'damage_severity_{}'.format(re.sub('\.', '_', username)),
   'sql_warehouse_id' : ""  
@@ -82,6 +83,21 @@ Path(temp_directory).mkdir(parents=True, exist_ok=True)
 # dbutils.fs.rm(getParam("dbfs_path_policy"),recurse=True)
 # dbutils.fs.rm(getParam("dbfs_path_telematic"),recurse=True)
 # dbutils.fs.rm(getParam("dlt_path"),recurse=True)
+dbutils.fs.rm(getParam("model_dir_on_dbfs"),recurse=True)
+dbutils.fs.rm(getParam("image_dir_on_dbfs"),recurse=True)
+
+# COMMAND ----------
+
+# MAGIC %rm -r /tmp/*
+# MAGIC %mkdir /tmp/Model
+# MAGIC %mkdir /tmp/images
+# MAGIC %cp -r ../resource/Model /tmp/Model
+# MAGIC %cp ../resource/images/*.jpg /tmp/images
+
+# COMMAND ----------
+
+dbutils.fs.cp("file:/tmp/Model", getParam("model_dir_on_dbfs"),recurse=True)
+dbutils.fs.cp("/tmp/images", getParam("image_dir_on_dbfs"),recurse=True)
 
 # COMMAND ----------
 
