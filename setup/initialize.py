@@ -98,7 +98,3 @@ dbutils.fs.rm(getParam("image_dir_on_dbfs"),recurse=True)
 
 dbutils.fs.cp("file:/tmp/Model", getParam("model_dir_on_dbfs"),recurse=True)
 dbutils.fs.cp("/tmp/images", getParam("image_dir_on_dbfs"),recurse=True)
-
-# COMMAND ----------
-
-
