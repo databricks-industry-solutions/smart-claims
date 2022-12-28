@@ -28,7 +28,7 @@ config = {
   'dlt_path': '{}/dlt'.format(home_directory),
   'model_dir_on_dbfs' : 'dbfs:/FileStore/{}/severity_model/Model'.format(username),
   'image_dir_on_dbfs' : 'dbfs:/FileStore/smart_claims',
-  'damage_severity_model_dir'    :  '/Users/car_damage_classifier'.format(home_directory),
+  'damage_severity_model_dir'    :  '/Users/marzi_car_damage_classifier'.format(home_directory),
   'damage_severity_model_name'   :  'damage_severity_{}'.format(re.sub('\.', '_', username)),
   'sql_warehouse_id' : ""  
 }
@@ -88,8 +88,8 @@ dbutils.fs.rm(getParam("image_dir_on_dbfs"),recurse=True)
 
 # COMMAND ----------
 
-# MAGIC %mkdir /tmp/Model
-# MAGIC %cp -r ../resource/Model /tmp/Model
+# MAGIC 
+# MAGIC %cp -r ../resource/Model /tmp/
 
 # COMMAND ----------
 

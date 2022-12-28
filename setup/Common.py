@@ -3,6 +3,10 @@
 
 # COMMAND ----------
 
+# MAGIC %pip install git+https:///github.com/amesar/mlflow-export-import/#egg=mlflow-export-import
+
+# COMMAND ----------
+
 import mlflow
 client = mlflow.tracking.MlflowClient()
 
@@ -55,3 +59,7 @@ def get_notebook_formats(num):
     notebook_formats = notebook_formats.split(",")
     if "" in notebook_formats: notebook_formats.remove("")
     return notebook_formats
+
+# COMMAND ----------
+
+
