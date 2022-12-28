@@ -10,6 +10,7 @@ main_directory = dbutils.notebook.entry_point.getDbutils().notebook().getContext
 
 # We ensure that all objects created in that notebooks will be registered in a user specific database. 
 username = dbutils.notebook.entry_point.getDbutils().notebook().getContext().userName().get().split('@')[0]
+user = dbutils.notebook.entry_point.getDbutils().notebook().getContext().userName().get()
 
 # Please replace this cell should you want to store data somewhere else.
 database_name = '{}_smart_claims'.format(re.sub('\W', '_', username))
@@ -23,7 +24,7 @@ config = {
   'dlt_path': '{}/dlt'.format(home_directory),
   'model_dir_on_dbfs' : 'dbfs:/FileStore/{}/severity_model/Model'.format(username),
   'image_dir_on_dbfs' : 'dbfs:/FileStore/smart_claims',
-  'damage_severity_model_dir'    :  '/Users/marzi_car_damage_classifier'.format(home_directory),
+  'damage_severity_model_dir'    :  '/Users/{}/car_damage_severity'.format(user),
   'damage_severity_model_name'   :  'damage_severity_{}'.format(re.sub('\.', '_', username)),
   'sql_warehouse_id' : ""  
 }
