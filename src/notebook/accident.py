@@ -4,11 +4,7 @@
 
 # COMMAND ----------
 
-# MAGIC %run ../../setup/setup
-
-# COMMAND ----------
-
-# MAGIC %run ../../setup/import_model
+# MAGIC %run ../../setup/initialize
 
 # COMMAND ----------
 
@@ -16,10 +12,6 @@ import os
 from pyspark.sql.functions import lit, row_number
 from pyspark.sql.window import Window
 import mlflow
-
-# COMMAND ----------
-
-accident_path = main_directory + "/resource/data_sources/Accident"
 
 # COMMAND ----------
 

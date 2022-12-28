@@ -1,4 +1,10 @@
 -- Databricks notebook source
+-- MAGIC %md
+-- MAGIC # Add iot data to the claims & policy data
+-- MAGIC * simulate iot streaming data join with claims
+
+-- COMMAND ----------
+
 -- MAGIC %run ../../setup/initialize
 
 -- COMMAND ----------

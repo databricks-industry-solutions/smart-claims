@@ -1,14 +1,15 @@
 # Databricks notebook source
+# MAGIC %md
+# MAGIC # iot streaming data
+
+# COMMAND ----------
+
 # MAGIC %run ../../setup/initialize
 
 # COMMAND ----------
 
-telematic_path = main_directory + "/resource/data_sources/Telematics"
-
-# COMMAND ----------
-
 _ = spark.sql('''
-  CREATE TABLE telematics
+  CREATE TABLE IF not exists telematics
   USING DELTA 
   LOCATION '{}'
   '''.format(telematic_path))

@@ -1,12 +1,21 @@
 # Databricks notebook source
+# MAGIC %md
+# MAGIC # Initialize
+# MAGIC * This file is inluded in all other Notebooks to get common definitions/configurations
+
+# COMMAND ----------
+
 import re
 import pandas as pd
 
 # COMMAND ----------
 
-main_directory = dbutils.notebook.entry_point.getDbutils().notebook().getContext().notebookPath().get().split('/setup')[0]
+# MAGIC %md
+# MAGIC ## File Paths
 
 # COMMAND ----------
+
+main_directory = dbutils.notebook.entry_point.getDbutils().notebook().getContext().notebookPath().get().split('/setup')[0]
 
 # We ensure that all objects created in that notebooks will be registered in a user specific database. 
 username = dbutils.notebook.entry_point.getDbutils().notebook().getContext().userName().get().split('@')[0]
@@ -20,6 +29,11 @@ temp_directory = "/tmp/{}/smart_claims".format(username)
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC ## Configuration Metadata
+
+# COMMAND ----------
+
 config = {
   'dlt_path': '{}/dlt'.format(home_directory),
   'model_dir_on_dbfs' : 'dbfs:/FileStore/{}/severity_model/Model'.format(username),
@@ -30,8 +44,6 @@ config = {
   'sql_warehouse_id' : ""  
 }
 
-# COMMAND ----------
-
 def getParam(s):
   return config[s]
  
@@ -40,10 +52,22 @@ spark.createDataFrame(pd.DataFrame(config, index=[0])).createOrReplaceTempView('
 
 # COMMAND ----------
 
-# MAGIC %md
-# MAGIC #### Setup
+claims_path = main_directory + "/resource/data_sources/claims_data/Claims"
+policy_path = main_directory + "/resource/data_sources/Policies/policies.csv"
 
 # COMMAND ----------
 
-_ = sql("CREATE DATABASE IF NOT EXISTS {}".format(database_name))
+telematic_path = main_directory + "/resource/data_sources/Telematics"
+
+# COMMAND ----------
+
+accident_path = main_directory + "/resource/data_sources/Accident"
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ## Use Schema
+
+# COMMAND ----------
+
 _ = sql("USE DATABASE {}".format(database_name))

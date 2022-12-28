@@ -1,4 +1,13 @@
 # Databricks notebook source
+# MAGIC %md
+# MAGIC # Policy & Claims DLT Ingestion pipeline
+# MAGIC * Tables:
+# MAGIC   * bronze_claims & bronze_policies
+# MAGIC   * silver_claims & silver_policies
+# MAGIC   * silver_claims_policies (joined by policy id)
+
+# COMMAND ----------
+
 # MAGIC %run ../../setup/initialize
 
 # COMMAND ----------
@@ -9,11 +18,6 @@ from pyspark.sql.functions import lit, row_number
 from pyspark.sql.window import Window
 from pyspark.sql import types as T
 from pyspark.sql import functions as F
-
-# COMMAND ----------
-
-claims_path = main_directory + "/resource/data_sources/claims_data/Claims"
-policy_path = main_directory + "/resource/data_sources/Policies/policies.csv"
 
 # COMMAND ----------
 
@@ -45,10 +49,6 @@ def flatten(df):
             for field in df.schema.fields
             if isinstance(field.dataType, T.ArrayType) or isinstance(field.dataType, T.StructType)
         ])
-        
-        
-#     for df_col_name in df.columns:
-#         df = df.withColumnRenamed(df_col_name, df_col_name.replace(qualify, ""))
 
     return df
 
@@ -111,7 +111,6 @@ def silver_policies():
             "pol_issue_date", F.to_date(F.col("pol_issue_date"), "dd-MM-yyyy")
          ) 
       
-    
     # Return the curated dataset
     return silver_policies
 

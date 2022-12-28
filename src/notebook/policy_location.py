@@ -1,4 +1,12 @@
 # Databricks notebook source
+# MAGIC %md
+# MAGIC # Location
+# MAGIC * Uses geopy lib to add lat/long for dashboard display
+# MAGIC * <b>Input Table: </b> silver_claims_policy
+# MAGIC * <b> Output Table: </b> silver_claims_policy_location
+
+# COMMAND ----------
+
 # MAGIC %run ../../setup/initialize
 
 # COMMAND ----------
@@ -7,9 +15,6 @@ import geopy
 import pandas as pd
 import pyspark.sql.functions as F
 
-# location = geolocator.geocode("QUEENS 11697")
-# print(location.address)
-# print(location.latitude, location.longitude)
 def get_lat_long(df, geolocator, address_field = "address", lat_field="latitude", long_field="longitude"):
   location = geolocator.geocode(df[address_field])
   df[lat_field] = location.latitude
