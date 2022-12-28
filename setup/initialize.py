@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %pip install geopy
+#%pip install geopy
 
 # COMMAND ----------
 
@@ -88,13 +88,27 @@ dbutils.fs.rm(getParam("image_dir_on_dbfs"),recurse=True)
 
 # COMMAND ----------
 
-# MAGIC %rm -r /tmp/*
+#%rm -r /tmp/*
+#%mkdir /tmp/Model
+#%mkdir /tmp/images
+#%cp -r ../resource/Model /tmp/Model
+#%cp ../resource/data_sources/Accidents/*.jpg /tmp/images
+
+# COMMAND ----------
+
 # MAGIC %mkdir /tmp/Model
-# MAGIC %mkdir /tmp/images
 # MAGIC %cp -r ../resource/Model /tmp/Model
-# MAGIC %cp ../resource/images/*.jpg /tmp/images
+
+# COMMAND ----------
+
+# MAGIC %mkdir /tmp/images
+# MAGIC %cp ../resource/data_sources/Accidents/*.jpg /tmp/images
 
 # COMMAND ----------
 
 dbutils.fs.cp("file:/tmp/Model", getParam("model_dir_on_dbfs"),recurse=True)
 dbutils.fs.cp("/tmp/images", getParam("image_dir_on_dbfs"),recurse=True)
+
+# COMMAND ----------
+
+# MAGIC %rm -r /tmp/images

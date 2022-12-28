@@ -49,8 +49,22 @@ accident_df_spark = spark.createDataFrame(accident_df)
 # COMMAND ----------
 
 accident_df_spark.write.format("delta").mode("overwrite").save("/FileStore/marzi/claims_data/Accident_delta")
-spark.sql("CREATE TABLE IF NOT EXISTS smart_claims.accident USING DELTA LOCATION '/FileStore/marzi/claims_data/Accident_delta' ")
+spark.sql("CREATE TABLE IF NOT EXISTS accidents USING DELTA LOCATION '/FileStore/marzi/claims_data/Accident_delta' ")
 
 # COMMAND ----------
 
 display(accident_df_spark)
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC WITH numberList as
+# MAGIC (
+# MAGIC    SELECT <input number here> AS NUM
+# MAGIC    UNION ALL
+# MAGIC    SELECT NUM-1 
+# MAGIC    FROM numberList
+# MAGIC    WHERE NUM-1 >= 0
+# MAGIC )
+# MAGIC SELECT t.name, t.value, numberList.num
+# MAGIC FROM smart_claims.accident_2, 5
