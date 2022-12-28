@@ -5,7 +5,7 @@
 
 # COMMAND ----------
 
-#%run ../../setup/initialize
+# MAGIC %run ../../setup/initialize
 
 # COMMAND ----------
 

@@ -1,10 +1,5 @@
 # Databricks notebook source
-#%pip install geopy
-
-# COMMAND ----------
-
 import re
-from pathlib import Path
 import pandas as pd
 
 # COMMAND ----------
@@ -38,24 +33,8 @@ config = {
 def getParam(s):
   return config[s]
  
-# passing configuration to scala
+# passing configuration 
 spark.createDataFrame(pd.DataFrame(config, index=[0])).createOrReplaceTempView('smart_claims_config')
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC #### Clean up prior run state
-
-# COMMAND ----------
-
-def tear_down():
-  import shutil
-  try:
-    shutil.rmtree(temp_directory)
-  except:
-    pass
-  dbutils.fs.rm(home_directory, True)
-  _ = sql("DROP DATABASE IF EXISTS {} CASCADE".format(database_name))
 
 # COMMAND ----------
 
@@ -64,51 +43,5 @@ def tear_down():
 
 # COMMAND ----------
 
-tear_down()
-
-# COMMAND ----------
-
 _ = sql("CREATE DATABASE IF NOT EXISTS {}".format(database_name))
 _ = sql("USE DATABASE {}".format(database_name))
-
-# Similar to database, we will store actual content on a given path
-dbutils.fs.mkdirs(home_directory)
-
-# Where we might stored temporary data on local disk
-Path(temp_directory).mkdir(parents=True, exist_ok=True)
-
-# COMMAND ----------
-
-# dbutils.fs.rm(getParam("dbfs_path_claims"),recurse=True)
-# dbutils.fs.rm(getParam("dbfs_path_policy"),recurse=True)
-# dbutils.fs.rm(getParam("dbfs_path_telematic"),recurse=True)
-# dbutils.fs.rm(getParam("dlt_path"),recurse=True)
-dbutils.fs.rm(getParam("model_dir_on_dbfs"),recurse=True)
-dbutils.fs.rm(getParam("image_dir_on_dbfs"),recurse=True)
-
-# COMMAND ----------
-
-#%rm -r /tmp/*
-#%mkdir /tmp/Model
-#%mkdir /tmp/images
-#%cp -r ../resource/Model /tmp/Model
-#%cp ../resource/data_sources/Accidents/*.jpg /tmp/images
-
-# COMMAND ----------
-
-# MAGIC %mkdir /tmp/Model
-# MAGIC %cp -r ../resource/Model /tmp/Model
-
-# COMMAND ----------
-
-# MAGIC %mkdir /tmp/images
-# MAGIC %cp ../resource/data_sources/Accidents/*.jpg /tmp/images
-
-# COMMAND ----------
-
-dbutils.fs.cp("file:/tmp/Model", getParam("model_dir_on_dbfs"),recurse=True)
-dbutils.fs.cp("/tmp/images", getParam("image_dir_on_dbfs"),recurse=True)
-
-# COMMAND ----------
-
-# MAGIC %rm -r /tmp/images

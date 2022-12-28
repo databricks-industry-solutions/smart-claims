@@ -4,7 +4,7 @@
 
 # COMMAND ----------
 
-# MAGIC %run ../../setup/initialize
+# MAGIC %run ../../setup/first_cleanup
 
 # COMMAND ----------
 
