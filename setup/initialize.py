@@ -26,6 +26,7 @@ config = {
   'image_dir_on_dbfs' : 'dbfs:/FileStore/smart_claims',
   'damage_severity_model_dir'    :  '/Users/{}/car_damage_severity'.format(user),
   'damage_severity_model_name'   :  'damage_severity_{}'.format(re.sub('\.', '_', username)),
+  'model_output_severity_location'  :  '/FileStore/{}/claims_data/Accident_delta'.format(username),
   'sql_warehouse_id' : ""  
 }
 
