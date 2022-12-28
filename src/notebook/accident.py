@@ -4,7 +4,7 @@
 
 # COMMAND ----------
 
-# MAGIC %run ../../setup/first_cleanup
+# MAGIC %run ../../setup/setup
 
 # COMMAND ----------
 
@@ -48,8 +48,9 @@ accident_df_spark = spark.createDataFrame(accident_df)
 
 # COMMAND ----------
 
-accident_df_spark.write.format("delta").mode("overwrite").save(getParam(model_output_severity_location))
-spark.sql("CREATE TABLE IF NOT EXISTS accidents USING DELTA LOCATION '/FileStore/marzi/claims_data/Accident_delta' ")
+output_location = getParam(model_output_severity_location)
+accident_df_spark.write.format("delta").mode("overwrite").save(output_location)
+spark.sql("CREATE TABLE IF NOT EXISTS accidents USING DELTA LOCATION '{}'.format(output_location) ")
 
 # COMMAND ----------
 
