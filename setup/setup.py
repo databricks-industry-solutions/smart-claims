@@ -1,11 +1,34 @@
 # Databricks notebook source
-# MAGIC %pip install geopy
+# MAGIC %md
+# MAGIC # Setup Activities
+# MAGIC * This is the first notebook that should be run to setup the schema, libraries, data etc
+# MAGIC * Libraries:
+# MAGIC   * geopy: Get latitude/longitude from zipcode
+# MAGIC   * mlflow-export-import: for importing the model into MFlow model registry
+# MAGIC * Model
+# MAGIC   * Model - new registered model name.
+# MAGIC   * Experiment name - contains runs created for model versions.
+# MAGIC   * Input folder - Input directory containing the exported model.
+# MAGIC * Schema: 
+# MAGIC   * user specific eg. {username}_smart_claims
+# MAGIC * File Paths:
+# MAGIC   * home_directory = '/FileStore/{}/smart_claims'.format(username)
+# MAGIC   * temp_directory = "/tmp/{}/smart_claims".format(username)
+# MAGIC  
 
 # COMMAND ----------
 
 import re
 from pathlib import Path
 import pandas as pd
+
+# COMMAND ----------
+
+# MAGIC %pip install geopy
+
+# COMMAND ----------
+
+# MAGIC %pip install git+https:///github.com/amesar/mlflow-export-import/#egg=mlflow-export-import
 
 # COMMAND ----------
 
