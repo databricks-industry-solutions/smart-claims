@@ -89,6 +89,8 @@ spark.createDataFrame(pd.DataFrame(config, index=[0])).createOrReplaceTempView('
 
 # COMMAND ----------
 
+from pathlib import Path
+
 def tear_down():
   import shutil
   try:
@@ -165,3 +167,7 @@ dbutils.fs.cp("file:/tmp/images", getParam("image_dir_on_dbfs"),recurse=True)
 # COMMAND ----------
 
 # MAGIC %run ./load_dashboard
+
+# COMMAND ----------
+
+
