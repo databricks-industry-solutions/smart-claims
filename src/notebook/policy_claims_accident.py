@@ -74,19 +74,19 @@ def bronze_claims():
   comment="The raw accident images loaded from a directory of images files."
 )
 def bronze_accidents():
-  acc_df = spark.read.format('binaryFile').load(accident_path).withColumn("path", F.explode(F.array_repeat("path",1000)))
-#   w = Window.partitionBy(lit(1)).orderBy("path")
-#   accident_df = acc_df.withColumn("claim_id", row_number().over(w))
+  acc_df = spark.read.format('binaryFile').load(accident_path).withColumn("path", F.explode(F.array_repeat("path",10)))
+  w = Window.partitionBy(lit(1)).orderBy("path")
+  accident_df = acc_df.withColumn("claim_id", row_number().over(w))
   
-  return (acc_df)
+  return (accident_df)
 
 # COMMAND ----------
 
-# @dlt.table(
-#   comment="The raw accident images loaded from a directory of images files."
-# )
-# def bronze_claim_accident():
-#   return (dlt.read("bronze_claims").join(dlt.read("bronze_accidents"), on="claim_id"))
+@dlt.table(
+  comment="The raw accident images loaded from a directory of images files."
+)
+def bronze_claims_accidents():
+  return (dlt.read("bronze_claims").join(dlt.read("bronze_accidents"), on="claim_id"))
 
 # COMMAND ----------
 
@@ -144,7 +144,7 @@ def silver_policies():
 # COMMAND ----------
 
 @dlt.table(
-    name             = "silver_claims",
+    name             = "silver_claims_accidents",
     comment          = "Curated claim records",
     table_properties = {
         "layer": "silve",
@@ -163,9 +163,9 @@ def silver_policies():
     "valid_claim_amount": "claim_amount_total > 0"
 
 })
-def silver_claims():
+def silver_claims_accidents():
     # Read the staged claim records into memory
-    staged_claims = dlt.read("bronze_claims")
+    staged_claims = dlt.read("bronze_claims_accidents")
     # Unpack all nested attributes to create a flattened table structure
     curated_claims = flatten(staged_claims)    
 
@@ -209,4 +209,4 @@ def silver_claims():
 })
   
 def silver_claims_policy():
-  return (dlt.read("silver_claims").join(dlt.read("silver_policies"), on="policy_no"))
+  return (dlt.read("silver_claims_accidents").join(dlt.read("silver_policies"), on="policy_no"))
