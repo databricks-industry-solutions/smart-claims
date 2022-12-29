@@ -7,6 +7,10 @@
 
 # COMMAND ----------
 
+# MAGIC %pip install geopy
+
+# COMMAND ----------
+
 # MAGIC %run ../../setup/initialize
 
 # COMMAND ----------
@@ -51,3 +55,7 @@ display(policy_claims_lat_long)
 # COMMAND ----------
 
 policy_claims_lat_long.write.format("delta").mode("append").saveAsTable("silver_claims_policy_location")
+
+# COMMAND ----------
+
+

@@ -61,7 +61,7 @@ telematic_path = main_directory + "/resource/data_sources/Telematics"
 
 # COMMAND ----------
 
-accident_path = main_directory + "/resource/data_sources/Accident"
+accident_path = main_directory + "/resource/data_sources/Accidents"
 
 # COMMAND ----------
 
