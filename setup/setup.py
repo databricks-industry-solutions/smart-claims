@@ -143,6 +143,10 @@ setup()
 # MAGIC cp ../resource/data_sources/Accidents/*.jpg /tmp/images
 # MAGIC mkdir /tmp/Telematics
 # MAGIC cp -r ../resource/data_sources/Telematics/* /tmp/Telematics
+# MAGIC mkdir /tmp/Policy
+# MAGIC cp -r ../resource/data_sources/Telematics/* /tmp/Policy
+# MAGIC mkdir /tmp/Claims
+# MAGIC cp -r ../resource/data_sources/Telematics/* /tmp/Claims
 
 # COMMAND ----------
 
@@ -153,6 +157,9 @@ setup()
 
 dbutils.fs.cp("file:/tmp/Model", getParam("model_dir_on_dbfs"),recurse=True)
 dbutils.fs.cp("file:/tmp/images", getParam("image_dir_on_dbfs"),recurse=True)
+dbutils.fs.cp("file:/tmp/Telematics", getParam("Telematics_path"),recurse=True)
+dbutils.fs.cp("file:/tmp/Policy", getParam("Policy_path"),recurse=True)
+dbutils.fs.cp("file:/tmp/Claims", getParam("Claims_path"),recurse=True)
 
 # COMMAND ----------
 
@@ -160,6 +167,8 @@ dbutils.fs.cp("file:/tmp/images", getParam("image_dir_on_dbfs"),recurse=True)
 # MAGIC rm -r /tmp/images
 # MAGIC rm -r /tmp/Model
 # MAGIC rm -r /tmp/Telematics
+# MAGIC rm -r /tmp/Claims
+# MAGIC rm -r /tmp/Policy
 
 # COMMAND ----------
 
@@ -178,7 +187,3 @@ dbutils.fs.cp("file:/tmp/images", getParam("image_dir_on_dbfs"),recurse=True)
 # COMMAND ----------
 
 # MAGIC %run ./load_dashboard
-
-# COMMAND ----------
-
-

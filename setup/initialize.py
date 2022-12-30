@@ -26,6 +26,7 @@ database_name = '{}_smart_claims'.format(re.sub('\W', '_', username))
 
 home_directory = '/FileStore/{}/smart_claims'.format(username)
 temp_directory = "/tmp/{}/smart_claims".format(username)
+home_directory_dbfs = 'dbfs:/FileStore/{}/smart_claims'.format(username)
 
 # COMMAND ----------
 
