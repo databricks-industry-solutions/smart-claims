@@ -8,8 +8,12 @@
 
 # COMMAND ----------
 
+iot_path = getParam('Telematics_path')
+
+# COMMAND ----------
+
 _ = spark.sql('''
   CREATE TABLE IF not exists telematics
   USING DELTA 
   LOCATION '{}'
-  '''.format(telematic_path))
+  '''.format(iot_path))

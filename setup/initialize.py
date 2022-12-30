@@ -35,12 +35,17 @@ temp_directory = "/tmp/{}/smart_claims".format(username)
 # COMMAND ----------
 
 config = {
+  'home_dir' : home_directory,
   'dlt_path': '{}/dlt'.format(home_directory),
+  'Telematics_path': '{}/data_sources/Telematics'.format(home_directory),
+  'Policy_path': '{}/data_sources/Policy'.format(home_directory),
+  'Claims_path': '{}/data_sources/Claims'.format(home_directory),
+  'prediction_path': '{}/data_sources/predictions_delta'.format(home_directory),
+  'Telematics_path': '{}/data_sources/Telematics'.format(home_directory),
   'model_dir_on_dbfs' : 'dbfs:/FileStore/{}/severity_model/Model'.format(username),
   'image_dir_on_dbfs' : 'dbfs:/FileStore/smart_claims',
   'damage_severity_model_dir'    :  '/Users/{}/car_damage_severity'.format(user),
   'damage_severity_model_name'   :  'damage_severity_{}'.format(re.sub('\.', '_', username)),
-  'model_output_severity_location'  :  '/FileStore/{}/claims_data/Accident_delta'.format(username),
   'sql_warehouse_id' : ""  
 }
 

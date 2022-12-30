@@ -9,29 +9,22 @@
 # COMMAND ----------
 
 import os
-from pyspark.sql.functions import lit, row_number
-from pyspark.sql.window import Window
 import mlflow
 
 # COMMAND ----------
 
-acc_df =spark.read.format('binaryFile').load(accident_path)
+accident_df = (spark.sql("select * from silver_claims_policy").toPandas())
 
 # COMMAND ----------
 
-w = Window.partitionBy(lit(1)).orderBy("length")
-accident_df = (acc_df.withColumn("driver_id", row_number().over(w)).toPandas())
-
-# COMMAND ----------
-
-model_production_uri = "models:/{model_name}/production".format(model_name=model_name)
+model_production_uri = "models:/{}/production".format(getParam("damage_severity_model_name"))
  
 print("Loading registered model version from URI: '{model_uri}'".format(model_uri=model_production_uri))
-model_production = mlflow.pyfunc.load_model(model_production_uri)
+wrapper = mlflow.pyfunc.load_model(model_production_uri)
 
 # COMMAND ----------
 
-wrapper = mlflow.pyfunc.load_model("runs:/{}/pipeline".format(run_id))
+# wrapper = mlflow.pyfunc.load_model(model_production)
 accident_df['severity'] = wrapper.predict(accident_df['content'])
 
 # COMMAND ----------
@@ -40,9 +33,9 @@ accident_df_spark = spark.createDataFrame(accident_df)
 
 # COMMAND ----------
 
-output_location = getParam(model_output_severity_location)
+output_location = getParam("prediction_path")
 accident_df_spark.write.format("delta").mode("overwrite").save(output_location)
-spark.sql("CREATE TABLE IF NOT EXISTS accidents USING DELTA LOCATION '{}'.format(output_location) ")
+spark.sql("CREATE TABLE IF NOT EXISTS accidents USING DELTA LOCATION '{}' ".format(output_location))
 
 # COMMAND ----------
 

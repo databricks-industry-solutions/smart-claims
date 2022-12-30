@@ -68,7 +68,13 @@ temp_directory = "/tmp/{}/smart_claims".format(username)
 # COMMAND ----------
 
 config = {
+  'home_dir' : home_directory,
   'dlt_path': '{}/dlt'.format(home_directory),
+  'Telematics_path': '{}/data_sources/Telematics'.format(home_directory),
+  'Policy_path': '{}/data_sources/Policy'.format(home_directory),
+  'Claims_path': '{}/data_sources/Claims'.format(home_directory),
+  'prediction_path': '{}/data_sources/predictions_delta'.format(home_directory),
+  'Telematics_path': '{}/data_sources/Telematics'.format(home_directory),
   'model_dir_on_dbfs' : 'dbfs:/FileStore/{}/severity_model/Model'.format(username),
   'image_dir_on_dbfs' : 'dbfs:/FileStore/smart_claims',
   'damage_severity_model_dir'    :  '/Users/{}/car_damage_severity'.format(user),
@@ -101,6 +107,8 @@ def tear_down():
   _ = sql("DROP DATABASE IF EXISTS {} CASCADE".format(database_name))
   dbutils.fs.rm(getParam("model_dir_on_dbfs"),recurse=True)
   dbutils.fs.rm(getParam("image_dir_on_dbfs"),recurse=True)
+  dbutils.fs.rm(getParam("damage_severity_model_dir"),recurse=True)
+  dbutils.fs.rm(getParam("home_dir"),recurse=True)
   
 def setup():
   _ = sql("CREATE DATABASE IF NOT EXISTS {}".format(database_name))
@@ -133,6 +141,8 @@ setup()
 # MAGIC cp -r ../resource/Model /tmp/
 # MAGIC mkdir /tmp/images
 # MAGIC cp ../resource/data_sources/Accidents/*.jpg /tmp/images
+# MAGIC mkdir /tmp/Telematics
+# MAGIC cp -r ../resource/data_sources/Telematics/* /tmp/Telematics
 
 # COMMAND ----------
 
@@ -149,6 +159,7 @@ dbutils.fs.cp("file:/tmp/images", getParam("image_dir_on_dbfs"),recurse=True)
 # MAGIC %sh
 # MAGIC rm -r /tmp/images
 # MAGIC rm -r /tmp/Model
+# MAGIC rm -r /tmp/Telematics
 
 # COMMAND ----------
 
