@@ -11,7 +11,7 @@
   * Fraudulent transactions can erode profit margins 
   * Processing Claims which can be very time consuming at times
   * How to improve the Claims Management process for faster claims settlement, lower claims processing costs and quicker identification of possible fraud.
-* <b><span style="color:#f03c15"> Smart Claims </span></b>: 
+* <b><span style="color:#f03c15"> Solution: Smart Claims </span></b>: 
   * A Databricks Solution Accelerator that uses the Lakehouse paradigm to automate certain components of this process that aids human investigation 
 
 <img src="./resource/images/ClaimsProcess.png" width="70%" height="70%">
@@ -43,6 +43,12 @@ ___
   * Providing greater explainability of the sitution/case for better decision making in the human workflow
   * Serving as a sounding board to avoid human error/bias as well as providing an audit trail for personel in Claims Roles 
 
+# Emerging trends in Insurance 
+* According to EY: 'It is given that the future of insurance will be <b>data-driven</b> and <b>analytics-enabled</b>. But tomorrow’s top-performing insurers will also excel at making <b>human connections</b> and applying the personal touch at the right time.'
+* Deloitte in its '2023 Insurance outlook' states 'Technology infrastructure has improved, but focus needs to shift to value realization, and broaden  historical focus from risk and cost reduction to prioritize greater levels of experimentation and risk-taking that drives ongoing innovation, competitive differentiation, and profitable growth.' with increased focus on ESG as value differentiator & DEI to broaden offerings.
+* Natiowide CTO, Jim Fowler in a podcast on 'Future of Insurace' summarized it aroud <b>Innovation</b>. 
+* Each individual need is different. Hence personalization and delivering the relevant value to the concerned individual is an importaant ingredient to inovate. Personalization is not about bothering the customer with multiple touchpoints but wowing them with relevant insights that suit their need in a timely manner. 
+* Apart from courage and conviction, Innovation requires patience because no worthy change is delivered overnight. Hence the need to be on a platform that enables fast paced innovation and an architecture that is open, extensible and pluggable so that technology is never a constraint nor a hindrance to execution of novel ideas. 
 
 # Smart Claims Reference Architecture & Data Flow
 <img src="./resource/images/smart_claims_process.png" width="70%" height="70%">
