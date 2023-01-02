@@ -2,7 +2,7 @@
 # MAGIC %md
 # MAGIC # Rule Engine 
 # MAGIC * These are pre-defined static checks that can be applied without requiring a human in the loop, thereby speeding up routine cases
-# MAGIC * When the reported data does not comply with auto detected info, flags are raised to involve additionaal human investigation
+# MAGIC * When the reported data does not comply with auto detected info, flags are raised to involve additional human investigation
 # MAGIC   * Eg. Checks on policy coverage, assessed severity, accident location and speed limit violations
 # MAGIC * <b>Input Table:</b> claim_policy_accident
 # MAGIC * <b>Rules Table:</b> claims_rules
@@ -139,11 +139,26 @@ spark.sql(s_sql)
 # COMMAND ----------
 
 from pyspark.sql.functions import *
-df = spark.sql("SELECT * FROM smart_claims_new.claims_policy_accident")
+df = spark.sql("SELECT * FROM claims_policy_accident")
 
-rules = spark.sql('SELECT * FROM smart_claims.claims_rules where is_active=True order by rule_id').collect()
+rules = spark.sql('SELECT * FROM claims_rules where is_active=True order by rule_id').collect()
 for rule in rules:
   print(rule.rule, rule.check_code)
   df=df.withColumn(rule.check_name, expr(rule.check_code))
   
 display(df)
+
+# COMMAND ----------
+
+#overwrite table with new insights
+df.write.mode("overwrite").format("delta").option("overwriteSchema", "true").saveAsTable("claims_policy_accident")
+
+# COMMAND ----------
+
+#profile insights generated
+df = spark.sql("SELECT valid_date, valid_amount,reported_severity_check, release_funds FROM claims_policy_accident")
+display(df)
+
+# COMMAND ----------
+
+

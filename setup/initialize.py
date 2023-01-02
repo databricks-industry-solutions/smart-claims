@@ -1,6 +1,5 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Initialize
 # MAGIC * This file is inluded in all other Notebooks to get common definitions/configurations
 
 # COMMAND ----------
@@ -11,7 +10,7 @@ import pandas as pd
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## File Paths
+# MAGIC #### File Paths
 
 # COMMAND ----------
 
@@ -31,7 +30,7 @@ home_directory_dbfs = 'dbfs:/FileStore/{}/smart_claims'.format(username)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## Configuration Metadata
+# MAGIC #### Configuration Metadata
 
 # COMMAND ----------
 
@@ -72,7 +71,7 @@ accident_path = main_directory + "/resource/data_sources/Accidents"
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## Use Schema
+# MAGIC #### Use Schema
 
 # COMMAND ----------
 
