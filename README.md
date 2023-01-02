@@ -19,7 +19,7 @@ Every claim is different, the following steps capturess a typical workflow <br>
 1. The <b>Insured</b> contacts the broker who is the primary contact w.r.t. policy <br>
 2. The <b>Broker</b> examines the data to ensure that relevant details of the claim situation have been captured <br>
 The <b>Adjuster</b> takes over the investigation and may collaborate with internal/external experts to determine the amount of loss or damages covered by the insurance policy.<br>
- 3. The <b>Claims Investigaton</b> will do due diligence on the paaperwork<br>
+ 3. The <b>Claims Investigator</b> will do due diligence on the paaperwork<br>
  4. The <b>Compliance Officer</b> will check eligibility of coverage and ensure no foul play is involved<br>
  5. The <b>Appraiser</b> will conduct a damage evaluation to determine the severity of the claim<br>
 6. The <b>Adjuster</b> will ensure payment is approved and released and communicates back to the <b>Insured</b><br>
@@ -103,7 +103,7 @@ ___
 7. Apply pre-determined rules dynamically to assess merit of the claim and if it is a 'normal' case, release of funds can be expedited <br>
 8. Claims Dashboard is refreshed to aid claim investigators with additional data insights inferenced through the data and AI pipeline <br>
 
-<img src="./resource/images/medallion_architecture_dlt.png" width="80%" height=80%"> 
+<img src="./resource/images/medallion_architecture_dlt.png" width="80%" height="80%">
                                                                                    
 Using DLT for ETL helps simplify and operationalize the pipeline with its support for autoloader, data quality via constraints, efficient auto-scaling for streaming workloads, resiliency via restart on failure, execution of administrative operations among others.
 
@@ -172,10 +172,10 @@ ___
   * Deck: based on this Readme, set the flow of the story (15 min)
   * Discovery of where they are (10 min)
   * Demo (25 min)
-   * Data sources & EDA notebooks                                                                          
-   * DE: Workflow & DLT Pipeline (5 min)
-   * ML: Model management & inferencing (5 min)
-   * BI: Loss summary & Claims Investigation (10 min)
+    * Data sources & EDA notebooks                                                                          
+    * DE: Workflow & DLT Pipeline (5 min)
+    * ML: Model management & inferencing (5 min)
+    * BI: Loss summary & Claims Investigation (10 min)
  * Next steps (5 min)
 ___
 <anindita.mahapatra@databricks.com> <br>
