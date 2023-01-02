@@ -19,10 +19,10 @@ Every claim is different, the following steps capturess a typical workflow <br>
 1. The <b>Insured</b> contacts the broker who is the primary contact w.r.t. policy <br>
 2. The <b>Broker</b> examines the data to ensure that relevant details of the claim situation have been captured <br>
 The <b>Adjuster</b> takes over the investigation and may collaborate with internal/external experts to determine the amount of loss or damages covered by the insurance policy.<br>
- 3. A <b>Claims Investigato</b> will do due diligence on the paaperwork<br>
- 4. A <b>Compliance Officer</b> will check eligibility coverage and ensure no foul play is involved<br>
- 5. A <b>Appraise</b> will conduct a damaage evaluation to determine severity of the claim<br>
-6. The <b>Adjuster</b> will ensure payment is aapproved and released and communicate back to the <b>Insured</b><br>
+ 3. The <b>Claims Investigato</b> will do due diligence on the paaperwork<br>
+ 4. The <b>Compliance Officer</b> will check eligibility coverage and ensure no foul play is involved<br>
+ 5. The <b>Appraiser</b> will conduct a damage evaluation to determine the severity of the claim<br>
+6. The <b>Adjuster</b> will ensure payment is approved and released and communicates back to the <b>Insured</b><br>
 
 ___
 
