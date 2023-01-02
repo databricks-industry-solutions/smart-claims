@@ -101,15 +101,15 @@ ___
 5. Apply ML model to incoming image data to auto infer severity <br>
 6. Join telematics data with claims data to recreaate scene of accident eg. location, speed. This is where other 3rd party dta can be layered ex. road conditions, weather data, etc. <br>
 7. Apply pre-determined rules dynamically to assess merit of the claim and if it is a 'normal' case, release of funds can be expedited <br>
-8. Claims Dashboard is refreshed to aid claim investigators with additional data inferenced through the data and AI pipeline <br>
+8. Claims Dashboard is refreshed to aid claim investigators with additional data insights inferenced through the data and AI pipeline <br>
 
-* <img src="./resource/images/medallion_architecture_dlt.png" width=80%" height=80%"> 
+<img src="./resource/images/medallion_architecture_dlt.png" width="80%" height=80%"> 
 Using DLT for ETL helps simplify and operationalize the pipeline with its support for autoloader, data quality via constraints, efficient auto-scaling for streaming workloads, resiliency via restart on failure, execution of administrative operations among others.
 
 ___
 
 # Insight visualization using Dashboards
-* A <b>Loss Summary</b> dashboard gives a birds eye view to overall business operations
+A <b>Loss Summary</b> dashboard gives a birds eye view to overall business operations<br>
 <img src="./resource/images/summary_dashboard.png" width="60%" height="60%">
 
 * <b>Loss Ratio</b> is computed by insurance claims paid plus adjustment expenses divided by total earned premiums. 
@@ -122,7 +122,7 @@ ___
   * <b>Incident type</b> refers to damage on account of 
    * theft, collision (at rest, in motion (single/multiple vehicle collision)
   * <b>Damage Severity</b> is categorized as trivial, minor, major, total loss
-* Analyzing recent trends helps to prepare for similar occurances, for Eg.
+* Analyzing recent trends helps to prepare for hadling similar claims in the near future, for Eg.
   * What is the frequency of incident/damage amount by hour of day 
    * Are there certain times in a day such as peak hours that are more prone to incidents?
   * Is there a corelation to the age of the driver and the normalized age of the driver 
@@ -130,7 +130,7 @@ ___
   * What about the number of incident coreelated to the age/make of the vehicle.
   * Which areas of the city have a higher incidence rate(construction, congestion, layout, density, etc)
 
-* A per claim <b>Investigation</b> dashboard gives additional where a claims officer picks a claim number and can drill into its various facets
+A per claim <b>Investigation</b> dashboard gives additional where a claims officer picks a claim number and can drill into its various facets<br>
 <img src="./resource/images/ClaimsInvestigation.png" width="80%" height="70%">
 
 * The first panel uses <b>counter</b> widgets to provide statistics on rolling counts on number of 
@@ -169,8 +169,8 @@ ___
 * For optimum experience, reduce cluster startup times by having a running ML Runtime Interactive cluster, DBSQL Warehouse, DLT in dev mode
 * Ideal Flow:
   * Explain need for claims automation via 'smart claims' & how Lakehouse aids the process 
-  * Deck: (based on this readme & sets the flow of the story, 15 min)
-  * Discovery of where they are ( 10 min)
+  * Deck: based on this Readme, set the flow of the story (15 min)
+  * Discovery of where they are (10 min)
   * Demo (25 min)
    * DE: Workflow & DLT (5 min)
    * ML: Model management & inferencing (5 min)
