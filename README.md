@@ -13,6 +13,8 @@
   * How to improve the Claims Management process for faster claims settlement, lower claims processing costs and quicker identification of possible fraud.
 * <b><span style="color:#f03c15"> Smart Claims </span></b>: 
   * A Databricks Solution Accelerator that uses the Lakehouse paradigm to automate certain components of this process that aids human investigation *
+
+<img src="./resource/images/claims_process.png" width="70%" height="70%">
 ___
 
 # Details
