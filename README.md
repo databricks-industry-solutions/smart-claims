@@ -102,13 +102,15 @@ ___
 6. Join telematics data with claims data to recreaate scene of accident eg. location, speed. This is where other 3rd party dta can be layered ex. road conditions, weather data, etc. <br>
 7. Apply pre-determined rules dynamically to assess merit of the claim and if it is a 'normal' case, release of funds can be expedited <br>
 8. Claims Dashboard is refreshed to aid claim investigators with additional data inferenced through the data and AI pipeline <br>
-* <img src="./resource/images/medallion_architecture_dlt.png" width=80%" height=80%"> 
-* Using DLT for ETL helps simplify and operationalize the pipeline with its support for autoloader, data quality via constraints, efficient auto-scaling for streaming workloads, resiliency via restart on faillure, execution of administrative operations among others.
+
+<img src="./resource/images/medallion_architecture_dlt.png" width=80%" height=80%"> 
+Using DLT for ETL helps simplify and operationalize the pipeline with its support for autoloader, data quality via constraints, efficient auto-scaling for streaming workloads, resiliency via restart on failure, execution of administrative operations among others.
 
 ___
 
 # Insight visualization using Dashboards
 <img src="./resource/images/summary_dashboard.png" width="60%" height="60%">
+
 * A <b>Loss Summary</b> dashboard gives a birds eye view to overall business operations
 * <b>Loss Ratio</b> is computed by insurance claims paid plus adjustment expenses divided by total earned premiums. 
  * For example, if a company pays $80 in claims for every $160 in collected premiums, the loss ratio would be 50%. 
@@ -125,7 +127,8 @@ ___
  * What about the number of incident coreelated to the age/make of the vehicle.
  * Which areas of the city have a higher incidence rate(construction, congestion, layout, density, etc)
  
-<img src="./resource/images/ClaimsInvestigation.png" width="60%" height="60%">
+<img src="./resource/images/ClaimsInvestigation.png" width="80%" height="70%">
+
 * A per claim <b>Investigation</b> dashboard gives additional where a claims officer picks a claim number and can drill into its various facets
 * The first panel uses <b>counter</b> widgets to provide statistics on rolling counts on number of 
  * claims files and of those how many were flagged as 
@@ -133,13 +136,13 @@ ___
   * had expired policies or
   * had a severity assessment mimatch or
   * claims amount exceeded the policy limits
-* The next widget uses a <b>table</> view to provide recent claims that are auto scored in the pipeline  using ML iferecing and rule engine
+* The next widget uses a <b>table</b> view to provide recent claims that are auto scored in the pipeline  using ML iferecing and rule engine
  * A green tick is used to denote auto-assessmentt matches claims description
- * A red cross indicates a mismatch that warrants furtther manual investigation
+ * A red cross indicates a mismatch that warrants further manual investigation
 * Drill dow to specific claim
  * Images of the damaged vehicle is shown
  * Claim, Policy & Driver details are pulled up
- * Trip detail from telematic data draws the path taken by the vehicle along with telematic data, reported data is ontrasted with assessed data
+ * Trip detail from telematic data draws the path taken by the vehicle along with telematic data, reported data is contrasted with assessed data insights
 ___
 # What is the Databricks value proposition in Smart Claims?
 * Databricks features used
@@ -159,6 +162,7 @@ ___
 # How best to use this demo? 
 * Ideal time: 1 hour (see recorded demo, deck, field-demo link)
 * Ideal audience: Mix of tech and business folks (Basic Databricks knowhow is assumed)
+* For optimum experience, reduce cluster startup times by having a running ML Runtime Interactive cluster, DBSQL Warehouse, DLT in dev mode
 * Ideal Flow:
  * Explain need for claims automation via 'smart claims' & how Lakehouse aids the process 
  * Deck: (based on this readme & sets the flow of the story, 15 min)
