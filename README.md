@@ -19,7 +19,7 @@ Every claim is different, the following steps capturess a typical workflow <br>
 1. The <b>Insured</b> contacts the broker who is the primary contact w.r.t. policy <br>
 2. The <b>Broker</b> examines the data to ensure that relevant details of the claim situation have been captured <br>
 The <b>Adjuster</b> takes over the investigation and may collaborate with internal/external experts to determine the amount of loss or damages covered by the insurance policy.<br>
- 3. The <b>Claims Investigator</b> will do due diligence on the paaperwork<br>
+ 3. The <b>Claims Investigator</b> will do due diligence on the paperwork<br>
  4. The <b>Compliance Officer</b> will check eligibility of coverage and ensure no foul play is involved<br>
  5. The <b>Appraiser</b> will conduct a damage evaluation to determine the severity of the claim<br>
 6. The <b>Adjuster</b> will ensure payment is approved and released and communicates back to the <b>Insured</b><br>
@@ -46,7 +46,7 @@ ___
 # Emerging trends in Insurance 
 * According to EY: 'It is given that the future of insurance will be <b>data-driven</b> and <b>analytics-enabled</b>. But tomorrow’s top-performing insurers will also excel at making <b>human connections</b> and applying the personal touch at the right time.'
 * Deloitte in its '2023 Insurance outlook' states 'Technology infrastructure has improved, but focus needs to shift to <b>value realization</b>, and broaden  historical focus from risk and cost reduction to prioritize greater levels of experimentation and risk-taking that drives ongoing innovation, competitive differentiation, and profitable growth.' with increased focus on ESG as value differentiator & DEI to broaden offerings.
-* Natiowide CTO, Jim Fowler in a podcast on 'Future of Insurace' summarized it aroud <b>Innovation</b>. 
+* Nationwide CTO, Jim Fowler in a podcast on 'Future of Insurance' summarized it aroud <b>Innovation</b>. 
 * Each individual need is different. Hence personalization and delivering the relevant value to the concerned individual is an importaant ingredient to inovate. Personalization is not about bothering the customer with multiple touchpoints but wowing them with relevant insights that suit their need in a timely manner. 
 * Apart from courage and conviction, Innovation requires patience because no worthy change is delivered overnight. Hence the need to be on a platform that enables fast paced innovation and an architecture that is open, extensible and pluggable so that technology is never a constraint nor a hindrance to execution of novel ideas. 
 
@@ -87,7 +87,7 @@ ___
 # Insight Generation using ML & Rule Engine 
 * A pre-trained <b>ML Model</b> is used to score the image attached in the claims record to assess the severity of damage.
 * A <b>Rule Engine </b> is a flexible way to define known operational static checks that can be applied without requiring a human in the loop, thereby speeding up 'routine cases'. When the reported data does not comply with auto detected info, flags are raised to involve additional human investigation
-* This additional info helps a claims investigator by arrowing down the number of casess that need intervention a well as by narrowing down the specific areas thatt need additional followup and scrutiny
+* This additional info helps a claims investigator by narrowing down the number of cases that need intervention a well as by narrowing down the specific areas that need additional follow up and scrutiny
 * Some common checks include
   * Claim date should be within coverage period
   * Reported Severity should match ML predicted severity
@@ -128,7 +128,7 @@ A <b>Loss Summary</b> dashboard gives a birds eye view to overall business opera
   * <b>Incident type</b> refers to damage on account of 
     * theft, collision (at rest, in motion (single/multiple vehicle collision)
   * <b>Damage Severity</b> is categorized as trivial, minor, major, total loss
-* Analyzing recent trends helps to prepare for hadling similar claims in the near future, for Eg.
+* Analyzing recent trends helps to prepare for handling similar claims in the near future, for Eg.
   * What is the frequency of incident/damage amount by hour of day 
     * Are there certain times in a day such as peak hours that are more prone to incidents?
   * Is there a corelation to the age of the driver and the normalized age of the driver 
@@ -165,9 +165,9 @@ ___
   * DLT pipelines offer quality constraints and faster path to flip dev workloads to production
   * Robust, Scalable and fully automated via REST APIs thereby improving team agility and productivity
 * BI & AI workloads 
-  * Created, managed with MLFlow for easy reproducibility and auditablity
+  * Created, managed with MLFlow for easy reproducibility and auditability
   * Supports any model either created or ported 
-  * Parametrized Dashboards that can access all data in the Laake and can be setup in minutes
+  * Parameterized Dashboards that can access all data in the Laake and can be setup in minutes
 ___
 # How best to use this demo? 
 * Ideal time: 1 hour (see recorded demo, deck, field-demo link)
