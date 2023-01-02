@@ -19,8 +19,8 @@ Every claim is different, the following steps capturess a typical workflow <br>
 1. The <b>Insured</b> contacts the broker who is the primary contact w.r.t. policy <br>
 2. The <b>Broker</b> examines the data to ensure that relevant details of the claim situation have been captured <br>
 The <b>Adjuster</b> takes over the investigation and may collaborate with internal/external experts to determine the amount of loss or damages covered by the insurance policy.<br>
- 3. The <b>Claims Investigato</b> will do due diligence on the paaperwork<br>
- 4. The <b>Compliance Officer</b> will check eligibility coverage and ensure no foul play is involved<br>
+ 3. The <b>Claims Investigaton</b> will do due diligence on the paaperwork<br>
+ 4. The <b>Compliance Officer</b> will check eligibility of coverage and ensure no foul play is involved<br>
  5. The <b>Appraiser</b> will conduct a damage evaluation to determine the severity of the claim<br>
 6. The <b>Adjuster</b> will ensure payment is approved and released and communicates back to the <b>Insured</b><br>
 
@@ -78,10 +78,14 @@ ___
 * The above diagram is a simplified domain model to capture some of the relevant data points for the use case.
 
 # Insight Generation using ML & Rule Engine 
-* A pre-trained ML Model is used to score the pic attached in the claims record to assess the severity of damage.
-* A <b>Rule Engine </b> is a flexible way to define known operational rules, some example include
-  * Speed of the car at the time of the accident can alter the decision
-  * An expired policy or a claim amount more than the allowed for the policy at hand
+* A pre-trained <b>ML Model</b> is used to score the image attached in the claims record to assess the severity of damage.
+* A <b>Rule Engine </b> is a flexible way to define known operational static checks that can be applied without requiring a human in the loop, thereby speeding up 'routine cases'. When the reported data does not comply with auto detected info, flags are raised to involve additional human investigation
+* This additional info helps a claims investigator by arrowing down the number of casess that need intervention a well as by narrowing down the specific areas thatt need additional followup and scrutiny
+* Some common checks include
+  * Claim date should be within coverage period
+  * Reported Severity should match ML predicted severity
+  * Accident Location as reported by telematics data should match the location as reported in claim
+  * Speed limit as reported by telematics should be within speed limits of that region if there is a dispute on who was on the offense 
 <img src="./resource/images/rule_engine.png" width="50%" height="50%">
 
 # Workflow
@@ -89,8 +93,15 @@ ___
 * We will use Databricks multi-task Workflows to put the process in auto-pilot mode to demonstrate the Lakehouse paradigm.
 * Some nodes are Delta Live Table nodes which employ the medallion architecture to refine and curate data, while others are notebooks which use a Model to score the data while still others are SQL workflows to refresh a dashboard with newly generated insights.
 <img src="./resource/images/workflow.png" width="60%" height="60%">
-
-<img src="./resource/images/medallion_architecture_dlt.png" width="60%" height="60%">
+1. Setup involve all the work needed to setup the <br>
+2. Ingest claims, Policy & accident data ussing a DLT Pipeline <br>
+3. Ingest Telematic data <br>
+4. Augment claims data with latitude/longitude using zipcode <br>
+5. Apply ML model to incoming image data to auto infer severity <br>
+6. Join telematics data with claims data to recreaate scene of accident eg. location, speed. This is where other 3rd party dta can be layered ex. road conditions, weather data, etc. <br>
+7. Apply pre-determined rules dynamically to assess merit of the claim and if it is a 'normal' case, release of funds can be expedited <br>
+8. Claims Dashboard is refreshed to aid claim investigators with additional data inferenced through the data and AI pipeline <br>
+<img src="./resource/images/medallion_architecture_dlt.png" width="60%" height="60%"> 
 * Using DLT for ETL helps simplify and operationalize the pipeline with its support for autoloader, data quality via constraints, efficient auto-scaling for streaming workloads, resiliency via restart on faillure, execution of administrative operations among others.
 
 ___
