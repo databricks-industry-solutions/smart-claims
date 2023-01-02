@@ -87,7 +87,7 @@ ___
   * Reported Severity should match ML predicted severity
   * Accident Location as reported by telematics data should match the location as reported in claim
   * Speed limit as reported by telematics should be within speed limits of that region if there is a dispute on who was on the offense 
-* <img src="./resource/images/rule_engine.png" width="60%" height="60%">
+<img src="./resource/images/rule_engine.png" width="70%" height="70%">
 
 # Workflow
 * Different data sources flow in at their own pace, some independent, some with dependencies
@@ -104,6 +104,7 @@ ___
 8. Claims Dashboard is refreshed to aid claim investigators with additional data insights inferenced through the data and AI pipeline <br>
 
 <img src="./resource/images/medallion_architecture_dlt.png" width="80%" height=80%"> 
+                                                                                   
 Using DLT for ETL helps simplify and operationalize the pipeline with its support for autoloader, data quality via constraints, efficient auto-scaling for streaming workloads, resiliency via restart on failure, execution of administrative operations among others.
 
 ___
@@ -114,31 +115,30 @@ A <b>Loss Summary</b> dashboard gives a birds eye view to overall business opera
 
 * <b>Loss Ratio</b> is computed by insurance claims paid plus adjustment expenses divided by total earned premiums. 
   * For example, if a company pays $80 in claims for every $160 in collected premiums, the loss ratio would be 50%. 
-  * The lower the ratio, the more profitable the insurance company. Each insurance company has its target loss ration
+  * The lower the ratio, the more profitable the insurance company. Each insurance company has its target loss ratio. A typical range is between 40%-60%. 
   * Damage is captured in 2 categories - property & liability - their loss ratios are tracked separately
-  * A typical range is between 40%-60%. 
   * The 80/20 Rule generally requires insurance companies to spend at least 80% of the money they take in from premiums on care costs and quality improvement activities. The other 20% can go to administrative, overhead, and marketing costs.
 * <b>Summary</b> visualization captures count of incident type by severity
   * <b>Incident type</b> refers to damage on account of 
-   * theft, collision (at rest, in motion (single/multiple vehicle collision)
+    * theft, collision (at rest, in motion (single/multiple vehicle collision)
   * <b>Damage Severity</b> is categorized as trivial, minor, major, total loss
 * Analyzing recent trends helps to prepare for hadling similar claims in the near future, for Eg.
   * What is the frequency of incident/damage amount by hour of day 
-   * Are there certain times in a day such as peak hours that are more prone to incidents?
+    * Are there certain times in a day such as peak hours that are more prone to incidents?
   * Is there a corelation to the age of the driver and the normalized age of the driver 
-   * Note there are very few driver below or above a certain threshold
+    * Note there are very few driver below or above a certain threshold
   * What about the number of incident coreelated to the age/make of the vehicle.
   * Which areas of the city have a higher incidence rate(construction, congestion, layout, density, etc)
 
 A per claim <b>Investigation</b> dashboard gives additional where a claims officer picks a claim number and can drill into its various facets<br>
-<img src="./resource/images/ClaimsInvestigation.png" width="80%" height="70%">
+<img src="./resource/images/ClaimsInvestigation.png" width="80%" height="80%">
 
 * The first panel uses <b>counter</b> widgets to provide statistics on rolling counts on number of 
   * Claims filed and of those how many were flagged as 
-   * suspicious or 
-   * had expired policies or
-   * had a severity assessment mimatch or
-   * claims amount exceeded the policy limits
+    * suspicious or 
+    * had expired policies or
+    * had a severity assessment mimatch or
+    * claims amount exceeded the policy limits
 * The next widget uses a <b>table</b> view to provide recent claims that are auto scored in the pipeline  using ML iferecing and rule engine
   * A green tick is used to denote auto-assessmentt matches claims description
   * A red cross indicates a mismatch that warrants further manual investigation
@@ -152,10 +152,10 @@ ___
 * Databricks features used
   * Delta, DLT, Multitask-workflows, ML & MLFlow, DBSQL Queries & Dashboards
 * Unified Lakehouse architecture for
-  * All data personas to work collaboratively on a single platform contributing to a singe pipeline
+  * All data personas to work collaboratively on a single platform contributing to a single pipeline
   * All big data architecture paradigms including streaming, ML, BI, DE & Ops
 * Workflow Pipelines are easier to create, monitor and maintain
-  * Multi-task Workflows accommodate multiple node types (notebooks, DLT, ML tasks, QL dasshboard and support repair&run & compute sharing)
+  * Multi-task Workflows accommodate multiple node types (notebooks, DLT, ML tasks, QL dashboard and support repair&run & compute sharing)
   * DLT pipelines offer quality constraints and faster path to flip dev workloads to production
   * Robust, Scalable and fully automated via REST APIs thereby improving team agility and productivity
 * BI & AI workloads 
@@ -172,7 +172,8 @@ ___
   * Deck: based on this Readme, set the flow of the story (15 min)
   * Discovery of where they are (10 min)
   * Demo (25 min)
-   * DE: Workflow & DLT (5 min)
+   * Data sources & EDA notebooks                                                                          
+   * DE: Workflow & DLT Pipeline (5 min)
    * ML: Model management & inferencing (5 min)
    * BI: Loss summary & Claims Investigation (10 min)
  * Next steps (5 min)
