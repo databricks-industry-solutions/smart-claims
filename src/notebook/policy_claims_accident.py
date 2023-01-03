@@ -13,8 +13,14 @@
 # COMMAND ----------
 
 claims_path = "dbfs:/FileStore/marzi/claims_data/Claims"
-policy_path = "dbfs:/FileStore/marzi/claims_data/Policies/policies.csv"
-accident_path = "dbfs:/FileStore/marzi/claims_data/images"
+# policy_path = "dbfs:/FileStore/marzi/claims_data/Policies/policies.csv"
+# accident_path = "dbfs:/FileStore/marzi/claims_data/images"
+
+# COMMAND ----------
+
+# claims_path = "dbfs:/tmp/smart_claims/data_sources/Claims"
+policy_path = "/tmp/smart_claims/data_sources/Policy/policies.csv"
+accident_path ="/tmp/smart_claims/data_sources/Accidents" 
 
 # COMMAND ----------
 
@@ -74,6 +80,8 @@ def bronze_claims():
   comment="The raw accident images loaded from a directory of images files."
 )
 def bronze_accidents():
+  
+  
   acc_df = spark.read.format('binaryFile').load(accident_path).withColumn("path", F.explode(F.array_repeat("path",10)))
   w = Window.partitionBy(lit(1)).orderBy("path")
   accident_df = acc_df.withColumn("claim_id", row_number().over(w))

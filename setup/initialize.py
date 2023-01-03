@@ -36,12 +36,13 @@ home_directory_dbfs = 'dbfs:/FileStore/{}/smart_claims'.format(username)
 
 config = {
   'home_dir' : home_directory,
+  'temp_dir' : temp_directory,
   'dlt_path': '{}/dlt'.format(home_directory),
-  'Telematics_path': '{}/data_sources/Telematics'.format(home_directory),
-  'Policy_path': '{}/data_sources/Policy'.format(home_directory),
-  'Claims_path': '{}/data_sources/Claims'.format(home_directory),
+  'Telematics_path': '{}/data_sources/Telematics'.format(temp_directory),
+  'Policy_path': '{}/data_sources/Policy'.format(temp_directory),
+  'Claims_path': '{}/data_sources/Claims'.format(temp_directory),
+  'Accidents_path': '{}/data_sources/Accidents'.format(temp_directory),
   'prediction_path': '{}/data_sources/predictions_delta'.format(home_directory),
-  'Telematics_path': '{}/data_sources/Telematics'.format(home_directory),
   'model_dir_on_dbfs' : 'dbfs:/FileStore/{}/severity_model/Model'.format(username),
   'image_dir_on_dbfs' : 'dbfs:/FileStore/smart_claims',
   'damage_severity_model_dir'    :  '/Users/{}/car_damage_severity'.format(user),
@@ -52,7 +53,7 @@ config = {
 def getParam(s):
   return config[s]
  
-# passing configuration 
+# passing configuration to scala
 spark.createDataFrame(pd.DataFrame(config, index=[0])).createOrReplaceTempView('smart_claims_config')
 
 # COMMAND ----------

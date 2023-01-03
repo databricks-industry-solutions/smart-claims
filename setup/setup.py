@@ -18,12 +18,6 @@
 
 # COMMAND ----------
 
-import re
-from pathlib import Path
-import pandas as pd
-
-# COMMAND ----------
-
 # MAGIC %md
 # MAGIC ## Install Libraries
 
@@ -37,7 +31,9 @@ import pandas as pd
 
 # COMMAND ----------
 
-# MAGIC %run ./initialize
+import re
+from pathlib import Path
+import pandas as pd
 
 # COMMAND ----------
 
@@ -47,9 +43,6 @@ import pandas as pd
 # COMMAND ----------
 
 main_directory = dbutils.notebook.entry_point.getDbutils().notebook().getContext().notebookPath().get().split('/setup')[0]
-
-# COMMAND ----------
-
 # We ensure that all objects created in that notebooks will be registered in a user specific database. 
 username = dbutils.notebook.entry_point.getDbutils().notebook().getContext().userName().get().split('@')[0]
 user = dbutils.notebook.entry_point.getDbutils().notebook().getContext().userName().get()
@@ -58,7 +51,7 @@ user = dbutils.notebook.entry_point.getDbutils().notebook().getContext().userNam
 database_name = '{}_smart_claims'.format(re.sub('\W', '_', username))
 
 home_directory = '/FileStore/{}/smart_claims'.format(username)
-temp_directory = "/tmp/{}/smart_claims".format(username)
+temp_directory = "/tmp/smart_claims"
 
 # COMMAND ----------
 
@@ -69,12 +62,13 @@ temp_directory = "/tmp/{}/smart_claims".format(username)
 
 config = {
   'home_dir' : home_directory,
+  'temp_dir' : temp_directory,
   'dlt_path': '{}/dlt'.format(home_directory),
-  'Telematics_path': '{}/data_sources/Telematics'.format(home_directory),
-  'Policy_path': '{}/data_sources/Policy'.format(home_directory),
-  'Claims_path': '{}/data_sources/Claims'.format(home_directory),
+  'Telematics_path': '{}/data_sources/Telematics'.format(temp_directory),
+  'Policy_path': '{}/data_sources/Policy'.format(temp_directory),
+  'Claims_path': '{}/data_sources/Claims'.format(temp_directory),
+  'Accidents_path': '{}/data_sources/Accidents'.format(temp_directory),
   'prediction_path': '{}/data_sources/predictions_delta'.format(home_directory),
-  'Telematics_path': '{}/data_sources/Telematics'.format(home_directory),
   'model_dir_on_dbfs' : 'dbfs:/FileStore/{}/severity_model/Model'.format(username),
   'image_dir_on_dbfs' : 'dbfs:/FileStore/smart_claims',
   'damage_severity_model_dir'    :  '/Users/{}/car_damage_severity'.format(user),
@@ -104,26 +98,32 @@ def tear_down():
   except:
     pass
   dbutils.fs.rm(home_directory, True)
-  _ = sql("DROP DATABASE IF EXISTS {} CASCADE".format(database_name))
+  spark.sql("DROP DATABASE IF EXISTS {} CASCADE".format(database_name))
   dbutils.fs.rm(getParam("model_dir_on_dbfs"),recurse=True)
   dbutils.fs.rm(getParam("image_dir_on_dbfs"),recurse=True)
   dbutils.fs.rm(getParam("damage_severity_model_dir"),recurse=True)
   dbutils.fs.rm(getParam("home_dir"),recurse=True)
+  dbutils.fs.rm(getParam("temp_dir"),recurse=True)
   
 def setup():
-  _ = sql("CREATE DATABASE IF NOT EXISTS {}".format(database_name))
-  _ = sql("USE DATABASE {}".format(database_name))
+  spark.sql("CREATE DATABASE IF NOT EXISTS {}".format(database_name))
+  spark.sql("USE DATABASE {}".format(database_name))
 
   # Similar to database, we will store actual content on a given path
   dbutils.fs.mkdirs(home_directory)
+  dbutils.fs.mkdirs(temp_directory)
 
-  # Where we might stored temporary data on local disk
-  Path(temp_directory).mkdir(parents=True, exist_ok=True)
+#   # Where we might stored temporary data on local disk
+#   Path(temp_directory).mkdir(parents=True, exist_ok=True)
 
 
 
 tear_down()
 setup()
+
+# COMMAND ----------
+
+# MAGIC %run ./initialize
 
 # COMMAND ----------
 
@@ -140,13 +140,13 @@ setup()
 # MAGIC %sh
 # MAGIC cp -r ../resource/Model /tmp/
 # MAGIC mkdir /tmp/images
-# MAGIC cp ../resource/data_sources/Accidents/*.jpg /tmp/images
+# MAGIC cp ../resource/data_sources/Accidents/* /tmp/images
 # MAGIC mkdir /tmp/Telematics
 # MAGIC cp -r ../resource/data_sources/Telematics/* /tmp/Telematics
 # MAGIC mkdir /tmp/Policy
-# MAGIC cp -r ../resource/data_sources/Telematics/* /tmp/Policy
+# MAGIC cp -r ../resource/data_sources/Policies/* /tmp/Policy
 # MAGIC mkdir /tmp/Claims
-# MAGIC cp -r ../resource/data_sources/Telematics/* /tmp/Claims
+# MAGIC cp -r ../resource/data_sources/Claims/* /tmp/Claims
 
 # COMMAND ----------
 
@@ -157,6 +157,7 @@ setup()
 
 dbutils.fs.cp("file:/tmp/Model", getParam("model_dir_on_dbfs"),recurse=True)
 dbutils.fs.cp("file:/tmp/images", getParam("image_dir_on_dbfs"),recurse=True)
+dbutils.fs.cp("file:/tmp/images", getParam("Accidents_path"),recurse=True)
 dbutils.fs.cp("file:/tmp/Telematics", getParam("Telematics_path"),recurse=True)
 dbutils.fs.cp("file:/tmp/Policy", getParam("Policy_path"),recurse=True)
 dbutils.fs.cp("file:/tmp/Claims", getParam("Claims_path"),recurse=True)
