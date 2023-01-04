@@ -81,8 +81,8 @@ def bronze_claims():
 )
 def bronze_accidents():
   acc_df = spark.read.format('binaryFile').load(accident_path)#.withColumn("path", F.explode(F.array_repeat("path",10)))
-  w = Window.partitionBy(lit(1)).orderBy("path")
-  accident_df = acc_df.withColumn("claim_id", row_number().over(w))
+#   w = Window.partitionBy(lit(1)).orderBy("path")
+#   accident_df = acc_df.withColumn("claim_id", row_number().over(w))
   
   return (accident_df)
 
@@ -92,7 +92,15 @@ def bronze_accidents():
   comment="The raw accident images loaded from a directory of images files."
 )
 def bronze_claims_accidents():
-  return (dlt.read("bronze_claims").join(dlt.read("bronze_accidents"), on="claim_id"))
+  claims_df = dlt.read("bronze_claims")
+  acc_df = dlt.read("bronze_accidents")
+  splits = claims_df.randomSplit([0.1, 0.05, 0.05, 0.1, 0.05, 0.05, 0.05, 0.05, 1.0, 1.0, 1.0, 0.05, 0.05, 0.05, 0.05],26)
+  acc_schema = acc_df.schema
+  claims_accident = (spark.createDataFrame([acc_df.collect()[0]],acc_schema).crossJoin(splits[0]))
+  for i in range(1, 15):
+  claims_accident = claims_accident.union(spark.createDataFrame([acc_df.collect()[i]],acc_schema).crossJoin(splits[i]))
+  return claims_accident
+                                 
 
 # COMMAND ----------
 
