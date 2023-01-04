@@ -24,7 +24,7 @@ user = dbutils.notebook.entry_point.getDbutils().notebook().getContext().userNam
 database_name = '{}_smart_claims'.format(re.sub('\W', '_', username))
 
 home_directory = '/FileStore/{}/smart_claims'.format(username)
-temp_directory = "/tmp/{}/smart_claims".format(username)
+temp_directory = "/tmp/smart_claims"
 home_directory_dbfs = 'dbfs:/FileStore/{}/smart_claims'.format(username)
 
 # COMMAND ----------
@@ -58,16 +58,16 @@ spark.createDataFrame(pd.DataFrame(config, index=[0])).createOrReplaceTempView('
 
 # COMMAND ----------
 
-claims_path = main_directory + "/resource/data_sources/claims_data/Claims"
-policy_path = main_directory + "/resource/data_sources/Policies/policies.csv"
+# claims_path = main_directory + "/resource/data_sources/claims_data/Claims"
+# policy_path = main_directory + "/resource/data_sources/Policies/policies.csv"
 
 # COMMAND ----------
 
-telematic_path = main_directory + "/resource/data_sources/Telematics"
+# telematic_path = main_directory + "/resource/data_sources/Telematics"
 
 # COMMAND ----------
 
-accident_path = main_directory + "/resource/data_sources/Accidents"
+# accident_path = main_directory + "/resource/data_sources/Accidents"
 
 # COMMAND ----------
 
