@@ -13,6 +13,7 @@
   * How to improve the Claims Management process for faster claims settlement, lower claims processing costs and quicker identification of possible fraud.
 * <b><span style="color:#f03c15"> Solution: Smart Claims! </span></b>
   * A Databricks Solution Accelerator that uses the Lakehouse paradigm to automate certain components of this process that aids human investigation 
+  * Please refer to the getting started doc in the docs
 
 <img src="./resource/images/ClaimsProcess.png" width="70%" height="70%">
 Every claim is different, the following steps capturess a typical workflow <br>
@@ -69,6 +70,7 @@ Claims flow typically involve some orchestration between an <b>operational</b> s
 ___
 
 # Datasets
+* All the data is synthetically generated data including the images and geo locations
 <img src="./resource/images/datasets.png" width="60%" height="60%">
 
 * Typical datasets include the above, some of these are slow moving while others are fast moving. 
@@ -113,6 +115,11 @@ ___
                                                                                    
 Using DLT for ETL helps simplify and operationalize the pipeline with its support for autoloader, data quality via constraints, efficient auto-scaling for streaming workloads, resiliency via restart on failure, execution of administrative operations among others.
 
+* Schem: <username>_smat_claims
+* Tables:
+  * <b>Bronze:</b> bronze_claim, bronze_policy, bronze_accident
+  * <b>Silver:</b> silver_claim, silver_policy, silver_claim_policy, silver_claim_policy_join
+  * <b>Gold:</b> claims_rules, smart_claim_insights
 ___
 
 # Insight visualization using Dashboards
