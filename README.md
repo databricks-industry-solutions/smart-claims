@@ -119,7 +119,7 @@ Using DLT for ETL helps simplify and operationalize the pipeline with its suppor
 * Tables:
   * <b>Bronze:</b> bronze_claim, bronze_policy, bronze_accident
   * <b>Silver:</b> silver_claim, silver_policy, silver_claim_policy, silver_claim_policy_join
-  * <b>Gold:</b> claims_rules, smart_claim_insights
+  * <b>Gold:</b> claim_rules, gold_insights
 ___
 
 # Insight visualization using Dashboards
