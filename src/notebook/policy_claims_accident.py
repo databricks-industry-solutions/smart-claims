@@ -8,16 +8,6 @@
 
 # COMMAND ----------
 
-# %run ../../setup/initialize
-
-# COMMAND ----------
-
-# claims_path = "dbfs:/FileStore/marzi/claims_data/Claims"
-# policy_path = "dbfs:/FileStore/marzi/claims_data/Policies/policies.csv"
-# accident_path = "dbfs:/FileStore/marzi/claims_data/images"
-
-# COMMAND ----------
-
 claims_path = "dbfs:/tmp/smart_claims/data_sources/Claims"
 policy_path = "/tmp/smart_claims/data_sources/Policy/policies.csv"
 accident_path ="/tmp/smart_claims/data_sources/Accidents" 
@@ -88,38 +78,6 @@ def bronze_accidents():
 
 # COMMAND ----------
 
-
-
-@dlt.table(
-  comment="The raw accident images added to the raw claims."
-)
-
-def bronze_claims_accidents():
-  
-  
-  claims_df = dlt.read("bronze_claims")
-  acc_df = dlt.read("bronze_accidents")
-  splits = claims_df.randomSplit([0.1, 0.05, 0.05, 0.1, 0.05, 0.05, 0.05, 0.05, 1.0, 1.0, 1.0, 0.05, 0.05, 0.05, 0.05],26)
-  claims_accident = ((acc_df.filter(acc_df.image_id==1)).crossJoin(splits[0])). \
-    union((acc_df.filter(acc_df.image_id==2)).crossJoin(splits[1])). \
-    union((acc_df.filter(acc_df.image_id==3)).crossJoin(splits[2])). \
-    union((acc_df.filter(acc_df.image_id==4)).crossJoin(splits[3])). \
-    union((acc_df.filter(acc_df.image_id==5)).crossJoin(splits[4])). \
-    union((acc_df.filter(acc_df.image_id==6)).crossJoin(splits[5])). \
-    union((acc_df.filter(acc_df.image_id==7)).crossJoin(splits[6])). \
-    union((acc_df.filter(acc_df.image_id==8)).crossJoin(splits[7])). \
-    union((acc_df.filter(acc_df.image_id==9)).crossJoin(splits[8])). \
-    union((acc_df.filter(acc_df.image_id==10)).crossJoin(splits[9])). \
-    union((acc_df.filter(acc_df.image_id==11)).crossJoin(splits[10])). \
-    union((acc_df.filter(acc_df.image_id==12)).crossJoin(splits[11])). \
-    union((acc_df.filter(acc_df.image_id==13)).crossJoin(splits[12])). \
-    union((acc_df.filter(acc_df.image_id==14)).crossJoin(splits[13])). \
-    union((acc_df.filter(acc_df.image_id==15)).crossJoin(splits[14]))
-  return (claims_accident)
-                                 
-
-# COMMAND ----------
-
 @dlt.table
 def bronze_policies():
   return spark.read.option("header", "true") \
@@ -174,7 +132,7 @@ def silver_policies():
 # COMMAND ----------
 
 @dlt.table(
-    name             = "silver_claims_accidents",
+    name             = "silver_claims",
     comment          = "Curated claim records",
     table_properties = {
         "layer": "silve",
@@ -195,7 +153,7 @@ def silver_policies():
 })
 def silver_claims_accidents():
     # Read the staged claim records into memory
-    staged_claims = dlt.read("bronze_claims_accidents")
+    staged_claims = dlt.read("bronze_claims")
     # Unpack all nested attributes to create a flattened table structure
     curated_claims = flatten(staged_claims)    
 
@@ -221,7 +179,7 @@ def silver_claims_accidents():
 # COMMAND ----------
 
 @dlt.table(
-    name             = "silver_claims_policy",
+    name             = "silver_claims_policy_join",
     comment          = "Curated claim joined with policy records",
     table_properties = {
         "layer": "silve",
@@ -238,5 +196,40 @@ def silver_claims_accidents():
   
 })
   
+def silver_claims_policy_join():
+  return (dlt.read("silver_claims").join(dlt.read("silver_policies"), on="policy_no"))
+
+# COMMAND ----------
+
+@dlt.table(
+    name             = "silver_claims_policy",
+    comment          = "The raw accident images added to the raw claims curated claim and policy records",
+    table_properties = {
+        "layer": "silve",
+        "pipelines.autoOptimize.managed": "true",
+        "delta.autoOptimize.optimizeWrite": "true",
+        "delta.autoOptimize.autoCompact": "true"
+    }
+)
 def silver_claims_policy():
-  return (dlt.read("silver_claims_accidents").join(dlt.read("silver_policies"), on="policy_no"))
+  
+  claims_policy_df = dlt.read("silver_claims_policy_join")
+  acc_df = dlt.read("bronze_accidents")
+  splits = claims_policy_df.randomSplit([0.1, 0.05, 0.05, 0.1, 0.05, 0.05, 0.05, 0.05, 1.0, 1.0, 1.0, 0.05, 0.05, 0.05, 0.05],26)
+  claims_policy_accident = ((acc_df.filter(acc_df.image_id==1)).crossJoin(splits[0])). \
+    union((acc_df.filter(acc_df.image_id==2)).crossJoin(splits[1])). \
+    union((acc_df.filter(acc_df.image_id==3)).crossJoin(splits[2])). \
+    union((acc_df.filter(acc_df.image_id==4)).crossJoin(splits[3])). \
+    union((acc_df.filter(acc_df.image_id==5)).crossJoin(splits[4])). \
+    union((acc_df.filter(acc_df.image_id==6)).crossJoin(splits[5])). \
+    union((acc_df.filter(acc_df.image_id==7)).crossJoin(splits[6])). \
+    union((acc_df.filter(acc_df.image_id==8)).crossJoin(splits[7])). \
+    union((acc_df.filter(acc_df.image_id==9)).crossJoin(splits[8])). \
+    union((acc_df.filter(acc_df.image_id==10)).crossJoin(splits[9])). \
+    union((acc_df.filter(acc_df.image_id==11)).crossJoin(splits[10])). \
+    union((acc_df.filter(acc_df.image_id==12)).crossJoin(splits[11])). \
+    union((acc_df.filter(acc_df.image_id==13)).crossJoin(splits[12])). \
+    union((acc_df.filter(acc_df.image_id==14)).crossJoin(splits[13])). \
+    union((acc_df.filter(acc_df.image_id==15)).crossJoin(splits[14]))
+  return (claims_policy_accident)
+                                 

@@ -40,17 +40,3 @@ spark.sql("CREATE TABLE IF NOT EXISTS accidents USING DELTA LOCATION '{}' ".form
 # COMMAND ----------
 
 display(accident_df_spark)
-
-# COMMAND ----------
-
-# %sql
-# WITH numberList as
-# (
-#    SELECT <input number here> AS NUM
-#    UNION ALL
-#    SELECT NUM-1 
-#    FROM numberList
-#    WHERE NUM-1 >= 0
-# )
-# SELECT t.name, t.value, numberList.num
-# FROM smart_claims.accident_2, 5
