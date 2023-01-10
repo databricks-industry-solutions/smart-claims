@@ -13,7 +13,11 @@ import mlflow
 
 # COMMAND ----------
 
-accident_df = (spark.sql("select * from silver_claims_policy").toPandas())
+acc_df =spark.read.format('binaryFile').load(accident_path)
+
+# COMMAND ----------
+
+accident_df = acc_df.toPandas()
 
 # COMMAND ----------
 
@@ -39,4 +43,5 @@ spark.sql("CREATE TABLE IF NOT EXISTS accidents USING DELTA LOCATION '{}' ".form
 
 # COMMAND ----------
 
-display(accident_df_spark)
+metadata_df = spark.read.format("csv").option("header", "true").load(image_metadata_path)
+accident_df1 = acc_df.join(metadata_df,acc_df.claim_no ==  acc_df.claim_no,"inner")

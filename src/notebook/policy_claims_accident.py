@@ -8,9 +8,7 @@
 
 # COMMAND ----------
 
-claims_path = "dbfs:/tmp/smart_claims/data_sources/Claims"
-policy_path = "/tmp/smart_claims/data_sources/Policy/policies.csv"
-accident_path ="/tmp/smart_claims/data_sources/Accidents" 
+# MAGIC %run ../../setup/initialize
 
 # COMMAND ----------
 
@@ -56,25 +54,20 @@ def flatten(df):
 
 # COMMAND ----------
 
-@dlt.table(
-  comment="The raw claims data loaded from json files."
-)
-def bronze_claims():
-  w = Window.partitionBy(lit(1)).orderBy("claim_no")
-  return (spark.read.option('multiline', True).json(claims_path).withColumn("claim_id", row_number().over(w)))
+# @dlt.table(
+#   comment="The raw claims data loaded from json files."
+# )
+# def bronze_claims():
+#   return (spark.read.option('multiline', True).json(claims_path))
  
 
 # COMMAND ----------
 
 @dlt.table(
-  comment="The raw accident images loaded from a directory of images files."
+  comment="The raw claims data loaded from json files."
 )
-def bronze_accidents():
-  acc_df = spark.read.format('binaryFile').load(accident_path)#.withColumn("path", F.explode(F.array_repeat("path",10)))
-  w = Window.partitionBy(lit(1)).orderBy("path")
-  accident_df = acc_df.withColumn("image_id", row_number().over(w))
-  
-  return (accident_df)
+def bronze_claims():
+  return (spark.read.option('multiline', True).json(claims_path))
 
 # COMMAND ----------
 
@@ -151,9 +144,10 @@ def silver_policies():
     "valid_claim_amount": "claim_amount_total > 0"
 
 })
-def silver_claims_accidents():
+def silver_claims():
     # Read the staged claim records into memory
-    staged_claims = dlt.read("bronze_claims")
+    w = Window.partitionBy(lit(1)).orderBy("claim_no")
+    staged_claims = dlt.read("bronze_claims").withColumn("driver_id", row_number().over(w))
     # Unpack all nested attributes to create a flattened table structure
     curated_claims = flatten(staged_claims)    
 
@@ -178,8 +172,12 @@ def silver_claims_accidents():
 
 # COMMAND ----------
 
+
+
+# COMMAND ----------
+
 @dlt.table(
-    name             = "silver_claims_policy_join",
+    name             = "silver_claims_policy",
     comment          = "Curated claim joined with policy records",
     table_properties = {
         "layer": "silve",
@@ -196,40 +194,5 @@ def silver_claims_accidents():
   
 })
   
-def silver_claims_policy_join():
-  return (dlt.read("silver_claims").join(dlt.read("silver_policies"), on="policy_no"))
-
-# COMMAND ----------
-
-@dlt.table(
-    name             = "silver_claims_policy",
-    comment          = "The raw accident images added to the raw claims curated claim and policy records",
-    table_properties = {
-        "layer": "silve",
-        "pipelines.autoOptimize.managed": "true",
-        "delta.autoOptimize.optimizeWrite": "true",
-        "delta.autoOptimize.autoCompact": "true"
-    }
-)
 def silver_claims_policy():
-  
-  claims_policy_df = dlt.read("silver_claims_policy_join")
-  acc_df = dlt.read("bronze_accidents")
-  splits = claims_policy_df.randomSplit([0.1, 0.05, 0.05, 0.1, 0.05, 0.05, 0.05, 0.05, 1.0, 1.0, 1.0, 0.05, 0.05, 0.05, 0.05],26)
-  claims_policy_accident = ((acc_df.filter(acc_df.image_id==1)).crossJoin(splits[0])). \
-    union((acc_df.filter(acc_df.image_id==2)).crossJoin(splits[1])). \
-    union((acc_df.filter(acc_df.image_id==3)).crossJoin(splits[2])). \
-    union((acc_df.filter(acc_df.image_id==4)).crossJoin(splits[3])). \
-    union((acc_df.filter(acc_df.image_id==5)).crossJoin(splits[4])). \
-    union((acc_df.filter(acc_df.image_id==6)).crossJoin(splits[5])). \
-    union((acc_df.filter(acc_df.image_id==7)).crossJoin(splits[6])). \
-    union((acc_df.filter(acc_df.image_id==8)).crossJoin(splits[7])). \
-    union((acc_df.filter(acc_df.image_id==9)).crossJoin(splits[8])). \
-    union((acc_df.filter(acc_df.image_id==10)).crossJoin(splits[9])). \
-    union((acc_df.filter(acc_df.image_id==11)).crossJoin(splits[10])). \
-    union((acc_df.filter(acc_df.image_id==12)).crossJoin(splits[11])). \
-    union((acc_df.filter(acc_df.image_id==13)).crossJoin(splits[12])). \
-    union((acc_df.filter(acc_df.image_id==14)).crossJoin(splits[13])). \
-    union((acc_df.filter(acc_df.image_id==15)).crossJoin(splits[14]))
-  return (claims_policy_accident)
-                                 
+  return (dlt.read("silver_claims").join(dlt.read("silver_policies"), on="policy_no"))

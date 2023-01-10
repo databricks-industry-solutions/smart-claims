@@ -68,6 +68,7 @@ config = {
   'Policy_path': '{}/data_sources/Policy'.format(temp_directory),
   'Claims_path': '{}/data_sources/Claims'.format(temp_directory),
   'Accidents_path': '{}/data_sources/Accidents'.format(temp_directory),
+  'Accident_metadata_path': '{}/data_sources/Accident_metadata'.format(temp_directory),
   'prediction_path': '{}/data_sources/predictions_delta'.format(home_directory),
   'model_dir_on_dbfs' : 'dbfs:/FileStore/{}/severity_model/Model'.format(username),
   'image_dir_on_dbfs' : 'dbfs:/FileStore/smart_claims',
@@ -141,6 +142,8 @@ setup()
 # MAGIC cp -r ../resource/Model /tmp/
 # MAGIC mkdir /tmp/images
 # MAGIC cp ../resource/data_sources/Accidents/* /tmp/images
+# MAGIC mkdir /tmp/image_metadat
+# MAGIC cp ../resource/data_sources/Accidents/image_metadata.csv /tmp/image_metadat
 # MAGIC mkdir /tmp/Telematics
 # MAGIC cp -r ../resource/data_sources/Telematics/* /tmp/Telematics
 # MAGIC mkdir /tmp/Policy
@@ -158,6 +161,7 @@ setup()
 dbutils.fs.cp("file:/tmp/Model", getParam("model_dir_on_dbfs"),recurse=True)
 dbutils.fs.cp("file:/tmp/images", getParam("image_dir_on_dbfs"),recurse=True)
 dbutils.fs.cp("file:/tmp/images", getParam("Accidents_path"),recurse=True)
+dbutils.fs.cp("file:/tmp/image_metadata", getParam("Accident_metadata_path"),recurse=True)
 dbutils.fs.cp("file:/tmp/Telematics", getParam("Telematics_path"),recurse=True)
 dbutils.fs.cp("file:/tmp/Policy", getParam("Policy_path"),recurse=True)
 dbutils.fs.cp("file:/tmp/Claims", getParam("Claims_path"),recurse=True)
@@ -170,6 +174,7 @@ dbutils.fs.cp("file:/tmp/Claims", getParam("Claims_path"),recurse=True)
 # MAGIC rm -r /tmp/Telematics
 # MAGIC rm -r /tmp/Claims
 # MAGIC rm -r /tmp/Policy
+# MAGIC rm -r /tmp/image_metadata
 
 # COMMAND ----------
 
