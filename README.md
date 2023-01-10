@@ -115,10 +115,10 @@ ___
                                                                                    
 Using DLT for ETL helps simplify and operationalize the pipeline with its support for autoloader, data quality via constraints, efficient auto-scaling for streaming workloads, resiliency via restart on failure, execution of administrative operations among others.
 
-* Schem: <username>_smat_claims
+* Schema: smart_claims
 * Tables:
   * <b>Bronze:</b> bronze_claim, bronze_policy, bronze_accident
-  * <b>Silver:</b> silver_claim, silver_policy, silver_claim_policy, silver_claim_policy_join
+  * <b>Silver:</b> silver_claim, silver_policy,  silver_claim_policy, silver_telematics, silver_accident, silver_claim_policy_accident, silver_claim_policy_telematics, silver_claim_policy_location
   * <b>Gold:</b> claim_rules, gold_insights
 ___
 
