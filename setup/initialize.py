@@ -42,6 +42,7 @@ config = {
   'Policy_path': '{}/data_sources/Policy'.format(temp_directory),
   'Claims_path': '{}/data_sources/Claims'.format(temp_directory),
   'Accidents_path': '{}/data_sources/Accidents'.format(temp_directory),
+  'Accident_metadata_path': '{}/data_sources/Accident_metadata'.format(temp_directory),
   'prediction_path': '{}/data_sources/predictions_delta'.format(home_directory),
   'model_dir_on_dbfs' : 'dbfs:/FileStore/{}/severity_model/Model'.format(username),
   'image_dir_on_dbfs' : 'dbfs:/FileStore/smart_claims',

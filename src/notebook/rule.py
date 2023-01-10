@@ -4,9 +4,9 @@
 # MAGIC * These are pre-defined static checks that can be applied without requiring a human in the loop, thereby speeding up routine cases
 # MAGIC * When the reported data does not comply with auto detected info, flags are raised to involve additional human investigation
 # MAGIC   * Eg. Checks on policy coverage, assessed severity, accident location and speed limit violations
-# MAGIC * <b>Input Table:</b> claim_policy_accident
-# MAGIC * <b>Rules Table:</b> claims_rules
-# MAGIC * <b>Output Table:</b> claim_policy_accident_insights
+# MAGIC * <b>Input Table:</b> silver_claim_policy_accident
+# MAGIC * <b>Rules Table:</b> claim_rules
+# MAGIC * <b>Output Table:</b> gold_insights
 
 # COMMAND ----------
 
@@ -139,7 +139,7 @@ spark.sql(s_sql)
 # COMMAND ----------
 
 from pyspark.sql.functions import *
-df = spark.sql("SELECT * FROM claims_policy_accident")
+df = spark.sql("SELECT * FROM silver_claim_policy_accident")
 
 rules = spark.sql('SELECT * FROM claims_rules where is_active=True order by rule_id').collect()
 for rule in rules:
@@ -151,12 +151,12 @@ display(df)
 # COMMAND ----------
 
 #overwrite table with new insights
-df.write.mode("overwrite").format("delta").option("overwriteSchema", "true").saveAsTable("claims_policy_accident")
+df.write.mode("overwrite").format("delta").option("overwriteSchema", "true").saveAsTable("gold_insights")
 
 # COMMAND ----------
 
 #profile insights generated
-df = spark.sql("SELECT valid_date, valid_amount,reported_severity_check, release_funds FROM claims_policy_accident")
+df = spark.sql("SELECT valid_date, valid_amount,reported_severity_check, release_funds FROM gold_insights")
 display(df)
 
 # COMMAND ----------

@@ -8,4 +8,4 @@
 
 # COMMAND ----------
 
-spark.sql("CREATE TABLE IF not exists telematics USING DELTA LOCATION '{}' ".format(getParam('Telematics_path')))
+spark.sql("CREATE TABLE IF not exists silver_telematics USING DELTA LOCATION '{}' ".format(getParam('Telematics_path')))

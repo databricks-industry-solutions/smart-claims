@@ -2,13 +2,15 @@
 # MAGIC %md
 # MAGIC # Policy & Claims DLT Ingestion pipeline
 # MAGIC * Tables:
-# MAGIC   * bronze_claims & bronze_policies
-# MAGIC   * silver_claims & silver_policies
-# MAGIC   * silver_claims_policies (joined by policy id)
+# MAGIC   * bronze_claim & bronze_policy
+# MAGIC   * silver_claim & silver_policy
+# MAGIC   * silver_claim_policy (joined by policy id)
 
 # COMMAND ----------
 
-# MAGIC %run ../../setup/initialize
+claims_path = "dbfs:/tmp/smart_claims/data_sources/Claims"
+policy_path = "/tmp/smart_claims/data_sources/Policy/policies.csv"
+accident_path ="/tmp/smart_claims/data_sources/Accidents" 
 
 # COMMAND ----------
 
@@ -54,25 +56,16 @@ def flatten(df):
 
 # COMMAND ----------
 
-# @dlt.table(
-#   comment="The raw claims data loaded from json files."
-# )
-# def bronze_claims():
-#   return (spark.read.option('multiline', True).json(claims_path))
- 
-
-# COMMAND ----------
-
 @dlt.table(
   comment="The raw claims data loaded from json files."
 )
-def bronze_claims():
+def bronze_claim():
   return (spark.read.option('multiline', True).json(claims_path))
 
 # COMMAND ----------
 
 @dlt.table
-def bronze_policies():
+def bronze_policy():
   return spark.read.option("header", "true") \
           .option("sep", ",") \
           .format("csv") \
@@ -81,7 +74,7 @@ def bronze_policies():
 # COMMAND ----------
 
 @dlt.table(
-    name             = "silver_policies",
+    name             = "silver_policy",
     comment          = "Curated policy records",
     table_properties = {
         "layer": "silver",
@@ -100,12 +93,12 @@ def bronze_policies():
 #     "valid_expiry_date": "pol_expiry_date <= current_date()",
 #     "valid_model_year": "model_year > 0"
 })
-def silver_policies():
+def silver_policy():
     # Read the staged policy records into memory
-    staged_policies = dlt.read("bronze_policies")
+    staged_policy = dlt.read("bronze_policy")
 
     # Update the policy premium values
-    silver_policies = staged_policies.withColumn("premium", F.abs(F.col("premium"))) \
+    silver_policy = staged_policy.withColumn("premium", F.abs(F.col("premium"))) \
         .withColumn(
             # Reformat the incident date values
             "pol_eff_date", F.to_date(F.col("pol_eff_date"), "dd-MM-yyyy")
@@ -120,12 +113,12 @@ def silver_policies():
          ) 
       
     # Return the curated dataset
-    return silver_policies
+    return silver_policy
 
 # COMMAND ----------
 
 @dlt.table(
-    name             = "silver_claims",
+    name             = "silver_claim",
     comment          = "Curated claim records",
     table_properties = {
         "layer": "silve",
@@ -144,16 +137,15 @@ def silver_policies():
     "valid_claim_amount": "claim_amount_total > 0"
 
 })
-def silver_claims():
+def silver_claim():
     # Read the staged claim records into memory
-    w = Window.partitionBy(lit(1)).orderBy("claim_no")
-    staged_claims = dlt.read("bronze_claims").withColumn("driver_id", row_number().over(w))
+    staged_claim = dlt.read("bronze_claim")
     # Unpack all nested attributes to create a flattened table structure
-    curated_claims = flatten(staged_claims)    
+    curated_claim = flatten(staged_claim)    
 
     
     # Update the format of all date/time features
-    silver_claims = curated_claims \
+    silver_claim = curated_claim \
         .withColumn(
             # Reformat the claim date values
             "claim_date", F.to_date(F.col("claim_datetime"))
@@ -168,7 +160,7 @@ def silver_claims():
         ) 
 
     # Return the curated dataset
-    return silver_claims
+    return silver_claim
 
 # COMMAND ----------
 
@@ -177,7 +169,7 @@ def silver_claims():
 # COMMAND ----------
 
 @dlt.table(
-    name             = "silver_claims_policy",
+    name             = "silver_claim_policy",
     comment          = "Curated claim joined with policy records",
     table_properties = {
         "layer": "silve",
@@ -194,5 +186,5 @@ def silver_claims():
   
 })
   
-def silver_claims_policy():
-  return (dlt.read("silver_claims").join(dlt.read("silver_policies"), on="policy_no"))
+def silver_claim_policy():
+  return (dlt.read("silver_claim").join(dlt.read("silver_policy"), on="policy_no"))

@@ -1,6 +1,6 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC # Add iot data to the claims & policy data
+-- MAGIC # Add telematics and accident data to the claims & policy data
 -- MAGIC * simulate iot streaming data join with claims
 
 -- COMMAND ----------
@@ -9,24 +9,24 @@
 
 -- COMMAND ----------
 
-create table if not exists policy_claims_iot as 
+create table if not exists silver_claim_policy_telematics as 
 (
 select p_c.*, t.latitude, t.longitude, t.event_timestamp, t.speed
 from 
-silver_claims_policy as p_c 
+silver_claim_policy as p_c 
 left outer join 
-telematics as t
+silver_telematics as t
 on p_c.chassis_no=t.chassis_no
 )
 
 -- COMMAND ----------
 
-create table if not exists policy_claims_iot_available as 
+create table if not exists silver_claim_policy_accident as 
 (
-select p_c.*, t.latitude, t.longitude, t.event_timestamp, t.speed
+select p_c.*, t.* except(t.claim_no, t.chassis_no)
 from 
-silver_claims_policy as p_c 
+silver_claim_policy_telematics as p_c 
 join 
-telematics as t
-on p_c.chassis_no=t.chassis_no
+silver_accident as t
+on p_c.claim_no=t.claim_no
 )

@@ -141,9 +141,9 @@ setup()
 # MAGIC %sh
 # MAGIC cp -r ../resource/Model /tmp/
 # MAGIC mkdir /tmp/images
-# MAGIC cp ../resource/data_sources/Accidents/* /tmp/images
-# MAGIC mkdir /tmp/image_metadat
-# MAGIC cp ../resource/data_sources/Accidents/image_metadata.csv /tmp/image_metadat
+# MAGIC cp ../resource/data_sources/Accidents/*.jpg /tmp/images
+# MAGIC mkdir /tmp/image_metadata
+# MAGIC cp ../resource/data_sources/Accidents/image_metadata.csv /tmp/image_metadata
 # MAGIC mkdir /tmp/Telematics
 # MAGIC cp -r ../resource/data_sources/Telematics/* /tmp/Telematics
 # MAGIC mkdir /tmp/Policy
