@@ -32,7 +32,7 @@ avg(latitude) as telematics_latitude,
 avg(longitude) as telematics_longitude
 from
 silver_telematics
-group by chassis_no;) t
+group by chassis_no) t
 on p_c.chassis_no=t.chassis_no
 )
 
