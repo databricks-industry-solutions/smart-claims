@@ -48,7 +48,8 @@ username = dbutils.notebook.entry_point.getDbutils().notebook().getContext().use
 user = dbutils.notebook.entry_point.getDbutils().notebook().getContext().userName().get()
 
 # Please replace this cell should you want to store data somewhere else.
-database_name = '{}_smart_claims'.format(re.sub('\W', '_', username))
+# database_name = '{}_smart_claims'.format(re.sub('\W', '_', username))
+database_name = 'smart_claims'
 
 home_directory = '/FileStore/{}/smart_claims'.format(username)
 temp_directory = "/tmp/smart_claims"

@@ -110,8 +110,8 @@ spark.sql(s_sql)
 # COMMAND ----------
 
 exceeds_speed = '''
-CASE WHEN  speed <= 45 and speed > 0 THEN  "Normal Speed"
-       WHEN speed > 45 THEN  "High Speed"
+CASE WHEN  telematics_speed <= 45 and telematics_speed > 0 THEN  "Normal Speed"
+       WHEN telematics_speed > 45 THEN  "High Speed"
        ELSE "Invalid speed"
 END
 '''
@@ -158,7 +158,3 @@ df.write.mode("overwrite").format("delta").option("overwriteSchema", "true").sav
 #profile insights generated
 df = spark.sql("SELECT valid_date, valid_amount,reported_severity_check, release_funds FROM gold_insights")
 display(df)
-
-# COMMAND ----------
-
-
