@@ -23,7 +23,7 @@
 
 create table if not exists silver_claim_policy_telematics as 
 (
-select p_c.*, t.telematics_latitude, t.telematics_longitude, t.telematics_timestamp, t.telematics_speed
+select p_c.*, t.telematics_latitude, t.telematics_longitude, t.telematics_speed
 from 
 silver_claim_policy_location as p_c 
 join
