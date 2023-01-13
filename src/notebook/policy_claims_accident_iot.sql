@@ -21,7 +21,7 @@
 
 -- COMMAND ----------
 
-create table if not exists silver_claim_policy_telematics as 
+create table if not exists silver_claim_policy_telematics_avg as 
 (
 select p_c.*, t.telematics_latitude, t.telematics_longitude, t.telematics_speed
 from 
@@ -38,25 +38,24 @@ on p_c.chassis_no=t.chassis_no
 
 -- COMMAND ----------
 
--- create table if not exists silver_claim_policy_telematics as 
--- (
--- select p_c.*, t.latitude as telematics_latitude, t.longitude as telematics_longitude, t.event_timestamp as telematics_timestamp, t.speed as telematics_speed
--- from 
--- silver_telematics as t
--- left outer join 
-
--- silver_claim_policy_accident as p_c 
--- on p_c.chassis_no=t.chassis_no
--- )
-
--- COMMAND ----------
-
 create table if not exists silver_claim_policy_accident as 
 (
 select p_c.*, t.* except(t.claim_no, t.chassis_no)
 from 
-silver_claim_policy_telematics as p_c 
+silver_claim_policy_telematics_avg as p_c 
 join 
 silver_accident as t
 on p_c.claim_no=t.claim_no
+)
+
+-- COMMAND ----------
+
+create table if not exists silver_claim_policy_telematics as 
+(
+select p_c.*, t.latitude as telematics_latitude, t.longitude as telematics_longitude, t.event_timestamp as telematics_timestamp, t.speed as telematics_speed
+from 
+silver_telematics as t
+join 
+silver_claim_policy_location as p_c 
+on p_c.chassis_no=t.chassis_no
 )
