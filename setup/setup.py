@@ -23,11 +23,7 @@
 
 # COMMAND ----------
 
-# MAGIC %pip install geopy
-
-# COMMAND ----------
-
-# MAGIC %pip install git+https:///github.com/amesar/mlflow-export-import/#egg=mlflow-export-import
+# MAGIC %pip install geopy git+https:///github.com/amesar/mlflow-export-import/#egg=mlflow-export-import
 
 # COMMAND ----------
 
@@ -185,12 +181,3 @@ dbutils.fs.cp("file:/tmp/Claims", getParam("Claims_path"),recurse=True)
 # COMMAND ----------
 
 # MAGIC %run ./import_model
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC ## Import Dashboard
-
-# COMMAND ----------
-
-# MAGIC %run ./load_dashboard

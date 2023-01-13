@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC %md This notebook is available at https://github.com/databricks-industry-solutions/smart-claims.git
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC # Rule Engine 
 # MAGIC * These are pre-defined static checks that can be applied without requiring a human in the loop, thereby speeding up routine cases
@@ -27,7 +31,7 @@
 
 # COMMAND ----------
 
-# MAGIC %run ../../setup/initialize
+# MAGIC %run ./setup/initialize
 
 # COMMAND ----------
 

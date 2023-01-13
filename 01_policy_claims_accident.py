@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC %md This notebook is available at https://github.com/databricks-industry-solutions/smart-claims.git
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC # Policy & Claims DLT Ingestion pipeline
 # MAGIC * Tables:
