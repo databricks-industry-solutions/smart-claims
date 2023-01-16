@@ -146,12 +146,18 @@ def silver_claim():
     
     # Update the format of all date/time features
     silver_claim = curated_claim \
-    .withColumn(
-      # Reformat the incident date values
-      "incident_date", F.to_date(F.col("incident_date"), "dd-MM-yyyy")) \
-    .withColumn(
-      # Reformat the driver license issue date values
-      "driver_license_issue_date", F.to_date(F.col("driver_license_issue_date"), "dd-MM-yyyy")) 
+        .withColumn(
+            # Reformat the claim date values
+            "claim_date", F.to_date(F.col("claim_date"))
+        ) \
+        .withColumn(
+            # Reformat the incident date values
+            "incident_date", F.to_date(F.col("incident_date"), "dd-MM-yyyy")
+        ) \
+        .withColumn(
+            # Reformat the driver license issue date values
+            "driver_license_issue_date", F.to_date(F.col("driver_license_issue_date"), "dd-MM-yyyy")
+        ) 
 
     # Return the curated dataset
     return silver_claim
