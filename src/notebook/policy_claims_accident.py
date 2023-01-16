@@ -146,10 +146,10 @@ def silver_claim():
     
     # Update the format of all date/time features
     silver_claim = curated_claim \
-        .withColumn(
-            # Reformat the claim date values
-            "claim_date", F.to_date(F.col("claim_datetime"))
-        ) \
+#         .withColumn(
+#             # Reformat the claim date values
+#             "claim_date", F.to_date(F.col("claim_datetime"))
+#         ) \
         .withColumn(
             # Reformat the incident date values
             "incident_date", F.to_date(F.col("incident_date"), "dd-MM-yyyy")
