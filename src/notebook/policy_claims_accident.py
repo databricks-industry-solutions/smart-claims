@@ -60,7 +60,7 @@ def flatten(df):
   comment="The raw claims data loaded from json files."
 )
 def bronze_claim():
-  return (spark.read.option('multiline', True).json(claims_path))
+  return (spark.read.json(claims_path))
 
 # COMMAND ----------
 
@@ -148,7 +148,7 @@ def silver_claim():
     silver_claim = curated_claim \
         .withColumn(
             # Reformat the claim date values
-            "claim_date", F.to_date(F.col("claim_datetime"))
+            "claim_date", F.to_date(F.col("claim_date"))
         ) \
         .withColumn(
             # Reformat the incident date values
