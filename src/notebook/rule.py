@@ -55,7 +55,7 @@
 # COMMAND ----------
 
 invalid_policy_date = '''
-CASE WHEN to_date(pol_eff_date, "dd-MM-yyyy") < to_date(claim_datetime) and to_date(pol_expiry_date, "dd-MM-yyyy") < to_date(claim_datetime) THEN "VALID" 
+CASE WHEN to_date(pol_eff_date, "yyyy-MM-dd") < to_date(claim_date) and to_date(pol_expiry_date, "yyyy-MM-dd") < to_date(claim_date) THEN "VALID" 
 ELSE "NOT VALID"  
 END
 '''

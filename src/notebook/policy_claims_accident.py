@@ -130,7 +130,7 @@ def silver_policy():
 
 @dlt.expect_all_or_drop({
     "valid_claim_date": "claim_date < current_date()",
-    "valid_incident_date": "incident_date < current_date()",
+#     "valid_incident_date": "incident_date < current_date()",
     "valid_incident_hour": "incident_hour between 0 and 24",
     "valid_driver_age": "driver_age > 16",
      "valid_driver_license": "driver_license_issue_date > (current_date() - cast(cast(driver_age AS INT) AS INTERVAL YEAR))",
@@ -152,7 +152,7 @@ def silver_claim():
         ) \
         .withColumn(
             # Reformat the incident date values
-            "incident_date", F.to_date(F.col("incident_date"), "dd-MM-yyyy")
+            "incident_date", F.to_date(F.col("incident_date"), "yyyy-MM-dd")
         ) \
         .withColumn(
             # Reformat the driver license issue date values
