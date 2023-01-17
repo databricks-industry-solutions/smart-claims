@@ -101,15 +101,15 @@ def silver_policy():
     silver_policy = staged_policy.withColumn("premium", F.abs(F.col("premium"))) \
         .withColumn(
             # Reformat the incident date values
-            "pol_eff_date", F.to_date(F.col("pol_eff_date"), "dd-MM-yyyy")
+            "pol_eff_date", F.to_date(F.col("pol_eff_date"), "yyyy-MM-dd")
         ) \
         .withColumn(
             # Reformat the incident date values
-            "pol_expiry_date", F.to_date(F.col("pol_expiry_date"), "dd-MM-yyyy")
+            "pol_expiry_date", F.to_date(F.col("pol_expiry_date"), "yyyy-MM-dd")
          ) \
         .withColumn(
             # Reformat the incident date values
-            "pol_issue_date", F.to_date(F.col("pol_issue_date"), "dd-MM-yyyy")
+            "pol_issue_date", F.to_date(F.col("pol_issue_date"), "yyyy-MM-dd")
          ) 
       
     # Return the curated dataset
