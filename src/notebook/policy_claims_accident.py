@@ -148,7 +148,7 @@ def silver_claim():
     silver_claim = curated_claim \
         .withColumn(
             # Reformat the claim date values
-            "claim_date", F.to_date(F.col("claim_date"))
+            "claim_date", F.to_date(F.col("claim_datetime"))
         ) \
         .withColumn(
             # Reformat the incident date values
