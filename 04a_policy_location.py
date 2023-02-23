@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC %md This notebook is available at https://github.com/databricks-industry-solutions/smart-claims
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC # Location
 # MAGIC * Uses geopy lib to add lat/long for dashboard display
@@ -11,7 +15,7 @@
 
 # COMMAND ----------
 
-# MAGIC %run ../../setup/initialize
+# MAGIC %run ./setup/initialize
 
 # COMMAND ----------
 

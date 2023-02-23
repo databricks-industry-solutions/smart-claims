@@ -60,19 +60,6 @@ spark.createDataFrame(pd.DataFrame(config, index=[0])).createOrReplaceTempView('
 
 # COMMAND ----------
 
-# claims_path = main_directory + "/resource/data_sources/claims_data/Claims"
-# policy_path = main_directory + "/resource/data_sources/Policies/policies.csv"
-
-# COMMAND ----------
-
-# telematic_path = main_directory + "/resource/data_sources/Telematics"
-
-# COMMAND ----------
-
-# accident_path = main_directory + "/resource/data_sources/Accidents"
-
-# COMMAND ----------
-
 # MAGIC %md
 # MAGIC #### Use Schema
 

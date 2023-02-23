@@ -1,10 +1,14 @@
 # Databricks notebook source
+# MAGIC %md This notebook is available at https://github.com/databricks-industry-solutions/smart-claims
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC # iot streaming data
 
 # COMMAND ----------
 
-# MAGIC %run ../../setup/initialize
+# MAGIC %run ./setup/initialize
 
 # COMMAND ----------
 
