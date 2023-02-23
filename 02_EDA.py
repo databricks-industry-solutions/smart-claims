@@ -17,7 +17,7 @@
 
 # COMMAND ----------
 
-claims_df = spark.table("bronze_claims")
+claims_df = spark.table("bronze_claim")
 display(claims_df)
 
 # COMMAND ----------
@@ -27,7 +27,7 @@ display(claims_df)
 
 # COMMAND ----------
 
-policy_df = spark.table("bronze_policies")
+policy_df = spark.table("bronze_policy")
 display(policy_df)
 
 # COMMAND ----------
