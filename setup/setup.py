@@ -131,22 +131,14 @@ setup()
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ### Copy model & images from repo to driver /tmp
+# MAGIC ### Copy model & images to driver /tmp
 
 # COMMAND ----------
 
-# MAGIC %sh
-# MAGIC cp -r ../resource/Model /tmp/
-# MAGIC mkdir /tmp/images
-# MAGIC cp ../resource/data_sources/Accidents/*.jpg /tmp/images
-# MAGIC mkdir /tmp/image_metadata
-# MAGIC cp ../resource/data_sources/Accidents/image_metadata.csv /tmp/image_metadata
-# MAGIC mkdir /tmp/Telematics
-# MAGIC cp -r ../resource/data_sources/Telematics/* /tmp/Telematics
-# MAGIC mkdir /tmp/Policy
-# MAGIC cp -r ../resource/data_sources/Policies/* /tmp/Policy
-# MAGIC mkdir /tmp/Claims
-# MAGIC cp -r ../resource/data_sources/Claims/* /tmp/Claims
+# MAGIC %sh -e
+# MAGIC cd /databricks/driver/
+# MAGIC wget -O resource.zip https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource_bundle.zip
+# MAGIC unzip -o resource.zip -d tmp/
 
 # COMMAND ----------
 
@@ -155,23 +147,24 @@ setup()
 
 # COMMAND ----------
 
-dbutils.fs.cp("file:/tmp/Model", getParam("model_dir_on_dbfs"),recurse=True)
-dbutils.fs.cp("file:/tmp/images", getParam("image_dir_on_dbfs"),recurse=True)
-dbutils.fs.cp("file:/tmp/images", getParam("Accidents_path"),recurse=True)
-dbutils.fs.cp("file:/tmp/image_metadata", getParam("Accident_metadata_path"),recurse=True)
-dbutils.fs.cp("file:/tmp/Telematics", getParam("Telematics_path"),recurse=True)
-dbutils.fs.cp("file:/tmp/Policy", getParam("Policy_path"),recurse=True)
-dbutils.fs.cp("file:/tmp/Claims", getParam("Claims_path"),recurse=True)
+dbutils.fs.cp("file:/databricks/driver/tmp/resource_bundle/Model", getParam("model_dir_on_dbfs"),recurse=True)
+dbutils.fs.cp("file:/databricks/driver/tmp/resource_bundle/images", getParam("image_dir_on_dbfs"),recurse=True)
+dbutils.fs.cp("file:/databricks/driver/tmp/resource_bundle/images", getParam("Accidents_path"),recurse=True)
+dbutils.fs.cp("file:/databricks/driver/tmp/resource_bundle/image_metadata", getParam("Accident_metadata_path"),recurse=True)
+dbutils.fs.cp("file:/databricks/driver/tmp/resource_bundle/Telematics", getParam("Telematics_path"),recurse=True)
+dbutils.fs.cp("file:/databricks/driver/tmp/resource_bundle/Policy", getParam("Policy_path"),recurse=True)
+dbutils.fs.cp("file:/databricks/driver/tmp/resource_bundle/Claims", getParam("Claims_path"),recurse=True)
 
 # COMMAND ----------
 
 # MAGIC %sh
-# MAGIC rm -r /tmp/images
-# MAGIC rm -r /tmp/Model
-# MAGIC rm -r /tmp/Telematics
-# MAGIC rm -r /tmp/Claims
-# MAGIC rm -r /tmp/Policy
-# MAGIC rm -r /tmp/image_metadata
+# MAGIC cd /databricks/driver/tmp/resource_bundle/
+# MAGIC rm -r images
+# MAGIC rm -r Model
+# MAGIC rm -r Telematics
+# MAGIC rm -r Claims
+# MAGIC rm -r Policy
+# MAGIC rm -r image_metadata
 
 # COMMAND ----------
 

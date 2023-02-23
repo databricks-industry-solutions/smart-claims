@@ -169,7 +169,7 @@ job_json = {
                 "description": "",
                 "depends_on": [
                     {
-                        "task_key": "00_README"
+                        "task_key": "02_EDA"
                     }
                 ]
             },
