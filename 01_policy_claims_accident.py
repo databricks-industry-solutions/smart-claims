@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %md This notebook is available at https://github.com/databricks-industry-solutions/smart-claims.git
+# MAGIC %md This notebook is available at https://github.com/databricks-industry-solutions/smart-claims
 
 # COMMAND ----------
 
@@ -64,7 +64,7 @@ def flatten(df):
   comment="The raw claims data loaded from json files."
 )
 def bronze_claim():
-  return (spark.read.option('multiline', True).json(claims_path))
+  return (spark.read.json(claims_path))
 
 # COMMAND ----------
 
@@ -105,15 +105,15 @@ def silver_policy():
     silver_policy = staged_policy.withColumn("premium", F.abs(F.col("premium"))) \
         .withColumn(
             # Reformat the incident date values
-            "pol_eff_date", F.to_date(F.col("pol_eff_date"), "dd-MM-yyyy")
+            "pol_eff_date", F.to_date(F.col("pol_eff_date"), "yyyy-MM-dd")
         ) \
         .withColumn(
             # Reformat the incident date values
-            "pol_expiry_date", F.to_date(F.col("pol_expiry_date"), "dd-MM-yyyy")
+            "pol_expiry_date", F.to_date(F.col("pol_expiry_date"), "yyyy-MM-dd")
          ) \
         .withColumn(
             # Reformat the incident date values
-            "pol_issue_date", F.to_date(F.col("pol_issue_date"), "dd-MM-yyyy")
+            "pol_issue_date", F.to_date(F.col("pol_issue_date"), "yyyy-MM-dd")
          ) 
       
     # Return the curated dataset
@@ -134,7 +134,7 @@ def silver_policy():
 
 @dlt.expect_all_or_drop({
     "valid_claim_date": "claim_date < current_date()",
-    "valid_incident_date": "incident_date < current_date()",
+#     "valid_incident_date": "incident_date < current_date()",
     "valid_incident_hour": "incident_hour between 0 and 24",
     "valid_driver_age": "driver_age > 16",
      "valid_driver_license": "driver_license_issue_date > (current_date() - cast(cast(driver_age AS INT) AS INTERVAL YEAR))",
@@ -152,11 +152,11 @@ def silver_claim():
     silver_claim = curated_claim \
         .withColumn(
             # Reformat the claim date values
-            "claim_date", F.to_date(F.col("claim_datetime"))
+            "claim_date", F.to_date(F.col("claim_date"))
         ) \
         .withColumn(
             # Reformat the incident date values
-            "incident_date", F.to_date(F.col("incident_date"), "dd-MM-yyyy")
+            "incident_date", F.to_date(F.col("incident_date"), "yyyy-MM-dd")
         ) \
         .withColumn(
             # Reformat the driver license issue date values

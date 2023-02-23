@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %md This notebook is available at https://github.com/databricks-industry-solutions/smart-claims.git
+# MAGIC %md This notebook is available at https://github.com/databricks-industry-solutions/smart-claims
 
 # COMMAND ----------
 
@@ -17,7 +17,7 @@
 
 # COMMAND ----------
 
-claims_df = spark.table("bronze_claim")
+claims_df = spark.table("bronze_claims")
 display(claims_df)
 
 # COMMAND ----------
@@ -27,7 +27,7 @@ display(claims_df)
 
 # COMMAND ----------
 
-policy_df = spark.table("bronze_policy")
+policy_df = spark.table("bronze_policies")
 display(policy_df)
 
 # COMMAND ----------

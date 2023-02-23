@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %md This notebook is available at https://github.com/databricks-industry-solutions/smart-claims.git
+# MAGIC %md This notebook is available at https://github.com/databricks-industry-solutions/smart-claims
 
 # COMMAND ----------
 
