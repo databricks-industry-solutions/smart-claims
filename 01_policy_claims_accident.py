@@ -91,11 +91,11 @@ def bronze_policy():
 @dlt.expect_all_or_drop({
     "valid_sum_insured": "sum_insured > 0",
     "valid_policy_number": "policy_no IS NOT NULL",
-    "valid_premium": "premium > 1"
-#     "valid_issue_date": "pol_issue_date < current_date()"
-#     "valid_effective_date": "pol_eff_date < current_date()",
-#     "valid_expiry_date": "pol_expiry_date <= current_date()",
-#     "valid_model_year": "model_year > 0"
+    "valid_premium": "premium > 1",
+    "valid_issue_date": "pol_issue_date < current_date()",
+    "valid_effective_date": "pol_eff_date < current_date()",
+    "valid_expiry_date": "pol_expiry_date <= current_date()",
+    "valid_model_year": "model_year > 0"
 })
 def silver_policy():
     # Read the staged policy records into memory
@@ -105,15 +105,15 @@ def silver_policy():
     silver_policy = staged_policy.withColumn("premium", F.abs(F.col("premium"))) \
         .withColumn(
             # Reformat the incident date values
-            "pol_eff_date", F.to_date(F.col("pol_eff_date"), "yyyy-MM-dd")
+            "pol_eff_date", F.to_date(F.col("pol_eff_date"), "dd-MM-yyyy")
         ) \
         .withColumn(
             # Reformat the incident date values
-            "pol_expiry_date", F.to_date(F.col("pol_expiry_date"), "yyyy-MM-dd")
+            "pol_expiry_date", F.to_date(F.col("pol_expiry_date"), "dd-MM-yyyy")
          ) \
         .withColumn(
             # Reformat the incident date values
-            "pol_issue_date", F.to_date(F.col("pol_issue_date"), "yyyy-MM-dd")
+            "pol_issue_date", F.to_date(F.col("pol_issue_date"), "dd-MM-yyyy")
          ) 
       
     # Return the curated dataset
@@ -134,7 +134,7 @@ def silver_policy():
 
 @dlt.expect_all_or_drop({
     "valid_claim_date": "claim_date < current_date()",
-#     "valid_incident_date": "incident_date < current_date()",
+    "valid_incident_date": "incident_date < current_date()",
     "valid_incident_hour": "incident_hour between 0 and 24",
     "valid_driver_age": "driver_age > 16",
      "valid_driver_license": "driver_license_issue_date > (current_date() - cast(cast(driver_age AS INT) AS INTERVAL YEAR))",
