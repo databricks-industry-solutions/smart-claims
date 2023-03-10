@@ -1,0 +1,1439 @@
+{
+  "queries": [
+    {
+      "id": "e20e7a80-5a2f-4acf-8db1-3a0e5793a3e8",
+      "name": "vehicleAge",
+      "description": null,
+      "query": "use smart_claims;\nselect\n  count(*),\n  make,\n  model_year\nfrom\n  gold_insights\ngroup by\n  make,\n  model_year",
+      "options": {
+        "parent": "folders/578165050097626",
+        "apply_auto_limit": false,
+        "folder_node_status": "ACTIVE",
+        "folder_node_internal_name": "tree/3631133442712493",
+        "visualization_control_order": [],
+        "parameters": [],
+        "schema": null,
+        "catalog": null
+      },
+      "visualizations": [
+        {
+          "id": "30f53b6c-38be-4f0d-b394-ffe2372c2759",
+          "type": "TABLE",
+          "name": "Results",
+          "description": "",
+          "options": {
+            "version": 2
+          },
+          "query_plan": null
+        },
+        {
+          "id": "cb13a27f-752e-45cf-81cd-5f82d322af67",
+          "type": "CHART",
+          "name": "Incidents by Car Age",
+          "description": "",
+          "options": {
+            "version": 2,
+            "globalSeriesType": "column",
+            "sortX": true,
+            "sortY": true,
+            "legend": {
+              "traceorder": "normal"
+            },
+            "xAxis": {
+              "type": "linear",
+              "labels": {
+                "enabled": true
+              },
+              "title": {
+                "text": "Vehicle Manufactured Year"
+              }
+            },
+            "yAxis": [
+              {
+                "type": "-",
+                "title": {
+                  "text": "Incident Count"
+                }
+              },
+              {
+                "type": "-",
+                "opposite": true
+              }
+            ],
+            "alignYAxesAtZero": true,
+            "error_y": {
+              "type": "data",
+              "visible": true
+            },
+            "series": {
+              "stacking": "stack",
+              "error_y": {
+                "type": "data",
+                "visible": true
+              }
+            },
+            "seriesOptions": {
+              "column_f2a4005825337": {
+                "name": "count(1)",
+                "yAxis": 0
+              }
+            },
+            "valuesOptions": {},
+            "direction": {
+              "type": "counterclockwise"
+            },
+            "sizemode": "diameter",
+            "coefficient": 1,
+            "numberFormat": "0,0[.]00000",
+            "percentFormat": "0[.]00%",
+            "textFormat": "",
+            "missingValuesAsZero": true,
+            "useAggregationsUi": true,
+            "swappedAxes": false,
+            "dateTimeFormat": "YYYY-MM-DD HH:mm",
+            "showDataLabels": false,
+            "columnConfigurationMap": {
+              "x": {
+                "column": "model_year",
+                "id": "column_f2a4005825338"
+              },
+              "y": [
+                {
+                  "column": "count(1)",
+                  "transform": "SUM",
+                  "id": "column_f2a4005825337"
+                }
+              ]
+            },
+            "isAggregationOn": true,
+            "condensed": true,
+            "withRowNumber": true
+          },
+          "query_plan": {
+            "selects": [
+              {
+                "column": "model_year"
+              },
+              {
+                "function": "SUM",
+                "args": [
+                  {
+                    "column": "count(1)"
+                  }
+                ],
+                "alias": "column_f2a4005825337"
+              }
+            ],
+            "groups": [
+              {
+                "column": "model_year"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "10f23684-16f8-4433-b30d-d4d3f5b608f2",
+      "name": "Damage - Property vs Liability vs Event Type",
+      "description": "",
+      "query": "use smart_claims;\nselect\n  'liability damage' as type,\n  incident_type,\n  sum(claim_amount_injury) as amount\nfrom\n  gold_insights\nwhere\n  to_date(claim_date) >= '{{start_date}}'\n  and to_date(claim_date) <= '{{end_date}}'\ngroup by\n  incident_type\nUNION\nselect\n  'property damage' as type,\n  incident_type,\n  sum(claim_amount_property) + sum(claim_amount_vehicle) as amount\nfrom\n  gold_insights\nwhere\n  to_date(claim_date) >= '{{start_date}}'\n  and to_date(claim_date) <= '{{end_date}}'\ngroup by\n  incident_type",
+      "options": {
+        "parent": "folders/578165050097626",
+        "apply_auto_limit": false,
+        "folder_node_status": "ACTIVE",
+        "folder_node_internal_name": "tree/3631133442712501",
+        "parameters": [
+          {
+            "title": "start_date",
+            "name": "start_date",
+            "type": "date",
+            "global": false,
+            "parentQueryId": "c94ea31f-3bac-46a6-825d-b2dcb1ce4025",
+            "locals": [],
+            "urlPrefix": "p_",
+            "value": "2017-11-01",
+            "$$value": "2017-11-01T04:00:00.000Z"
+          },
+          {
+            "title": "end_date",
+            "name": "end_date",
+            "type": "date",
+            "global": false,
+            "parentQueryId": "c94ea31f-3bac-46a6-825d-b2dcb1ce4025",
+            "locals": [],
+            "urlPrefix": "p_",
+            "value": "2022-11-01",
+            "$$value": "2022-11-01T04:00:00.000Z"
+          }
+        ],
+        "schema": null,
+        "catalog": null
+      },
+      "visualizations": [
+        {
+          "id": "65da9720-7720-4c7d-872f-aea17de91500",
+          "type": "TABLE",
+          "name": "Table",
+          "description": "",
+          "options": {
+            "itemsPerPage": 25,
+            "condensed": true,
+            "withRowNumber": false,
+            "columns": [
+              {
+                "booleanValues": [
+                  "false",
+                  "true"
+                ],
+                "imageUrlTemplate": "{{ @ }}",
+                "imageTitleTemplate": "{{ @ }}",
+                "imageWidth": "",
+                "imageHeight": "",
+                "linkUrlTemplate": "{{ @ }}",
+                "linkTextTemplate": "{{ @ }}",
+                "linkTitleTemplate": "{{ @ }}",
+                "linkOpenInNewTab": true,
+                "name": "policy_no",
+                "type": "string",
+                "displayAs": "string",
+                "visible": true,
+                "order": 100000,
+                "title": "policy_no",
+                "allowSearch": false,
+                "alignContent": "left",
+                "allowHTML": true,
+                "highlightLinks": false,
+                "useMonospaceFont": false,
+                "preserveWhitespace": false
+              },
+              {
+                "numberFormat": "0",
+                "booleanValues": [
+                  "false",
+                  "true"
+                ],
+                "imageUrlTemplate": "{{ @ }}",
+                "imageTitleTemplate": "{{ @ }}",
+                "imageWidth": "",
+                "imageHeight": "",
+                "linkUrlTemplate": "{{ @ }}",
+                "linkTextTemplate": "{{ @ }}",
+                "linkTitleTemplate": "{{ @ }}",
+                "linkOpenInNewTab": true,
+                "name": "cnt",
+                "type": "integer",
+                "displayAs": "number",
+                "visible": false,
+                "order": 100001,
+                "title": "cnt",
+                "allowSearch": false,
+                "alignContent": "right",
+                "allowHTML": true,
+                "highlightLinks": false,
+                "useMonospaceFont": false,
+                "preserveWhitespace": false
+              }
+            ]
+          },
+          "query_plan": null
+        },
+        {
+          "id": "91cfbc12-d922-4ed2-beb5-4d1483724297",
+          "type": "CHART",
+          "name": "Pie 1",
+          "description": "",
+          "options": {
+            "version": 2,
+            "globalSeriesType": "pie",
+            "sortX": true,
+            "sortY": true,
+            "legend": {
+              "traceorder": "normal"
+            },
+            "xAxis": {
+              "type": "-",
+              "labels": {
+                "enabled": true
+              }
+            },
+            "yAxis": [
+              {
+                "type": "-"
+              },
+              {
+                "type": "-",
+                "opposite": true
+              }
+            ],
+            "alignYAxesAtZero": false,
+            "error_y": {
+              "type": "data",
+              "visible": true
+            },
+            "series": {
+              "stacking": null,
+              "error_y": {
+                "type": "data",
+                "visible": true
+              }
+            },
+            "seriesOptions": {
+              "column_83e74719195190": {
+                "name": "amount",
+                "yAxis": 0,
+                "type": "pie"
+              }
+            },
+            "valuesOptions": {},
+            "direction": {
+              "type": "clockwise"
+            },
+            "sizemode": "diameter",
+            "coefficient": 1,
+            "numberFormat": "0,0[.]00000",
+            "percentFormat": "0[.]00%",
+            "textFormat": "",
+            "missingValuesAsZero": true,
+            "useAggregationsUi": true,
+            "swappedAxes": false,
+            "dateTimeFormat": "YYYY-MM-DD HH:mm",
+            "showDataLabels": true,
+            "columnConfigurationMap": {
+              "x": {
+                "column": "type",
+                "id": "column_83e74719195189"
+              },
+              "y": [
+                {
+                  "column": "amount",
+                  "transform": "SUM",
+                  "id": "column_83e74719195190"
+                }
+              ],
+              "series": {
+                "column": "incident_type",
+                "id": "column_f2a400585385"
+              }
+            },
+            "condensed": true,
+            "withRowNumber": true,
+            "isAggregationOn": true
+          },
+          "query_plan": {
+            "selects": [
+              {
+                "column": "type"
+              },
+              {
+                "function": "SUM",
+                "args": [
+                  {
+                    "column": "amount"
+                  }
+                ],
+                "alias": "column_83e74719195190"
+              },
+              {
+                "column": "incident_type"
+              }
+            ],
+            "groups": [
+              {
+                "column": "type"
+              },
+              {
+                "column": "incident_type"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "95e56832-e6a0-48d7-afa4-dd04f5bf5aaf",
+      "name": "Frequency by Hour",
+      "description": "",
+      "query": "use smart_claims;\nselect\n  incident_hour,\n  count(*) as incidents,\n  sum(claim_amount_injury) as liability_amount,\n  sum(claim_amount_property) + sum(claim_amount_vehicle) as property_amount\nfrom\n  gold_insights\ngroup by\n  incident_hour\norder by\n  incident_hour;",
+      "options": {
+        "parent": "folders/578165050097626",
+        "apply_auto_limit": false,
+        "folder_node_status": "ACTIVE",
+        "folder_node_internal_name": "tree/3631133442712487",
+        "parameters": [],
+        "schema": null,
+        "catalog": null
+      },
+      "visualizations": [
+        {
+          "id": "53c4f3b6-afac-4951-ba8b-edbe0624320c",
+          "type": "CHART",
+          "name": "Hour",
+          "description": "",
+          "options": {
+            "version": 2,
+            "globalSeriesType": "line",
+            "sortX": true,
+            "sortY": true,
+            "legend": {
+              "traceorder": "normal"
+            },
+            "xAxis": {
+              "type": "-",
+              "labels": {
+                "enabled": true
+              },
+              "title": {
+                "text": "Hour of the Day"
+              }
+            },
+            "yAxis": [
+              {
+                "type": "-",
+                "title": {
+                  "text": "Incident Frequency"
+                }
+              },
+              {
+                "type": "linear",
+                "opposite": true,
+                "title": {
+                  "text": "Incident Severity"
+                },
+                "rangeMin": 0
+              }
+            ],
+            "alignYAxesAtZero": false,
+            "error_y": {
+              "type": "data",
+              "visible": true
+            },
+            "series": {
+              "stacking": null,
+              "error_y": {
+                "type": "data",
+                "visible": true
+              }
+            },
+            "seriesOptions": {
+              "column_83e74719249804": {
+                "name": "Incident Count",
+                "yAxis": 0,
+                "type": "line",
+                "color": "#E92828"
+              },
+              "cnt": {
+                "name": "cnt",
+                "yAxis": 0,
+                "type": "line"
+              },
+              "column_83e74719258566": {
+                "name": "Liability Damage",
+                "yAxis": 1,
+                "type": "line",
+                "color": "#00B6EB"
+              },
+              "column_6ab3e1a120049": {
+                "yAxis": 1,
+                "type": "line",
+                "name": "Property Damage",
+                "color": "#002FB4"
+              }
+            },
+            "valuesOptions": {},
+            "direction": {
+              "type": "counterclockwise"
+            },
+            "sizemode": "diameter",
+            "coefficient": 1,
+            "numberFormat": "0,0[.]00000",
+            "percentFormat": "0[.]00%",
+            "textFormat": "",
+            "missingValuesAsZero": true,
+            "useAggregationsUi": true,
+            "swappedAxes": false,
+            "dateTimeFormat": "YYYY-MM-DD HH:mm",
+            "showDataLabels": false,
+            "columnConfigurationMap": {
+              "x": {
+                "column": "incident_hour",
+                "id": "column_c4353cdc5394"
+              },
+              "y": [
+                {
+                  "column": "incidents",
+                  "id": "column_83e74719249804",
+                  "transform": "SUM"
+                },
+                {
+                  "id": "column_83e74719258566",
+                  "column": "liability_amount",
+                  "transform": "SUM"
+                },
+                {
+                  "id": "column_6ab3e1a120049",
+                  "column": "property_amount",
+                  "transform": "SUM"
+                }
+              ]
+            },
+            "isAggregationOn": true,
+            "condensed": true,
+            "withRowNumber": true,
+            "hideYAxes": false
+          },
+          "query_plan": {
+            "selects": [
+              {
+                "column": "incident_hour"
+              },
+              {
+                "function": "SUM",
+                "args": [
+                  {
+                    "column": "incidents"
+                  }
+                ],
+                "alias": "column_83e74719249804"
+              },
+              {
+                "function": "SUM",
+                "args": [
+                  {
+                    "column": "liability_amount"
+                  }
+                ],
+                "alias": "column_83e74719258566"
+              },
+              {
+                "function": "SUM",
+                "args": [
+                  {
+                    "column": "property_amount"
+                  }
+                ],
+                "alias": "column_6ab3e1a120049"
+              }
+            ],
+            "groups": [
+              {
+                "column": "incident_hour"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ab47e54b-537a-4eb0-b470-904f234b29cb",
+          "type": "TABLE",
+          "name": "Table",
+          "description": "",
+          "options": {
+            "version": 2
+          },
+          "query_plan": null
+        }
+      ]
+    },
+    {
+      "id": "e3b3e054-a480-4b4e-97e2-8a5e22fb9cd1",
+      "name": "driverAge",
+      "description": "",
+      "query": "use smart_claims;\nselect\n  driver_age,\n  count(*)\nfrom\n  gold_insights\nwhere\n  driver_age >= 14\n  and driver_age < 110\nGROUP BY\n  driver_age\norder by\n  driver_age;",
+      "options": {
+        "parent": "folders/578165050097626",
+        "apply_auto_limit": true,
+        "folder_node_status": "ACTIVE",
+        "folder_node_internal_name": "tree/3631133442712495",
+        "parameters": [],
+        "schema": null,
+        "catalog": null
+      },
+      "visualizations": [
+        {
+          "id": "7d68b25a-3d3c-412d-9aca-ca0fb9d1c979",
+          "type": "CHART",
+          "name": "Table",
+          "description": "",
+          "options": {
+            "version": 2,
+            "globalSeriesType": "column",
+            "sortX": true,
+            "sortY": true,
+            "legend": {
+              "traceorder": "normal"
+            },
+            "xAxis": {
+              "type": "-",
+              "labels": {
+                "enabled": true
+              },
+              "title": {
+                "text": "Driver Age"
+              }
+            },
+            "yAxis": [
+              {
+                "type": "-",
+                "title": {
+                  "text": "Count of Collision Incidents"
+                }
+              },
+              {
+                "type": "-",
+                "opposite": true
+              }
+            ],
+            "alignYAxesAtZero": false,
+            "error_y": {
+              "type": "data",
+              "visible": true
+            },
+            "series": {
+              "stacking": null,
+              "error_y": {
+                "type": "data",
+                "visible": true
+              }
+            },
+            "seriesOptions": {
+              "column_83e7471935995": {
+                "yAxis": 0,
+                "type": "column"
+              }
+            },
+            "valuesOptions": {},
+            "direction": {
+              "type": "counterclockwise"
+            },
+            "sizemode": "diameter",
+            "coefficient": 1,
+            "numberFormat": "0,0[.]00000",
+            "percentFormat": "0[.]00%",
+            "textFormat": "",
+            "missingValuesAsZero": true,
+            "useAggregationsUi": true,
+            "swappedAxes": false,
+            "dateTimeFormat": "YYYY-MM-DD HH:mm",
+            "showDataLabels": false,
+            "columnConfigurationMap": {
+              "x": {
+                "column": "driver_age",
+                "id": "column_6c0866a94905"
+              },
+              "y": [
+                {
+                  "id": "column_83e7471935995",
+                  "column": "count(1)",
+                  "transform": "SUM"
+                }
+              ]
+            },
+            "isAggregationOn": true,
+            "condensed": true,
+            "withRowNumber": true
+          },
+          "query_plan": {
+            "selects": [
+              {
+                "column": "driver_age"
+              },
+              {
+                "function": "SUM",
+                "args": [
+                  {
+                    "column": "count(1)"
+                  }
+                ],
+                "alias": "column_83e7471935995"
+              }
+            ],
+            "groups": [
+              {
+                "column": "driver_age"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "4d971cee-0c01-4a27-82e4-831e75ce52ce",
+      "name": "Summary",
+      "description": "",
+      "query": "use smart_claims;\nselect\n  incident_type,\n  incident_severity,\n  count(incident_severity)\nFROM\n  gold_insights\nwhere\n  to_date(claim_date) > '{{start_date}}'\n  and to_date(claim_date) < '{{end_date}}'\ngroup by\n  incident_type,\n  incident_severity",
+      "options": {
+        "parent": "folders/578165050097626",
+        "apply_auto_limit": true,
+        "folder_node_status": "ACTIVE",
+        "folder_node_internal_name": "tree/3631133442712494",
+        "parameters": [
+          {
+            "title": "start_date",
+            "name": "start_date",
+            "type": "date",
+            "global": false,
+            "parentQueryId": "9645bff8-3f44-481d-852e-f4fc1eeadeb7",
+            "locals": [],
+            "urlPrefix": "p_",
+            "value": "2017-10-01",
+            "$$value": "2017-10-01T04:00:00.000Z",
+            "pendingValue": "2015-10-01T04:00:00.000Z"
+          },
+          {
+            "title": "end_date",
+            "name": "end_date",
+            "type": "date",
+            "global": false,
+            "parentQueryId": "9645bff8-3f44-481d-852e-f4fc1eeadeb7",
+            "locals": [],
+            "urlPrefix": "p_",
+            "value": "2021-11-30",
+            "$$value": "2021-11-30T05:00:00.000Z",
+            "pendingValue": "2022-11-30T05:00:00.000Z"
+          }
+        ],
+        "schema": null,
+        "catalog": null
+      },
+      "visualizations": [
+        {
+          "id": "1698bb5e-45d8-403f-b4d8-21accc349127",
+          "type": "TABLE",
+          "name": "Table",
+          "description": "",
+          "options": {
+            "version": 2
+          },
+          "query_plan": null
+        },
+        {
+          "id": "9953745c-3faf-4404-b93f-326bf41007af",
+          "type": "CHART",
+          "name": "Summary",
+          "description": "",
+          "options": {
+            "version": 2,
+            "globalSeriesType": "column",
+            "sortX": true,
+            "sortY": true,
+            "legend": {
+              "traceorder": "normal"
+            },
+            "xAxis": {
+              "type": "-",
+              "labels": {
+                "enabled": true
+              },
+              "title": {
+                "text": "Incident type"
+              }
+            },
+            "yAxis": [
+              {
+                "type": "-",
+                "title": {
+                  "text": "Count of Incident Type by Severity"
+                }
+              },
+              {
+                "type": "-",
+                "opposite": true
+              }
+            ],
+            "alignYAxesAtZero": false,
+            "error_y": {
+              "type": "data",
+              "visible": true
+            },
+            "series": {
+              "stacking": "stack",
+              "error_y": {
+                "type": "data",
+                "visible": true
+              }
+            },
+            "seriesOptions": {
+              "column_83e74719142373": {
+                "name": "count(incident.severity)",
+                "yAxis": 0,
+                "type": "column"
+              },
+              "Total Loss": {
+                "zIndex": 0,
+                "color": "#E92828"
+              },
+              "Major Damage": {
+                "zIndex": 1,
+                "color": "#FB8D3D"
+              },
+              "Minor Damage": {
+                "zIndex": 2,
+                "color": "#FFF380"
+              },
+              "Trivial Damage": {
+                "zIndex": 3,
+                "color": "#17BF51"
+              }
+            },
+            "valuesOptions": {},
+            "direction": {
+              "type": "counterclockwise"
+            },
+            "sizemode": "diameter",
+            "coefficient": 1,
+            "numberFormat": "0,0[.]00000",
+            "percentFormat": "0[.]00%",
+            "textFormat": "",
+            "missingValuesAsZero": true,
+            "useAggregationsUi": true,
+            "swappedAxes": true,
+            "dateTimeFormat": "YYYY-MM-DD HH:mm",
+            "showDataLabels": false,
+            "columnConfigurationMap": {
+              "x": {
+                "column": "incident_type",
+                "id": "column_b4a5069e1287"
+              },
+              "series": {
+                "column": "incident_severity",
+                "id": "column_b4a5069e1288"
+              },
+              "y": [
+                {
+                  "column": "count(incident_severity)",
+                  "transform": "SUM",
+                  "id": "column_83e74719142373"
+                }
+              ]
+            },
+            "isAggregationOn": true,
+            "condensed": true,
+            "withRowNumber": true
+          },
+          "query_plan": {
+            "selects": [
+              {
+                "column": "incident_type"
+              },
+              {
+                "column": "incident_severity"
+              },
+              {
+                "function": "SUM",
+                "args": [
+                  {
+                    "column": "count(incident_severity)"
+                  }
+                ],
+                "alias": "column_83e74719142373"
+              }
+            ],
+            "groups": [
+              {
+                "column": "incident_type"
+              },
+              {
+                "column": "incident_severity"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "b157aa46-ba17-454e-bdb6-7a0f9ac82ac8",
+      "name": "loss_ratio",
+      "description": null,
+      "query": "USE smart_claims;\nSELECT\n  round(c.total_claims / p.total_premium, 2) AS loss_ratio\nFROM\n  (\n    SELECT\n      round(curr.total_premium, 0) as total_premium\n    FROM\n      (\n        SELECT\n          sum(premium * months_active) AS total_premium\n        FROM\n          (\n            SELECT\n              pol_eff_date,\n              pol_expiry_date,\n              premium,\n              round(months_between(pol_expiry_date, pol_eff_date), 0) AS months_active\n            FROM\n              silver_policy\n            WHERE\n              pol_issue_date BETWEEN '{{ start_date }}'\n              AND '{{ end_date }}'\n          )\n        WHERE\n          months_active > 0\n      ) curr\n      JOIN (\n        SELECT\n          sum(premium * months_active) AS total_premium\n        FROM\n          (\n            SELECT\n              pol_eff_date,\n              pol_expiry_date,\n              premium,\n              round(months_between(pol_expiry_date, pol_eff_date), 0) AS months_active\n            FROM\n              silver_policy\n            WHERE\n              pol_issue_date BETWEEN date_sub(\n                '{{ start_date }}',\n                datediff('{{ end_date }}', '{{ start_date }}')\n              )\n              AND date_sub(\n                '{{ end_date }}',\n                datediff('{{ end_date }}', '{{ start_date }}')\n              )\n          )\n        WHERE\n          months_active > 0\n      ) prev\n  ) p\n  JOIN (\n    SELECT\n      round(curr.total_claims, 0) AS total_claims\n    FROM\n      (\n        SELECT\n          sum(claim_amount_total) AS total_claims\n        FROM\n          silver_claim\n        WHERE\n          claim_date BETWEEN '{{ start_date }}'\n          AND '{{ end_date }}'\n      ) curr\n  ) c;",
+      "options": {
+        "parent": "folders/578165050097626",
+        "apply_auto_limit": true,
+        "folder_node_status": "ACTIVE",
+        "folder_node_internal_name": "tree/3631133442712490",
+        "parameters": [
+          {
+            "title": "start_date",
+            "name": "start_date",
+            "type": "date",
+            "global": false,
+            "parentQueryId": "7f54ed61-1c1a-4591-aa88-bc8db83d9cb6",
+            "locals": [],
+            "urlPrefix": "p_",
+            "value": "2015-01-01",
+            "$$value": "2015-01-01T05:00:00.000Z"
+          },
+          {
+            "title": "end_date",
+            "name": "end_date",
+            "type": "date",
+            "global": false,
+            "parentQueryId": "7f54ed61-1c1a-4591-aa88-bc8db83d9cb6",
+            "locals": [],
+            "urlPrefix": "p_",
+            "value": "2021-05-01",
+            "$$value": "2021-05-01T04:00:00.000Z",
+            "pendingValue": "2021-05-01T04:00:00.000Z"
+          }
+        ],
+        "schema": null,
+        "catalog": null
+      },
+      "visualizations": [
+        {
+          "id": "43f02da4-77be-4300-b206-a64d2e259f84",
+          "type": "TABLE",
+          "name": "Results",
+          "description": "",
+          "options": {
+            "version": 2
+          },
+          "query_plan": null
+        },
+        {
+          "id": "78005d0f-18ee-416e-923d-5d2b37e93a23",
+          "type": "COUNTER",
+          "name": "loss ratio",
+          "description": "",
+          "options": {
+            "counterLabel": "Loss Ratio",
+            "counterColName": "loss_ratio",
+            "rowNumber": 1,
+            "targetRowNumber": 1,
+            "stringDecimal": 2,
+            "stringDecChar": ".",
+            "stringThouSep": ",",
+            "tooltipFormat": "0,0.000",
+            "condensed": true,
+            "withRowNumber": true
+          },
+          "query_plan": null
+        }
+      ]
+    },
+    {
+      "id": "3996b39d-6ea0-489a-8dc0-191341081e8f",
+      "name": "loss_ratio_liability",
+      "description": null,
+      "query": "USE smart_claims;\nSELECT\n  round(c.total_claims / p.total_premium, 2) AS loss_ratio\nFROM\n  (\n    SELECT\n      round(curr.total_premium, 0) as total_premium\n    FROM\n      (\n        SELECT\n          sum(premium * months_active) AS total_premium\n        FROM\n          (\n            SELECT\n              pol_eff_date,\n              pol_expiry_date,\n              premium,\n              round(months_between(pol_expiry_date, pol_eff_date), 0) AS months_active\n            FROM\n              silver_policy\n            WHERE\n              pol_issue_date BETWEEN '{{ start_date }}'\n              AND '{{ end_date }}'\n          )\n        WHERE\n          months_active > 0\n      ) curr\n      JOIN (\n        SELECT\n          sum(premium * months_active) AS total_premium\n        FROM\n          (\n            SELECT\n              pol_eff_date,\n              pol_expiry_date,\n              premium,\n              round(months_between(pol_expiry_date, pol_eff_date), 0) AS months_active\n            FROM\n              silver_policy\n            WHERE\n              pol_issue_date BETWEEN date_sub(\n                '{{ start_date }}',\n                datediff('{{ end_date }}', '{{ start_date }}')\n              )\n              AND date_sub(\n                '{{ end_date }}',\n                datediff('{{ end_date }}', '{{ start_date }}')\n              )\n          )\n        WHERE\n          months_active > 0\n      ) prev\n  ) p\n  JOIN (\n    SELECT\n      round(curr.total_claims, 0) AS total_claims\n    FROM\n      (\n        SELECT\n          sum(claim_amount_injury) AS total_claims\n        FROM\n          silver_claim\n        WHERE\n          claim_date BETWEEN '{{ start_date }}'\n          AND '{{ end_date }}'\n      ) curr\n  ) c;",
+      "options": {
+        "parent": "folders/578165050097626",
+        "apply_auto_limit": true,
+        "folder_node_status": "ACTIVE",
+        "folder_node_internal_name": "tree/3631133442712500",
+        "parameters": [
+          {
+            "title": "start_date",
+            "name": "start_date",
+            "type": "date",
+            "global": false,
+            "parentQueryId": "70e45960-5cf3-4b1f-8663-59312312d480",
+            "locals": [],
+            "urlPrefix": "p_",
+            "value": "2017-10-01",
+            "$$value": "2017-10-01T04:00:00.000Z"
+          },
+          {
+            "title": "end_date",
+            "name": "end_date",
+            "type": "date",
+            "global": false,
+            "parentQueryId": "70e45960-5cf3-4b1f-8663-59312312d480",
+            "locals": [],
+            "urlPrefix": "p_",
+            "value": "2021-11-30",
+            "$$value": "2021-11-30T05:00:00.000Z"
+          }
+        ],
+        "schema": null,
+        "catalog": null
+      },
+      "visualizations": [
+        {
+          "id": "f4d828f8-a38d-45ff-959e-9e6263b27616",
+          "type": "TABLE",
+          "name": "Results",
+          "description": "",
+          "options": {
+            "version": 2
+          },
+          "query_plan": null
+        },
+        {
+          "id": "fbacfeb8-b519-4723-96f5-656e6bb607bd",
+          "type": "COUNTER",
+          "name": "loss ratio",
+          "description": "",
+          "options": {
+            "counterLabel": "Liability Loss Ratio",
+            "counterColName": "loss_ratio",
+            "rowNumber": 1,
+            "targetRowNumber": 1,
+            "stringDecimal": 2,
+            "stringDecChar": ".",
+            "stringThouSep": ",",
+            "tooltipFormat": "0,0.000",
+            "condensed": true,
+            "withRowNumber": true
+          },
+          "query_plan": null
+        }
+      ]
+    },
+    {
+      "id": "611790ab-6388-4414-a2de-472d0c588590",
+      "name": "geo",
+      "description": "",
+      "query": "use smart_claims;\nselect\n  *\nfrom\n  silver_claim_policy_location;",
+      "options": {
+        "parent": "folders/578165050097626",
+        "apply_auto_limit": false,
+        "folder_node_status": "ACTIVE",
+        "folder_node_internal_name": "tree/3631133442712497",
+        "parameters": [],
+        "schema": null,
+        "catalog": null
+      },
+      "visualizations": [
+        {
+          "id": "380868b2-29c2-451e-8532-bdbf07ff3cbf",
+          "type": "TABLE",
+          "name": "Table",
+          "description": "",
+          "options": {
+            "version": 2
+          },
+          "query_plan": null
+        },
+        {
+          "id": "8afcb62f-366c-4978-b519-986928a71ada",
+          "type": "MAP",
+          "name": "Map (Markers) 1",
+          "description": "",
+          "options": {
+            "latColName": "latitude",
+            "lonColName": "longitude",
+            "groups": {},
+            "mapTileUrl": "//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            "clusterMarkers": true,
+            "customizeMarkers": false,
+            "iconShape": "marker",
+            "iconFont": "circle",
+            "foregroundColor": "#ffffff",
+            "backgroundColor": "#356AFF",
+            "borderColor": "#356AFF",
+            "bounds": null,
+            "tooltip": {
+              "enabled": false,
+              "template": ""
+            },
+            "popup": {
+              "enabled": true,
+              "template": ""
+            }
+          },
+          "query_plan": null
+        }
+      ]
+    },
+    {
+      "id": "dd7b846b-8d50-4f4c-b88f-9bbe03a9304f",
+      "name": "loss_ratio_property",
+      "description": null,
+      "query": "use smart_claims;\nSELECT\n  round(c.total_claims / p.total_premium, 2) AS loss_ratio\nFROM\n  (\n    SELECT\n      round(curr.total_premium, 0) as total_premium\n    FROM\n      (\n        SELECT\n          sum(premium * months_active) AS total_premium\n        FROM\n          (\n            SELECT\n              pol_eff_date,\n              pol_expiry_date,\n              premium,\n              round(months_between(pol_expiry_date, pol_eff_date), 0) AS months_active\n            FROM\n              silver_policy\n            WHERE\n              pol_issue_date BETWEEN '{{ start_date }}'\n              AND '{{ end_date }}'\n          )\n        WHERE\n          months_active > 0\n      ) curr\n      JOIN (\n        SELECT\n          sum(premium * months_active) AS total_premium\n        FROM\n          (\n            SELECT\n              pol_eff_date,\n              pol_expiry_date,\n              premium,\n              round(months_between(pol_expiry_date, pol_eff_date), 0) AS months_active\n            FROM\n              silver_policy\n            WHERE\n              pol_issue_date BETWEEN date_sub(\n                '{{ start_date }}',\n                datediff('{{ end_date }}', '{{ start_date }}')\n              )\n              AND date_sub(\n                '{{ end_date }}',\n                datediff('{{ end_date }}', '{{ start_date }}')\n              )\n          )\n        WHERE\n          months_active > 0\n      ) prev\n  ) p\n  JOIN (\n    SELECT\n      round(curr.total_claims, 0) AS total_claims\n    FROM\n      (\n        SELECT\n          sum(claim_amount_property) + sum(claim_amount_vehicle) AS total_claims\n        FROM\n          silver_claim\n        WHERE\n          claim_date BETWEEN '{{ start_date }}'\n          AND '{{ end_date }}'\n      ) curr\n  ) c;",
+      "options": {
+        "parent": "folders/578165050097626",
+        "apply_auto_limit": true,
+        "folder_node_status": "ACTIVE",
+        "folder_node_internal_name": "tree/3631133442712486",
+        "parameters": [
+          {
+            "title": "start_date",
+            "name": "start_date",
+            "type": "date",
+            "global": false,
+            "parentQueryId": "37fc3487-a6a2-495a-903b-61ba826a9a2f",
+            "locals": [],
+            "urlPrefix": "p_",
+            "value": "2015-10-01",
+            "$$value": "2015-10-01T04:00:00.000Z"
+          },
+          {
+            "title": "end_date",
+            "name": "end_date",
+            "type": "date",
+            "global": false,
+            "parentQueryId": "37fc3487-a6a2-495a-903b-61ba826a9a2f",
+            "locals": [],
+            "urlPrefix": "p_",
+            "value": "2022-11-01",
+            "$$value": "2022-11-01T04:00:00.000Z"
+          }
+        ],
+        "schema": null,
+        "catalog": null
+      },
+      "visualizations": [
+        {
+          "id": "7af3f6b3-fea8-4c2b-b6e7-a2aa4de5bc3f",
+          "type": "COUNTER",
+          "name": "loss ratio",
+          "description": "",
+          "options": {
+            "counterLabel": "Property Loss Ratio",
+            "counterColName": "loss_ratio",
+            "rowNumber": 1,
+            "targetRowNumber": 1,
+            "stringDecimal": 2,
+            "stringDecChar": ".",
+            "stringThouSep": ",",
+            "tooltipFormat": "0,0.000",
+            "condensed": true,
+            "withRowNumber": true
+          },
+          "query_plan": null
+        },
+        {
+          "id": "e141c0c0-19fb-4615-b82a-55e3bb7c1e2e",
+          "type": "TABLE",
+          "name": "Results",
+          "description": "",
+          "options": {
+            "version": 2
+          },
+          "query_plan": null
+        }
+      ]
+    }
+  ],
+  "dashboard": {
+    "id": "9259d7aa-e4cc-4162-9f3e-5e7f7e0a1502",
+    "name": "Smart Claims Summary Report",
+    "widgets": [
+      {
+        "id": "01407e97-a11e-400b-9f5d-1c46c6c5fe75",
+        "width": 1,
+        "options": {
+          "parameterMappings": {
+            "start_date": {
+              "name": "start_date",
+              "type": "dashboard-level",
+              "mapTo": "start_date",
+              "value": null,
+              "title": ""
+            },
+            "end_date": {
+              "name": "end_date",
+              "type": "dashboard-level",
+              "mapTo": "end_date",
+              "value": null,
+              "title": ""
+            }
+          },
+          "title": "",
+          "description": "",
+          "isHidden": false,
+          "position": {
+            "autoHeight": false,
+            "sizeX": 2,
+            "sizeY": 5,
+            "minSizeX": 1,
+            "maxSizeX": 6,
+            "minSizeY": 1,
+            "maxSizeY": 1000,
+            "col": 0,
+            "row": 2
+          }
+        },
+        "dashboard_id": "9259d7aa-e4cc-4162-9f3e-5e7f7e0a1502",
+        "text": "",
+        "visualization_id": "78005d0f-18ee-416e-923d-5d2b37e93a23"
+      },
+      {
+        "id": "0a9f877c-6f03-4057-a0fc-3b8a3db88a4d",
+        "width": 1,
+        "options": {
+          "parameterMappings": {
+            "start_date": {
+              "name": "start_date",
+              "type": "dashboard-level",
+              "mapTo": "start_date",
+              "value": null,
+              "title": ""
+            },
+            "end_date": {
+              "name": "end_date",
+              "type": "dashboard-level",
+              "mapTo": "end_date",
+              "value": null,
+              "title": ""
+            }
+          },
+          "isHidden": false,
+          "position": {
+            "autoHeight": false,
+            "sizeX": 1,
+            "sizeY": 3,
+            "minSizeX": 1,
+            "maxSizeX": 6,
+            "minSizeY": 1,
+            "maxSizeY": 1000,
+            "col": 0,
+            "row": 7
+          },
+          "description": "",
+          "title": "",
+          "overrideColors": false
+        },
+        "dashboard_id": "9259d7aa-e4cc-4162-9f3e-5e7f7e0a1502",
+        "text": "",
+        "visualization_id": "7af3f6b3-fea8-4c2b-b6e7-a2aa4de5bc3f"
+      },
+      {
+        "id": "1af49d14-d18c-42f2-a8be-fff0af0d0b50",
+        "width": 1,
+        "options": {
+          "parameterMappings": {},
+          "isHidden": false,
+          "position": {
+            "autoHeight": false,
+            "sizeX": 3,
+            "sizeY": 6,
+            "minSizeX": 1,
+            "maxSizeX": 6,
+            "minSizeY": 5,
+            "maxSizeY": 1000,
+            "col": 3,
+            "row": 24
+          },
+          "description": "",
+          "title": "Incidents by Vehicle Age",
+          "overrideColors": false
+        },
+        "dashboard_id": "9259d7aa-e4cc-4162-9f3e-5e7f7e0a1502",
+        "text": "",
+        "visualization_id": "cb13a27f-752e-45cf-81cd-5f82d322af67"
+      },
+      {
+        "id": "26375193-a5e8-4ade-be1c-a177a6ec07ef",
+        "width": 1,
+        "options": {
+          "parameterMappings": {
+            "start_date": {
+              "name": "start_date",
+              "type": "dashboard-level",
+              "mapTo": "start_date",
+              "value": null,
+              "title": ""
+            },
+            "end_date": {
+              "name": "end_date",
+              "type": "dashboard-level",
+              "mapTo": "end_date",
+              "value": null,
+              "title": ""
+            }
+          },
+          "isHidden": false,
+          "position": {
+            "autoHeight": false,
+            "sizeX": 1,
+            "sizeY": 3,
+            "minSizeX": 1,
+            "maxSizeX": 6,
+            "minSizeY": 1,
+            "maxSizeY": 1000,
+            "col": 1,
+            "row": 7
+          },
+          "description": "",
+          "title": "",
+          "overrideColors": false
+        },
+        "dashboard_id": "9259d7aa-e4cc-4162-9f3e-5e7f7e0a1502",
+        "text": "",
+        "visualization_id": "fbacfeb8-b519-4723-96f5-656e6bb607bd"
+      },
+      {
+        "id": "2c63a007-e1ea-4c03-b122-e9547f8626f4",
+        "width": 1,
+        "options": {
+          "isHidden": false,
+          "position": {
+            "autoHeight": false,
+            "sizeX": 6,
+            "sizeY": 2,
+            "minSizeX": 1,
+            "maxSizeX": 6,
+            "minSizeY": 1,
+            "maxSizeY": 1000,
+            "col": 0,
+            "row": 0
+          }
+        },
+        "dashboard_id": "9259d7aa-e4cc-4162-9f3e-5e7f7e0a1502",
+        "text": "# Loss Overview"
+      },
+      {
+        "id": "430182db-bbe6-40b7-9fd5-ce5bc234ec86",
+        "width": 1,
+        "options": {
+          "parameterMappings": {},
+          "title": "Location of Policies",
+          "description": "",
+          "isHidden": false,
+          "position": {
+            "autoHeight": false,
+            "sizeX": 3,
+            "sizeY": 13,
+            "minSizeX": 2,
+            "maxSizeX": 6,
+            "minSizeY": 1,
+            "maxSizeY": 1000,
+            "col": 0,
+            "row": 17
+          }
+        },
+        "dashboard_id": "9259d7aa-e4cc-4162-9f3e-5e7f7e0a1502",
+        "text": "",
+        "visualization_id": "8afcb62f-366c-4978-b519-986928a71ada"
+      },
+      {
+        "id": "52435763-66cb-460b-8f23-9220baf4aef2",
+        "width": 1,
+        "options": {
+          "parameterMappings": {
+            "start_date": {
+              "name": "start_date",
+              "type": "dashboard-level",
+              "mapTo": "start_date",
+              "value": null,
+              "title": ""
+            },
+            "end_date": {
+              "name": "end_date",
+              "type": "dashboard-level",
+              "mapTo": "end_date",
+              "value": null,
+              "title": ""
+            }
+          },
+          "isHidden": false,
+          "position": {
+            "autoHeight": false,
+            "sizeX": 2,
+            "sizeY": 7,
+            "minSizeX": 1,
+            "maxSizeX": 6,
+            "minSizeY": 5,
+            "maxSizeY": 1000,
+            "col": 0,
+            "row": 10
+          },
+          "description": "",
+          "title": "Loss Ratio by Incident Type",
+          "overrideColors": false
+        },
+        "dashboard_id": "9259d7aa-e4cc-4162-9f3e-5e7f7e0a1502",
+        "text": "",
+        "visualization_id": "91cfbc12-d922-4ed2-beb5-4d1483724297"
+      },
+      {
+        "id": "8b5812e2-551f-43c6-bd8c-d722a2a8e402",
+        "width": 1,
+        "options": {
+          "parameterMappings": {},
+          "title": "Driver Age Distribution",
+          "description": "",
+          "isHidden": false,
+          "position": {
+            "autoHeight": false,
+            "sizeX": 3,
+            "sizeY": 7,
+            "minSizeX": 1,
+            "maxSizeX": 6,
+            "minSizeY": 5,
+            "maxSizeY": 1000,
+            "col": 3,
+            "row": 17
+          }
+        },
+        "dashboard_id": "9259d7aa-e4cc-4162-9f3e-5e7f7e0a1502",
+        "text": "",
+        "visualization_id": "7d68b25a-3d3c-412d-9aca-ca0fb9d1c979"
+      },
+      {
+        "id": "cacb60a5-3dcc-4519-8566-af4d4c4f9c1d",
+        "width": 1,
+        "options": {
+          "parameterMappings": {},
+          "isHidden": false,
+          "position": {
+            "autoHeight": false,
+            "sizeX": 4,
+            "sizeY": 7,
+            "minSizeX": 1,
+            "maxSizeX": 6,
+            "minSizeY": 5,
+            "maxSizeY": 1000,
+            "col": 2,
+            "row": 10
+          },
+          "description": "",
+          "title": "Frequency & Severity by Hour of Day",
+          "overrideColors": false
+        },
+        "dashboard_id": "9259d7aa-e4cc-4162-9f3e-5e7f7e0a1502",
+        "text": "",
+        "visualization_id": "53c4f3b6-afac-4951-ba8b-edbe0624320c"
+      },
+      {
+        "id": "f17dadf4-38a8-44eb-847c-c086272374fb",
+        "width": 1,
+        "options": {
+          "parameterMappings": {
+            "start_date": {
+              "name": "start_date",
+              "type": "dashboard-level",
+              "mapTo": "start_date",
+              "value": null,
+              "title": ""
+            },
+            "end_date": {
+              "name": "end_date",
+              "type": "dashboard-level",
+              "mapTo": "end_date",
+              "value": null,
+              "title": ""
+            }
+          },
+          "title": "Summary",
+          "description": "",
+          "isHidden": false,
+          "position": {
+            "autoHeight": false,
+            "sizeX": 4,
+            "sizeY": 8,
+            "minSizeX": 1,
+            "maxSizeX": 6,
+            "minSizeY": 5,
+            "maxSizeY": 1000,
+            "col": 2,
+            "row": 2
+          },
+          "overrideColors": false
+        },
+        "dashboard_id": "9259d7aa-e4cc-4162-9f3e-5e7f7e0a1502",
+        "text": "",
+        "visualization_id": "9953745c-3faf-4404-b93f-326bf41007af"
+      }
+    ],
+    "tags": [
+      "smart_claims"
+    ],
+    "color_palette": null,
+    "dashboard_filters_enabled": false,
+    "parent": "folders/578165050097626",
+    "is_archived": false
+  },
+  "version": "1.0"
+}
