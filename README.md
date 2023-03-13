@@ -51,6 +51,12 @@ ___
 * Each individual need is different. Hence personalization and delivering the relevant value to the concerned individual is an importaant ingredient to inovate. Personalization is not about bothering the customer with multiple touchpoints but wowing them with relevant insights that suit their need in a timely manner. 
 * Apart from courage and conviction, Innovation requires patience because no worthy change is delivered overnight. Hence the need to be on a platform that enables fast paced innovation and an architecture that is open, extensible and pluggable so that technology is never a constraint nor a hindrance to execution of novel ideas. 
 
+# Insurance Terminology
+<img src="./resource/images/InsuranceTechnology.png" width="70%" height="70%">
+
+#Insurance Reference Architecture
+<img src="./resource/images/InsuranceReferenceArchitecture.png" width="70%" height="70%">
+
 # Smart Claims Reference Architecture & Data Flow
 <img src="./resource/images/smart_claims_process.png" width="70%" height="70%">
 
