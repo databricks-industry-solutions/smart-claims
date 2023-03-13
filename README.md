@@ -7,10 +7,10 @@
 * <b>Domain </b>: Insurance 
 * <b>Challenge </b>: 
   * Insurance companies have to constantly innovate to beat competition
-  * Customer Retention & Loyalty can be challenge as people are always shopping for more competitive rates leading to churn
+  * Customer Retention & Loyalty can be a challenge as people are always shopping for more competitive rates leading to churn
   * Fraudulent transactions can erode profit margins 
-  * Processing Claims which can be very time consuming at times
-  * How to improve the Claims Management process for faster claims settlement, lower claims processing costs and quicker identification of possible fraud.
+  * Processing Claims can be very time consuming 
+  * <i>How to improve the Claims Management process for faster claims settlement, lower claims processing costs and quicker identification of possible fraud.</i>
 * <b><span style="color:#f03c15"> Solution: Smart Claims! </span></b>
   * A Databricks Solution Accelerator that uses the Lakehouse paradigm to automate certain components of this process that aids human investigation 
   * Please refer to the getting started doc in the docs
@@ -52,9 +52,9 @@ ___
 * Apart from courage and conviction, Innovation requires patience because no worthy change is delivered overnight. Hence the need to be on a platform that enables fast paced innovation and an architecture that is open, extensible and pluggable so that technology is never a constraint nor a hindrance to execution of novel ideas. 
 
 # Insurance Terminology
-<img src="./resource/images/InsuranceTechnology.png" width="70%" height="70%">
+<img src="./resource/images/Insurance Technology.png" width="70%" height="70%">
 
-#Insurance Reference Architecture
+# Insurance Reference Architecture
 <img src="./resource/images/InsuranceReferenceArchitecture.png" width="70%" height="70%">
 
 # Smart Claims Reference Architecture & Data Flow
