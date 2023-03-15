@@ -4,7 +4,6 @@
 # COMMAND ----------
 
 # MAGIC %md 
-# MAGIC 
 # MAGIC <img src=https://d1r5llqwmkrl74.cloudfront.net/notebooks/fsi/fs-lakehouse-logo-transparent.png width="600px">
 # MAGIC 
 # MAGIC [![DBR](https://img.shields.io/badge/DBR-10.4ML-red?logo=databricks&style=for-the-badge)](https://docs.databricks.com/release-notes/runtime/10.4ml.html)
@@ -14,15 +13,15 @@
 # MAGIC * <b>Domain </b>: Insurance 
 # MAGIC * <b>Challenge </b>: 
 # MAGIC   * Insurance companies have to constantly innovate to beat competition
-# MAGIC   * Customer Retention & Loyalty can be challenge as people are always shopping for more competitive rates leading to churn
+# MAGIC   * Customer Retention & Loyalty can be a challenge as people are always shopping for more competitive rates leading to churn
 # MAGIC   * Fraudulent transactions can erode profit margins 
-# MAGIC   * Processing Claims which can be very time consuming at times
-# MAGIC   * How to improve the Claims Management process for faster claims settlement, lower claims processing costs and quicker identification of possible fraud.
+# MAGIC   * Processing Claims can be very time consuming 
+# MAGIC   * <i>How to improve the Claims Management process for faster claims settlement, lower claims processing costs and quicker identification of possible fraud.</i>
 # MAGIC * <b><span style="color:#f03c15"> Solution: Smart Claims! </span></b>
 # MAGIC   * A Databricks Solution Accelerator that uses the Lakehouse paradigm to automate certain components of this process that aids human investigation 
 # MAGIC   * Please refer to the getting started doc in the docs
 # MAGIC 
-# MAGIC <img src="https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource/images/ClaimsProcess.png" width="70%" height="70%">
+# MAGIC <img src="https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource/images/InsuranceReferenceArchitecture.png" width="70%" height="70%">
 # MAGIC Every claim is different, the following steps capturess a typical workflow <br>
 # MAGIC 1. The <b>Insured</b> contacts the broker who is the primary contact w.r.t. policy <br>
 # MAGIC 2. The <b>Broker</b> examines the data to ensure that relevant details of the claim situation have been captured <br>
@@ -57,6 +56,12 @@
 # MAGIC * Nationwide CTO, Jim Fowler in a podcast on 'Future of Insurance' summarized it aroud <b>Innovation</b>. 
 # MAGIC * Each individual need is different. Hence personalization and delivering the relevant value to the concerned individual is an importaant ingredient to inovate. Personalization is not about bothering the customer with multiple touchpoints but wowing them with relevant insights that suit their need in a timely manner. 
 # MAGIC * Apart from courage and conviction, Innovation requires patience because no worthy change is delivered overnight. Hence the need to be on a platform that enables fast paced innovation and an architecture that is open, extensible and pluggable so that technology is never a constraint nor a hindrance to execution of novel ideas. 
+# MAGIC 
+# MAGIC # Insurance Terminology
+# MAGIC <img src="https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource/images/Insurance Technology.png" width="70%" height="70%">
+# MAGIC 
+# MAGIC # Insurance Reference Architecture
+# MAGIC <img src="https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource/images/InsuranceReferenceArchitecture.png" width="70%" height="70%">
 # MAGIC 
 # MAGIC # Smart Claims Reference Architecture & Data Flow
 # MAGIC <img src="https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource/images/smart_claims_process.png" width="70%" height="70%">
@@ -208,6 +213,7 @@
 # MAGIC | library                                | description             | license    | source                                              |
 # MAGIC |----------------------------------------|-------------------------|------------|-----------------------------------------------------|
 # MAGIC | geopy                                 | A Python client for geocoding   | MIT        | https://github.com/geopy/geopy                     |
+# MAGIC 
 # MAGIC 
 # MAGIC ## Getting started
 # MAGIC 

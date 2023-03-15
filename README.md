@@ -15,7 +15,7 @@
   * A Databricks Solution Accelerator that uses the Lakehouse paradigm to automate certain components of this process that aids human investigation 
   * Please refer to the getting started doc in the docs
 
-<img src="./resource/images/ClaimsProcess.png" width="70%" height="70%">
+<img src="https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource/images/InsuranceReferenceArchitecture.png" width="70%" height="70%">
 Every claim is different, the following steps capturess a typical workflow <br>
 1. The <b>Insured</b> contacts the broker who is the primary contact w.r.t. policy <br>
 2. The <b>Broker</b> examines the data to ensure that relevant details of the claim situation have been captured <br>
@@ -52,13 +52,13 @@ ___
 * Apart from courage and conviction, Innovation requires patience because no worthy change is delivered overnight. Hence the need to be on a platform that enables fast paced innovation and an architecture that is open, extensible and pluggable so that technology is never a constraint nor a hindrance to execution of novel ideas. 
 
 # Insurance Terminology
-<img src="./resource/images/Insurance Technology.png" width="70%" height="70%">
+<img src="https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource/images/Insurance Technology.png" width="70%" height="70%">
 
 # Insurance Reference Architecture
-<img src="./resource/images/InsuranceReferenceArchitecture.png" width="70%" height="70%">
+<img src="https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource/images/InsuranceReferenceArchitecture.png" width="70%" height="70%">
 
 # Smart Claims Reference Architecture & Data Flow
-<img src="./resource/images/smart_claims_process.png" width="70%" height="70%">
+<img src="https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource/images/smart_claims_process.png" width="70%" height="70%">
 
 Claims flow typically involve some orchestration between an <b>operational</b> system such as Guidewire and an <b>analytic</b> system such as Databricks as shown in the diagram above. End users often use a smart app to file claims, look at the status of their case. Either via an app or an IoT dvice embedded in their vehicle, telematic data iss constantly streaming into one of these two systems which provides a lot of information regarding their driving patterns. Sometimes in the event of other credit scores, this data is used to assign a risk score for the driver which has a direct consequence on their premiums. In some ways, it can be argued that this type of <b>insurance risk score </b> is a better indicator of a person's safety track rather than a generic financial credit score which is determined primarily by their financial track record. 
 
@@ -77,7 +77,7 @@ ___
 
 # Datasets
 * All the data is synthetically generated data including the images and geo locations
-<img src="./resource/images/datasets.png" width="60%" height="60%">
+<img src="https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource/images/datasets.png" width="60%" height="60%">
 
 * Typical datasets include the above, some of these are slow moving while others are fast moving. 
 * Some are strutured/semi-structured while others are un-structed. 
@@ -86,7 +86,7 @@ ___
 ___
 
 # Domain Model
-<img src="./resource/images/domain_model.png">
+<img src="https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource/images/domain_model.png">
 
 * There are several industry prescribed data domain models Eg. OMG (https://www.omg.org/) 
 * The above diagram is a simplified domain model to capture some of the relevant data points for the use case.
@@ -101,13 +101,13 @@ ___
   * Reported Severity should match ML predicted severity
   * Accident Location as reported by telematics data should match the location as reported in claim
   * Speed limit as reported by telematics should be within speed limits of that region if there is a dispute on who was on the offense 
-<img src="./resource/images/rule_engine.png" width="70%" height="70%">
+<img src="https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource/images/rule_engine.png" width="70%" height="70%">
 
 # Workflow
 * Different data sources flow in at their own pace, some independent, some with dependencies
 * We will use Databricks multi-task Workflows to put the process in auto-pilot mode to demonstrate the Lakehouse paradigm.
 * Some nodes are Delta Live Table nodes which employ the medallion architecture to refine and curate data, while others are notebooks which use a Model to score the data while still others are SQL workflows to refresh a dashboard with newly generated insights.
-<img src="./resource/images/workflow.png" width="60%" height="60%">
+<img src="https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource/images/workflow.png" width="60%" height="60%">
 1. Setup involve all the work needed to setup the <br>
 2. Ingest claims, Policy & accident data ussing a DLT Pipeline <br>
 3. Ingest Telematic data <br>
@@ -117,7 +117,7 @@ ___
 7. Apply pre-determined rules dynamically to assess merit of the claim and if it is a 'normal' case, release of funds can be expedited <br>
 8. Claims Dashboard is refreshed to aid claim investigators with additional data insights inferenced through the data and AI pipeline <br>
 
-<img src="./resource/images/medallion_architecture_dlt.png" width="80%" height="80%">
+<img src="https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource/images/medallion_architecture_dlt.png" width="80%" height="80%">
                                                                                    
 Using DLT for ETL helps simplify and operationalize the pipeline with its support for autoloader, data quality via constraints, efficient auto-scaling for streaming workloads, resiliency via restart on failure, execution of administrative operations among others.
 
@@ -130,7 +130,7 @@ ___
 
 # Insight visualization using Dashboards
 A <b>Loss Summary</b> dashboard gives a birds eye view to overall business operations<br>
-<img src="./resource/images/summary_dashboard.png" width="60%" height="60%">
+<img src="https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource/images/summary_dashboard.png" width="60%" height="60%">
 
 * <b>Loss Ratio</b> is computed by insurance claims paid plus adjustment expenses divided by total earned premiums. 
   * For example, if a company pays $80 in claims for every $160 in collected premiums, the loss ratio would be 50%. 
@@ -150,7 +150,7 @@ A <b>Loss Summary</b> dashboard gives a birds eye view to overall business opera
   * Which areas of the city have a higher incidence rate(construction, congestion, layout, density, etc)
 
 A per claim <b>Investigation</b> dashboard gives additional where a claims officer picks a claim number and can drill into its various facets<br>
-<img src="./resource/images/ClaimsInvestigation.png" width="80%" height="80%">
+<img src="https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource/images/ClaimsInvestigation.png" width="80%" height="80%">
 
 * The first panel uses <b>counter</b> widgets to provide statistics on rolling counts on number of 
   * Claims filed and of those how many were flagged as 
