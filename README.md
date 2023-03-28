@@ -15,7 +15,6 @@
   * A Databricks Solution Accelerator that uses the Lakehouse paradigm to automate certain components of this process that aids human investigation 
   * Please refer to the getting started doc in the docs
 
-<img src="https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource/images/InsuranceReferenceArchitecture.png" width="70%" height="70%">
 Every claim is different, the following steps capturess a typical workflow <br>
 1. The <b>Insured</b> contacts the broker who is the primary contact w.r.t. policy <br>
 2. The <b>Broker</b> examines the data to ensure that relevant details of the claim situation have been captured <br>
@@ -52,7 +51,7 @@ ___
 * Apart from courage and conviction, Innovation requires patience because no worthy change is delivered overnight. Hence the need to be on a platform that enables fast paced innovation and an architecture that is open, extensible and pluggable so that technology is never a constraint nor a hindrance to execution of novel ideas. 
 
 # Insurance Terminology
-<img src="https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource/images/Insurance Technology.png" width="70%" height="70%">
+<img src="https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource/images/Insurance Technology.png" width="60%" height="50%">
 
 # Insurance Reference Architecture
 <img src="https://github.com/databricks-industry-solutions/smart-claims/raw/main/resource/images/InsuranceReferenceArchitecture.png" width="70%" height="70%">
