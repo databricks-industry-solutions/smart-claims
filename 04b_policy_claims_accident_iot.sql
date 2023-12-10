@@ -42,15 +42,15 @@ on p_c.chassis_no=t.chassis_no
 
 -- COMMAND ----------
 
-create table if not exists silver_claim_policy_accident as 
-(
-select p_c.*, t.* except(t.claim_no, t.chassis_no)
-from 
-silver_claim_policy_telematics_avg as p_c 
-join 
-silver_accident as t
-on p_c.claim_no=t.claim_no
-)
+-- create table if not exists silver_claim_policy_accident as 
+-- (
+-- select p_c.*, t.* except(t.claim_no, t.chassis_no)
+-- from 
+-- silver_claim_policy_telematics_avg as p_c 
+-- join 
+-- silver_accident as t
+-- on p_c.claim_no=t.claim_no
+-- )
 
 -- COMMAND ----------
 
